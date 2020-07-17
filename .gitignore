@@ -1,3 +1,8 @@
+
+.idea/
+tp2.iml
+target/
+
 # Compiled class file
 *.class
 
