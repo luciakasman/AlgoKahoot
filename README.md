@@ -5,11 +5,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Lucia Kasman** - [integrante1](https://github.com/luciakasman)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Alan Ramiro Cueto Quinto** - [integrante2](https://github.com/AlanRcq)
+* **Gisela Ramos** - [integrante3](https://github.com/GiseRamos)
 * **Graziosi German** - [integrante4](https://github.com/GraziosiGer)
 
-Corrector: **{Corrector}**
+Corrector: **Eugenio Yolis**
 
 ### Pre-requisitos
 
