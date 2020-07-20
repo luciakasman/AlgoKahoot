@@ -12,12 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPreguntaVerdaderoOFalsoClasico {
 
-    @Test
-    void testPuedeCrearseIndicandoleRespuestaCorrecta() {
+    PreguntaVerdaderoOFalso pregunta;
+    String preguntaAHacer;
+    String opcionCorrecta;
 
-        String opcionCorrecta = "verdadero";
+    void setUp() {
+        opcionCorrecta = "verdadero";
         String opcionIncorrecta = "falso";
-        String preguntaAHacer = "Estamos hechxs de torta?";
+        preguntaAHacer = "Estamos hechxs de torta?";
         List<String> opciones = new LinkedList<>();
         List<String> opcionesCorrectas = new LinkedList<>();
         opciones.add(opcionCorrecta);
@@ -25,7 +27,12 @@ public class TestPreguntaVerdaderoOFalsoClasico {
 
         opcionesCorrectas.add(opcionCorrecta);
 
-        PreguntaVerdaderoOFalso pregunta = new PreguntaVerdaderoOFalso(preguntaAHacer, opciones, opcionesCorrectas);
+        pregunta = new PreguntaVerdaderoOFalso(preguntaAHacer, opciones, opcionesCorrectas);
+    }
+
+    @Test
+    void testPuedeCrearseIndicandoleRespuestaCorrecta() {
+        setUp();
 
         assertEquals(preguntaAHacer, pregunta.obtenerPregunta());
 
@@ -34,16 +41,7 @@ public class TestPreguntaVerdaderoOFalsoClasico {
 
     @Test
     void testRecibeRespuestasYAsignaPuntos() {
-
-        String opcionCorrecta = "verdadero";
-        String opcionIncorrecta = "falso";
-        String preguntaAHacer = "Estamos hechxs de torta?";
-        List<String> opciones = new LinkedList<>();
-        List<String> opcionesCorrectas = new LinkedList<>();
-        opciones.add(opcionCorrecta);
-        opciones.add(opcionIncorrecta);
-
-        opcionesCorrectas.add(opcionCorrecta);
+        setUp();
 
         Jugador jugadorUno = new Jugador("Lucia");
         Jugador jugadorDos = new Jugador("Alan");
@@ -52,8 +50,6 @@ public class TestPreguntaVerdaderoOFalsoClasico {
         List<String> respuestasJugadorDos = new LinkedList<>();
         respuestasJugadorUno.add("verdadero");
         respuestasJugadorDos.add("falso");
-
-        PreguntaVerdaderoOFalso pregunta = new PreguntaVerdaderoOFalso(preguntaAHacer, opciones, opcionesCorrectas);
 
         pregunta.asignarPuntaje(jugadorUno, respuestasJugadorUno);
         pregunta.asignarPuntaje(jugadorDos, respuestasJugadorDos);
