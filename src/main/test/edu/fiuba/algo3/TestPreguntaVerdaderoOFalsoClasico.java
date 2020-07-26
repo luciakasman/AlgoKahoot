@@ -2,6 +2,7 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.pregunta.PreguntaVerdaderoOFalso;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -16,6 +17,7 @@ public class TestPreguntaVerdaderoOFalsoClasico {
     String preguntaAHacer;
     String opcionCorrecta;
 
+    @BeforeEach
     void setUp() {
         opcionCorrecta = "verdadero";
         String opcionIncorrecta = "falso";
@@ -32,7 +34,6 @@ public class TestPreguntaVerdaderoOFalsoClasico {
 
     @Test
     void testPuedeCrearseIndicandoleRespuestaCorrecta() {
-        setUp();
 
         assertEquals(preguntaAHacer, pregunta.obtenerPregunta());
 
@@ -41,7 +42,6 @@ public class TestPreguntaVerdaderoOFalsoClasico {
 
     @Test
     void testRecibeRespuestasYAsignaPuntos() {
-        setUp();
 
         Jugador jugadorUno = new Jugador("Lucia");
         Jugador jugadorDos = new Jugador("Alan");
