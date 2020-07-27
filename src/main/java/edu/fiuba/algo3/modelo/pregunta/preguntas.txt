@@ -1,0 +1,4 @@
+2+2 = 4;V
+Usar while(true) es buena practica;F
+La macbook es mas barata que la notebook del gobierno;F
+La puerta esta cerrada;V
