@@ -12,7 +12,7 @@ public class GeneradorDePreguntas {
         Queue<Pregunta> preguntas = new LinkedList<>();
 
         try {
-            File archivo = new File("/home/luciak/Documentos/Algoritmos y Programación 3/TP2-Algo3/src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.txt");
+            File archivo = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.txt");
             Scanner lector = new Scanner(archivo);
             while (lector.hasNextLine()) {
                 preguntas.add(leerPregunta(lector));

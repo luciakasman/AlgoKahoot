@@ -11,4 +11,14 @@ public class Opcion {
     public String obtenerOpcion(){
         return opcion;
     }
+
+    //Redefinicion del metodo equals para comparacion de instancias de Opcion
+    @Override
+    public boolean equals(Object comparado){
+        if(comparado instanceof Opcion) {
+            Opcion opcionComparada = (Opcion) comparado;
+            return this.opcion.equals(opcionComparada.obtenerOpcion());
+        }
+        return false;
+    }
 }
