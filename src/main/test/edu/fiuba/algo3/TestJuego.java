@@ -162,6 +162,7 @@ public class TestJuego {
     public void testMultipleChoiceConPenalidad(){
 
         List<Opcion> respuestaMultipleChoiceConPenalidad = crearPreguntaMultipleChoice();
+
         Opcion opcionE = new Opcion("Discreta");
         respuestaMultipleChoiceConPenalidad.add(opcionE);
         //La respuesta tiene 2 opciones bien y una mal
