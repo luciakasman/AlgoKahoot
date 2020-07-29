@@ -12,6 +12,6 @@ public class RespuestaVerdaderoOFalsoConPenalidad implements Respuesta{
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
         return opcionesCorrectas.stream().anyMatch(opcionCorrecta ->
-                opcionCorrecta.obtenerOpcion().equals(respuesta.obtenerOpcion())) ? 1 : -1;
+                opcionCorrecta.equals(respuesta)) ? 1 : -1;
     }
 }

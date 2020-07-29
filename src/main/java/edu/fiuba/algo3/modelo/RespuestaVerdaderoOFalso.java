@@ -12,6 +12,6 @@ public class RespuestaVerdaderoOFalso implements Respuesta{
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectas){
         return opcionesCorrectas.stream().anyMatch(opcionCorrecta ->
-                opcionCorrecta.obtenerOpcion().equals(respuesta.obtenerOpcion())) ? 1 : 0;
+                opcionCorrecta.equals(respuesta)) ? 1 : 0;
     }
 }
