@@ -16,7 +16,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TestJuego {
-    
+
     Pregunta pregunta;
     String preguntaAHacer;
     List<Opcion> opcionesCorrectas;
@@ -34,15 +34,10 @@ public class TestJuego {
 
     @Test
     public void testPreguntaVerdaderoOFalsoRespuestaCorrecta() {
-
         crearPreguntaVerdaderoOFalso();
-
         juego.agregarJugador("Galis");
-
         juego.comenzarJuego();
-
         Opcion opcionRespuesta = new Opcion("falso");
-
         Respuesta respuesta = new RespuestaVerdaderoOFalso(opcionRespuesta);
 
         juego.darPuntosAJugador(pregunta, respuesta);
@@ -52,13 +47,9 @@ public class TestJuego {
 
     @Test
     public void testPreguntaVerdaderoOFalsoRespuestaIncorrecta() {
-
         crearPreguntaVerdaderoOFalso();
-
         juego.agregarJugador("Gisela");
-
         juego.comenzarJuego();
-
         Opcion opcionRespuesta = new Opcion("verdadero");
         Respuesta respuesta = new RespuestaVerdaderoOFalso(opcionRespuesta);
 
@@ -69,15 +60,10 @@ public class TestJuego {
 
     @Test
     public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaCorrecta() {
-
         crearPreguntaVerdaderoOFalso();
-
         juego.agregarJugador("Galis");
-
         juego.comenzarJuego();
-
         Opcion opcionRespuesta = new Opcion("falso");
-
         Respuesta respuesta = new RespuestaVerdaderoOFalsoConPenalidad(opcionRespuesta);
 
         juego.darPuntosAJugador(pregunta, respuesta);
@@ -87,19 +73,54 @@ public class TestJuego {
 
     @Test
     public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaIncorrecta() {
-
         crearPreguntaVerdaderoOFalso();
-
         juego.agregarJugador("Gisela");
-
         juego.comenzarJuego();
-
         Opcion opcionRespuesta = new Opcion("verdadero");
         Respuesta respuesta = new RespuestaVerdaderoOFalsoConPenalidad(opcionRespuesta);
 
         juego.darPuntosAJugador(pregunta, respuesta);
 
         assertEquals(-1, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
+
+    @Test
+    public void testMultipleChoiceConPuntajeParcialCorrecto() {
+        List<Opcion> respuestaMultipleChoiceParcial = crearPreguntaMultipleChoice();
+        juego.agregarJugador("Gisela");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaMultipleChoiceParcial(respuestaMultipleChoiceParcial);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(2, juego.obtenerJugadorActual().obtenerPuntaje());
+
+    }
+
+    @Test
+    public void testMultipleChoiceClasico() {
+        List<Opcion> respuestaMultipleChoice = crearPreguntaMultipleChoice();
+        juego.agregarJugador("Alan");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaMultipleChoiceClasico(respuestaMultipleChoice);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
+
+    @Test
+    public void testMultipleChoiceConPenalidad() {
+        List<Opcion> respuestaMultipleChoiceConPenalidad = crearPreguntaMultipleChoice();
+        Opcion opcionE = new Opcion("Discreta");
+        respuestaMultipleChoiceConPenalidad.add(opcionE);
+        juego.agregarJugador("German");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaMultipleChoiceConPenalidad(respuestaMultipleChoiceConPenalidad);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
     }
 
     private void crearPreguntaVerdaderoOFalso() {
@@ -113,69 +134,25 @@ public class TestJuego {
 
         pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
     }
-    private List<Opcion> crearPreguntaMultipleChoice(){
+
+    private List<Opcion> crearPreguntaMultipleChoice() {
         preguntaAHacer = "cuales de estas materias son las peores de la facultad?";
         List<Opcion> respuesta = new ArrayList<>();
         opcionesCorrectas = new ArrayList<>();
         Opcion opcionA = new Opcion("AlgebraII");
         Opcion opcionB = new Opcion("FisicaI");
-        Opcion opcionC = new Opcion("Algoritmos III");
+        Opcion opcionC = new Opcion("Algoritmos II");
         Opcion opcionD = new Opcion("Quimica");
         respuesta.add(opcionA);
         respuesta.add(opcionB);
         opcionesCorrectas.add(opcionA);
         opcionesCorrectas.add(opcionB);
-        opcionesCorrectas.add(opcionC);
-        opcionesCorrectas.add(opcionD);
         opcionesIncorrectas = new LinkedList<>();
+        opcionesIncorrectas.add(opcionC);
+        opcionesIncorrectas.add(opcionD);
+
         pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+
         return respuesta;
     }
-    @Test
-    public void testMultipleChoiceConPuntajeParcialCorrecto(){
-        List<Opcion> respuestaMultipleChoiceParcial = crearPreguntaMultipleChoice();
-        juego.agregarJugador("Gisela");
-
-        juego.comenzarJuego();
-
-        Respuesta respuesta = new RespuestaMultipleChoiceParcial(respuestaMultipleChoiceParcial);
-
-        juego.darPuntosAJugador(pregunta, respuesta);
-
-        assertEquals(2, juego.obtenerJugadorActual().obtenerPuntaje());
-
-    }
-    @Test
-    public void testMultipleChoiceClasico(){
-        List<Opcion> respuestaMultipleChoice = crearPreguntaMultipleChoice();
-        juego.agregarJugador("Alan");
-
-        juego.comenzarJuego();
-
-        Respuesta respuesta = new RespuestaMultipleChoice(respuestaMultipleChoice);
-
-        juego.darPuntosAJugador(pregunta, respuesta);
-
-        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
-    }
-    @Test
-    public void testMultipleChoiceConPenalidad(){
-
-        List<Opcion> respuestaMultipleChoiceConPenalidad = crearPreguntaMultipleChoice();
-
-        Opcion opcionE = new Opcion("Discreta");
-        respuestaMultipleChoiceConPenalidad.add(opcionE);
-        //La respuesta tiene 2 opciones bien y una mal
-
-        juego.agregarJugador("German");
-
-        juego.comenzarJuego();
-
-        Respuesta respuesta = new RespuestaMultipleChoiceConPenalidad(respuestaMultipleChoiceConPenalidad);
-
-        juego.darPuntosAJugador(pregunta, respuesta);
-
-        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
-    }
-
 }

@@ -5,19 +5,19 @@ import java.util.List;
 
 public class RespuestaMultipleChoiceConPenalidad implements Respuesta {
 
-    private final List<Opcion> respuesta;
+    private final List<Opcion> respuestas;
 
-    public RespuestaMultipleChoiceConPenalidad(List<Opcion> respuesta){this.respuesta = respuesta ; }
-
-    public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
-
-        //List<Opcion> interseccion = intersection(respuesta,opcionesCorrectas);
-        //puntaje = (interseccion.size() * 2) - respuesta.size();
-
-        List<Opcion> interseccion = new LinkedList<>(respuesta);
-        interseccion.retainAll(opcionesCorrectas);
-        return (interseccion.size() * 2) - respuesta.size();
-
+    public RespuestaMultipleChoiceConPenalidad(List<Opcion> respuestas) {
+        this.respuestas = respuestas;
     }
 
+    public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
+        List<Opcion> interseccionEntreRespuestasYOpcionesCorrectas = new LinkedList<>(respuestas);
+        interseccionEntreRespuestasYOpcionesCorrectas.retainAll(opcionesCorrectas);
+
+        int puntajeRespuestasCorrectas = interseccionEntreRespuestasYOpcionesCorrectas.size();
+        int puntajeRespuestasIncorrectas = respuestas.size() - puntajeRespuestasCorrectas;
+
+        return puntajeRespuestasCorrectas - puntajeRespuestasIncorrectas;
+    }
 }

@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class RespuestaVerdaderoOFalsoConPenalidad implements Respuesta{
+public class RespuestaVerdaderoOFalsoConPenalidad implements Respuesta {
 
     private final Opcion respuesta;
 

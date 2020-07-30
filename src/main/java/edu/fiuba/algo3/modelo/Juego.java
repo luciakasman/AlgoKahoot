@@ -33,7 +33,7 @@ public class Juego {
         return generador.obtenerPreguntas();
     }
 
-    public Jugador obtenerJugadorActual(){
+    public Jugador obtenerJugadorActual() {
         return jugadorActual;
     }
 

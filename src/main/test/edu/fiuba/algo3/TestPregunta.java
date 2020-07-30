@@ -39,22 +39,4 @@ public class TestPregunta {
 
         assertEquals(opcionesCorrectas, pregunta.obtenerOpcionesCorrectas());
     }
-
-    /*@Test
-    void testRecibeRespuestasYAsignaPuntos() {
-
-        Jugador jugadorUno = new Jugador("Lucia");
-        Jugador jugadorDos = new Jugador("Alan");
-
-        List<String> respuestasJugadorUno = new LinkedList<>();
-        List<String> respuestasJugadorDos = new LinkedList<>();
-        respuestasJugadorUno.add("verdadero");
-        respuestasJugadorDos.add("falso");
-
-        pregunta.asignarPuntaje(jugadorUno, respuestasJugadorUno);
-        pregunta.asignarPuntaje(jugadorDos, respuestasJugadorDos);
-
-        assertEquals(1, jugadorUno.obtenerPuntaje());
-        assertEquals(0, jugadorDos.obtenerPuntaje());
-    }*/
 }
