@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class RespuestaMultipleChoiceParcial implements Respuesta {
+public class RespuestaMultipleChoiceClasico implements Respuesta {
 
     private final List<Opcion> respuestas;
 
-    public RespuestaMultipleChoiceParcial(List<Opcion> respuestas) {
+    public RespuestaMultipleChoiceClasico(List<Opcion> respuestas) {
         this.respuestas = respuestas;
     }
 
@@ -14,6 +14,6 @@ public class RespuestaMultipleChoiceParcial implements Respuesta {
         boolean exists = respuestas.stream()
                 .allMatch(key -> opcionesCorrectas.stream().anyMatch(key::equals));
 
-        return exists ? respuestas.size() : 0;
+        return (exists && opcionesCorrectas.size() == respuestas.size()) ? 1 : 0;
     }
 }

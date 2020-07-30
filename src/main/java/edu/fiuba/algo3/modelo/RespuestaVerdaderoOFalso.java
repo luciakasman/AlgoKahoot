@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class RespuestaVerdaderoOFalso implements Respuesta{
+public class RespuestaVerdaderoOFalso implements Respuesta {
 
     private final Opcion respuesta;
 
@@ -10,7 +10,7 @@ public class RespuestaVerdaderoOFalso implements Respuesta{
         this.respuesta = respuesta;
     }
 
-    public int obtenerPuntaje(List<Opcion> opcionesCorrectas){
+    public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
         return opcionesCorrectas.stream().anyMatch(opcionCorrecta ->
                 opcionCorrecta.equals(respuesta)) ? 1 : 0;
     }

@@ -1,13 +1,13 @@
-# TP2 Algoritmos 3: {nombre}
+# TP2 Algoritmos 3: Kahoot
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
 ## Grupo {N}
 
-* **Lucia Kasman** - [integrante1](https://github.com/luciakasman)
-* **Alan Ramiro Cueto Quinto** - [integrante2](https://github.com/AlanRcq)
+* **Lucia Kasman** - [luciakasman](https://github.com/luciakasman)
+* **Alan Ramiro Cueto Quinto** - [AlanRcq](https://github.com/AlanRcq)
 * **Gisela Ramos** - [GiseRamos](https://github.com/GiseRamos)
-* **Graziosi German** - [integrante4](https://github.com/GraziosiGer)
+* **Graziosi German** - [GraziosiGer](https://github.com/GraziosiGer)
 
 Corrector: **Eugenio Yolis**
 

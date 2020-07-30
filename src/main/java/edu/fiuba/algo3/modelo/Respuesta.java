@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Respuesta {
 
-    public int obtenerPuntaje(List<Opcion> opcionesCorrectas);
+    int obtenerPuntaje(List<Opcion> opcionesCorrectas);
 }
