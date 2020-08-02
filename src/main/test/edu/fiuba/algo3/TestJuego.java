@@ -155,4 +155,42 @@ public class TestJuego {
 
         return respuesta;
     }
+
+    private List<Opcion> crearPreguntaOrderedChoice() {
+        preguntaAHacer = "Ordenar las siguientes materias alfabeticamente";
+        List<Opcion> respuesta = new ArrayList<>();
+        opcionesCorrectas = new ArrayList<>();
+        Opcion opcionA = new Opcion("AlgebraII");
+        Opcion opcionB = new Opcion("Algoritmos II");
+        Opcion opcionC = new Opcion("FisicaI");
+        Opcion opcionD = new Opcion("Quimica");
+        respuesta.add(opcionA);
+        respuesta.add(opcionB);
+        respuesta.add(opcionD);
+        respuesta.add(opcionC);
+
+        opcionesCorrectas.add(opcionA);
+        opcionesCorrectas.add(opcionB);
+        opcionesCorrectas.add(opcionC);
+        opcionesCorrectas.add(opcionD);
+
+        opcionesIncorrectas = new LinkedList<>();
+
+        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+
+        return respuesta;
+    }
+
+    @Test
+    public void testOrderedChoiceIncorrecto() {
+
+        List<Opcion> respuestaOrderedChoice = crearPreguntaOrderedChoice();
+        juego.agregarJugador("German");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaOrderedChoice(respuestaOrderedChoice);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
 }
