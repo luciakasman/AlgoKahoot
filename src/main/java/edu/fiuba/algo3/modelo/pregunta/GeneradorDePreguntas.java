@@ -1,10 +1,15 @@
 package edu.fiuba.algo3.modelo.pregunta;
 
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class GeneradorDePreguntas {
 
@@ -23,7 +28,28 @@ public class GeneradorDePreguntas {
             e.printStackTrace();
         }
 
+        leerPreguntasJSON();
         return preguntas;
+
+
+
+    }
+
+    private void leerPreguntasJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        File file = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.json");
+
+        Pregunta pregunta = null;
+        try {
+            pregunta = objectMapper.readValue(file, Pregunta.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.print(pregunta.pregunta);
+        System.out.print(pregunta.opcionesCorrectas);
+        System.out.print(pregunta.opcionesIncorrectas);
     }
 
     private Pregunta leerPregunta(Scanner lector) {
