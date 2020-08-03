@@ -8,6 +8,7 @@ public class Opcion {
         this.opcion = opcion;
     }
 
+
     public String obtenerOpcion() {
         return opcion;
     }

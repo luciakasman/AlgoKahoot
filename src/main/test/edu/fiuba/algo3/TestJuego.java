@@ -155,4 +155,85 @@ public class TestJuego {
 
         return respuesta;
     }
+
+    private List<Opcion> crearPreguntaOrderedChoice() {
+        preguntaAHacer = "Ordenar las siguientes materias alfabeticamente";
+        List<Opcion> respuesta = new ArrayList<>();
+        opcionesCorrectas = new ArrayList<>();
+        Opcion opcionA = new Opcion("AlgebraII");
+        Opcion opcionB = new Opcion("Algoritmos II");
+        Opcion opcionC = new Opcion("FisicaI");
+        Opcion opcionD = new Opcion("Quimica");
+        respuesta.add(opcionA);
+        respuesta.add(opcionB);
+        respuesta.add(opcionD);
+        respuesta.add(opcionC);
+
+        opcionesCorrectas.add(opcionA);
+        opcionesCorrectas.add(opcionB);
+        opcionesCorrectas.add(opcionC);
+        opcionesCorrectas.add(opcionD);
+
+        opcionesIncorrectas = new LinkedList<>();
+
+        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+
+        return respuesta;
+    }
+
+    @Test
+    public void testOrderedChoiceIncorrecto() {
+
+        List<Opcion> respuestaOrderedChoice = crearPreguntaOrderedChoice();
+        juego.agregarJugador("German");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaOrderedChoice(respuestaOrderedChoice);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
+
+    private List<Opcion> crearPreguntaGroupChoice() {
+        preguntaAHacer = "Ordenar en grupos pares e impares";
+        List<Opcion> respuestaGrupoA = new ArrayList<>();
+        List<Opcion> respuestaGrupoB = new ArrayList<>();
+
+        List<Opcion> opcionesCorrectasGrupoA = new ArrayList<>();
+        List<Opcion> opcionesCorrectasGrupoB = new ArrayList<>();
+
+        Opcion opcionA = new Opcion("1");
+        Opcion opcionB = new Opcion("2");
+        Opcion opcionC = new Opcion("3");
+        Opcion opcionD = new Opcion("4");
+        respuestaGrupoA.add(opcionA);
+        respuestaGrupoA.add(opcionB);
+        respuestaGrupoA.add(opcionD);
+        respuestaGrupoB.add(opcionC);
+
+        opcionesCorrectasGrupoA.add(opcionA);
+        opcionesCorrectasGrupoA.add(opcionB);
+        opcionesCorrectasGrupoA.add(opcionC);
+        opcionesCorrectasGrupoB.add(opcionD);
+
+        opcionesIncorrectas = new LinkedList<>();
+
+        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectasGrupoA, opcionesIncorrectas);
+
+        return respuestaGrupoA;
+    }
+
+    @Test
+    public void testGruopChoiceCorrecto() {
+
+        List<Opcion> respuestaGrupoA = crearPreguntaGroupChoice();
+        juego.agregarJugador("German");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaGroupChoice(respuestaGrupoA);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
+
 }
