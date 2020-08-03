@@ -193,4 +193,47 @@ public class TestJuego {
 
         assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
     }
+
+    private List<Opcion> crearPreguntaGroupChoice() {
+        preguntaAHacer = "Ordenar en grupos pares e impares";
+        List<Opcion> respuestaGrupoA = new ArrayList<>();
+        List<Opcion> respuestaGrupoB = new ArrayList<>();
+
+        List<Opcion> opcionesCorrectasGrupoA = new ArrayList<>();
+        List<Opcion> opcionesCorrectasGrupoB = new ArrayList<>();
+
+        Opcion opcionA = new Opcion("1");
+        Opcion opcionB = new Opcion("2");
+        Opcion opcionC = new Opcion("3");
+        Opcion opcionD = new Opcion("4");
+        respuestaGrupoA.add(opcionA);
+        respuestaGrupoA.add(opcionB);
+        respuestaGrupoA.add(opcionD);
+        respuestaGrupoB.add(opcionC);
+
+        opcionesCorrectasGrupoA.add(opcionA);
+        opcionesCorrectasGrupoA.add(opcionB);
+        opcionesCorrectasGrupoA.add(opcionC);
+        opcionesCorrectasGrupoB.add(opcionD);
+
+        opcionesIncorrectas = new LinkedList<>();
+
+        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectasGrupoA, opcionesIncorrectas);
+
+        return respuestaGrupoA;
+    }
+
+    @Test
+    public void testGruopChoiceCorrecto() {
+
+        List<Opcion> respuestaGrupoA = crearPreguntaGroupChoice();
+        juego.agregarJugador("German");
+        juego.comenzarJuego();
+        Respuesta respuesta = new RespuestaGroupChoice(respuestaGrupoA);
+
+        juego.darPuntosAJugador(pregunta, respuesta);
+
+        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+    }
+
 }
