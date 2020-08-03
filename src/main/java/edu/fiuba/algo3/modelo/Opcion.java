@@ -20,4 +20,12 @@ public class Opcion {
         }
         return false;
     }
+
+    public String getOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(String opcion) {
+        this.opcion = opcion;
+    }
 }
