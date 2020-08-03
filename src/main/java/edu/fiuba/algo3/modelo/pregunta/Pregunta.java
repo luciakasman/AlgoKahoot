@@ -31,4 +31,16 @@ public class Pregunta {
     public int obtenerPuntaje(Respuesta respuesta) {
         return respuesta.obtenerPuntaje(this.opcionesCorrectas);
     }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public List<Opcion> getOpcionesIncorrectas() {
+        return opcionesIncorrectas;
+    }
+
+    public List<Opcion> getOpcionesCorrectas() {
+        return opcionesCorrectas;
+    }
 }
