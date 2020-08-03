@@ -1,0 +1,13 @@
+{
+      "pregunta": "Hola",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ]
+}
