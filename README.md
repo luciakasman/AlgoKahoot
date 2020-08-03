@@ -2,7 +2,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo {11}
 
 * **Lucia Kasman** - [luciakasman](https://github.com/luciakasman)
 * **Alan Ramiro Cueto Quinto** - [AlanRcq](https://github.com/AlanRcq)
