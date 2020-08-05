@@ -10,7 +10,6 @@ public class Pregunta {
     private List<Opcion> opcionesIncorrectas;
     private List<Opcion> opcionesCorrectas;
 
-
     public Pregunta(String pregunta, List<Opcion> opcionesCorrectas, List<Opcion> opcionesIncorrectas) {
         this.pregunta = pregunta;
         this.opcionesIncorrectas = opcionesIncorrectas;

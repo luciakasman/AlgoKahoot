@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 public class Opcion {
 
-    public String opcion;
+    private String opcion;
 
     public Opcion(String opcion) {
         this.opcion = opcion;
