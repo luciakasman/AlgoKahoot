@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.pregunta.Pregunta;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Ronda {
@@ -20,7 +21,9 @@ public class Ronda {
         //muestra la pregunta con sus opciones llamando al Controlador
         //recibe las respuestas del front del Controlador
         //evalua las respuestas, guardandose el puntaje
-        Respuesta respuestasObtenidas = pregunta.armarRespuesta(new Opcion("v")); //arma la respuesta correspondiente
+        List<Opcion> respuestas = new LinkedList<>();
+        respuestas.add(new Opcion("v"));
+        Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas); //arma la respuesta correspondiente
         return evaluarRespuesta(pregunta, respuestasObtenidas);
     }
 

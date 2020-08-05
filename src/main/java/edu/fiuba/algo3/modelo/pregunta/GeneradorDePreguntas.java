@@ -44,6 +44,13 @@ public class GeneradorDePreguntas {
         }
         //return preguntas;
         System.out.println(preguntas.preguntas.get(0).getPregunta());
+        System.out.println(preguntas.preguntas.get(0).getOpcionesCorrectas().get(0).getOpcion());
+        System.out.println(preguntas.preguntas.get(0).getOpcionesIncorrectas().get(0).getOpcion());
+        System.out.println(preguntas.preguntas.get(1).getPregunta());
+        System.out.println(preguntas.preguntas.get(1).getOpcionesCorrectas().get(0).getOpcion());
+        System.out.println(preguntas.preguntas.get(1).getOpcionesCorrectas().get(1).getOpcion());
+        System.out.println(preguntas.preguntas.get(1).getOpcionesIncorrectas().get(0).getOpcion());
+        System.out.println(preguntas.preguntas.get(1).getOpcionesIncorrectas().get(1).getOpcion());
     }
 
     private Pregunta leerPregunta(Scanner lector) {
