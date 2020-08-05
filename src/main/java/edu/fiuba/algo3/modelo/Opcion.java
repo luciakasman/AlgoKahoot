@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 public class Opcion {
 
-    private String opcion;
+    public String opcion;
 
     public Opcion(String opcion) {
         this.opcion = opcion;
@@ -20,6 +20,10 @@ public class Opcion {
         }
         return false;
     }
+
+    /* Getters, setters y constructor vacio creados para poder leer desde un JSON*/
+
+    public Opcion() { }
 
     public String getOpcion() {
         return opcion;
