@@ -2,14 +2,14 @@ package edu.fiuba.algo3.modelo.pregunta;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
-import org.codehaus.jackson.map.ObjectMapper;
 
 public class GeneradorDePreguntas {
 
@@ -28,28 +28,47 @@ public class GeneradorDePreguntas {
             e.printStackTrace();
         }
 
-        leerPreguntasJSON();
         return preguntas;
-
-
-
     }
 
-    private void leerPreguntasJSON() {
+    public LotePreguntas leerPreguntasJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
 
         File file = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.json");
 
-        Pregunta pregunta = null;
+        LotePreguntas preguntas = null;
         try {
-            pregunta = objectMapper.readValue(file, Pregunta.class);
+            preguntas = objectMapper.readValue(file, LotePreguntas.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return preguntas;
+        /*preguntas.getPreguntasMultipleChoiceClasico().forEach(pregunta ->
+                pregunta.opcionesCorrectas.forEach(opcionC ->
+                                System.out.println(pregunta.pregunta +" " + opcionC.opcion)
+                )
+        );
 
-        System.out.print(pregunta.pregunta);
-        System.out.print(pregunta.opcionesCorrectas);
-        System.out.print(pregunta.opcionesIncorrectas);
+        preguntas.getPreguntasMultipleChoiceClasico().forEach(pregunta ->
+                pregunta.opcionesIncorrectas.forEach(opcionI ->
+                        System.out.println(pregunta.pregunta +" " + opcionI.opcion)
+                )
+        );
+
+        preguntas.getPreguntasVoF().forEach(pregunta ->
+                pregunta.opcionesCorrectas.forEach(opcionC ->
+                        System.out.println(pregunta.pregunta +" " + opcionC.opcion)
+                )
+        );
+
+        preguntas.getPreguntasVoF().forEach(pregunta ->
+                pregunta.opcionesIncorrectas.forEach(opcionI ->
+                        System.out.println(pregunta.pregunta +" " + opcionI.opcion)
+                )
+        );*/
+
+
+
     }
 
     private Pregunta leerPregunta(Scanner lector) {
