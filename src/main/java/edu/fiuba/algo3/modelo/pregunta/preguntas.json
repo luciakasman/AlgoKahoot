@@ -1,5 +1,20 @@
 {
-      "pregunta": "Hola",
+  "verdaderoOFalso" :[
+    {
+      "pregunta": "\"Estamos hechxs de torta?\"",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ]
+    } ,
+    {
+      "pregunta": "PreguntaVoF2",
       "opcionesIncorrectas": [
         {
           "opcion": "falso"
@@ -10,4 +25,55 @@
           "opcion": "verdadero"
         }
       ]
+    }
+  ],
+  "multipleChoiceClasico": [
+    {
+      "pregunta": "PreguntaMChoice1",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "opcionIncorr1"
+        },
+        {
+          "opcion": "opcionIncorr2"
+        },
+        {
+          "opcion": "opcionIncorr3"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "opcionCorr1"
+        },
+        {
+          "opcion": "opcionCorr2"
+        },
+        {
+          "opcion": "opcionCorr3"
+        }
+      ]
+    } ,
+    {
+      "pregunta": "PreguntaMChoice2",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "opcionIncorr1"
+        },
+        {
+          "opcion": "opcionIncorr2"
+        },
+        {
+          "opcion": "opcionIncorr3"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "opcionCorr1"
+        },
+        {
+          "opcion": "opcionCorr2"
+        }
+      ]
+    }
+  ]
 }
