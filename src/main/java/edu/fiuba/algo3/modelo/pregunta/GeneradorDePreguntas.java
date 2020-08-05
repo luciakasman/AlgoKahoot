@@ -3,13 +3,13 @@ package edu.fiuba.algo3.modelo.pregunta;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Scanner;
 
 public class GeneradorDePreguntas {
 
-    public Queue<Pregunta> obtenerPreguntas() {
-        Queue<Pregunta> preguntas = new LinkedList<>();
+    public List<Pregunta> obtenerPreguntas() {
+        List<Pregunta> preguntas = new LinkedList<>();
 
         try {
             File archivo = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.txt");
@@ -29,6 +29,6 @@ public class GeneradorDePreguntas {
     private Pregunta leerPregunta(Scanner lector) {
         String linea = lector.nextLine();
         //todo: parsear
-        return new Pregunta(null, null, null);
+        return new PreguntaVerdaderoOFalso(null, null, null);
     }
 }

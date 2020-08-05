@@ -9,9 +9,7 @@ public class RespuestaGroupChoice implements Respuesta  {
     private final List<Opcion> respuestasGrupoUno;
 
     public RespuestaGroupChoice(List<Opcion> respuestasGrupoUno) {
-
         this.respuestasGrupoUno = respuestasGrupoUno;
-
     }
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectasGrupoUno) {
