@@ -2,9 +2,10 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.RespuestaMultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.pregunta.GeneradorDePreguntas;
+import edu.fiuba.algo3.modelo.pregunta.LotePreguntas;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,21 +18,20 @@ public class TestRespuestaMultipleChoiceClasico {
     Opcion opcionA;
     Opcion opcionB;
     Opcion opcionC;
+    GeneradorDePreguntas generadorDePreguntas = new GeneradorDePreguntas();
+    LotePreguntas preguntas = generadorDePreguntas.leerPreguntasJSON();
 
     @BeforeEach
     void setUp() {
         respuesta = new ArrayList<>();
-        opcionesCorrectas = new ArrayList<>();
-        opcionA = new Opcion("1");
-        opcionB = new Opcion("2");
-        opcionC = new Opcion("3");
+        opcionA = new Opcion("opcionCorr1");
+        opcionB = new Opcion("opcionCorr2");
+        opcionC = new Opcion("opcionCorr3");
     }
 
     @Test
     void testObtenerPuntajeAcertandoTodasEsCorrecto() {
-        opcionesCorrectas.add(opcionA);
-        opcionesCorrectas.add(opcionB);
-        opcionesCorrectas.add(opcionC);
+        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(0);
 
         respuesta.add(opcionA);
         respuesta.add(opcionB);
@@ -45,9 +45,7 @@ public class TestRespuestaMultipleChoiceClasico {
 
     @Test
     void testObtenerPuntajeDaCeroConRespuestasFaltantes() {
-        opcionesCorrectas.add(opcionA);
-        opcionesCorrectas.add(opcionB);
-        opcionesCorrectas.add(opcionC);
+        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(0);
 
         respuesta.add(opcionA);
         respuesta.add(opcionB);
@@ -60,8 +58,7 @@ public class TestRespuestaMultipleChoiceClasico {
 
     @Test
     void testObtenerPuntajeDaCeroConRespuestasIncorrectas() {
-        opcionesCorrectas.add(opcionA);
-        opcionesCorrectas.add(opcionB);
+        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(1);
 
         respuesta.add(opcionA);
         respuesta.add(opcionB);
