@@ -31,7 +31,7 @@ public class GeneradorDePreguntas {
         return preguntas;
     }
 
-    public LotePreguntas leerPreguntasJSON() {
+    public void leerPreguntasJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
 
         File file = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.json");
@@ -42,33 +42,8 @@ public class GeneradorDePreguntas {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return preguntas;
-        /*preguntas.getPreguntasMultipleChoiceClasico().forEach(pregunta ->
-                pregunta.opcionesCorrectas.forEach(opcionC ->
-                                System.out.println(pregunta.pregunta +" " + opcionC.opcion)
-                )
-        );
-
-        preguntas.getPreguntasMultipleChoiceClasico().forEach(pregunta ->
-                pregunta.opcionesIncorrectas.forEach(opcionI ->
-                        System.out.println(pregunta.pregunta +" " + opcionI.opcion)
-                )
-        );
-
-        preguntas.getPreguntasVoF().forEach(pregunta ->
-                pregunta.opcionesCorrectas.forEach(opcionC ->
-                        System.out.println(pregunta.pregunta +" " + opcionC.opcion)
-                )
-        );
-
-        preguntas.getPreguntasVoF().forEach(pregunta ->
-                pregunta.opcionesIncorrectas.forEach(opcionI ->
-                        System.out.println(pregunta.pregunta +" " + opcionI.opcion)
-                )
-        );*/
-
-
-
+        //return preguntas;
+        System.out.println(preguntas.preguntas.get(0).getPregunta());
     }
 
     private Pregunta leerPregunta(Scanner lector) {

@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Opcion;
@@ -70,3 +71,4 @@ public class TestRespuestaMultipleChoiceClasico {
         assertEquals(0, puntaje);
     }
 }
+*/

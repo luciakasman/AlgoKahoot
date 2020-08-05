@@ -17,22 +17,23 @@ public class TestPregunta {
     String preguntaAHacer;
     List<Opcion> opcionesCorrectas;
     GeneradorDePreguntas generadorDePreguntas = new GeneradorDePreguntas();
-    LotePreguntas preguntas = generadorDePreguntas.leerPreguntasJSON();
+    //LotePreguntas preguntas = generadorDePreguntas.leerPreguntasJSON();
 
     @BeforeEach
     void setUp() {
-        preguntaAHacer = preguntas.obtenerPreguntaVoFNumero(0);
+        generadorDePreguntas.leerPreguntasJSON();
+        /*preguntaAHacer = preguntas.obtenerPreguntaVoFNumero(0);
         opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaVoFNumero(0);
         List<Opcion> opcionesIncorrectas = preguntas.obtenerOpcionesIncorrectasPreguntaVoFNumero(0);
 
-        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);*/
     }
 
     @Test
     void testPuedeCrearseIndicandoleRespuestaCorrecta() {
 
-        assertEquals(preguntaAHacer, pregunta.obtenerPregunta());
+        assertEquals(preguntaAHacer, "hola"/*pregunta.obtenerPregunta()*/);
 
-        assertEquals(opcionesCorrectas, pregunta.obtenerOpcionesCorrectas());
+        assertEquals(opcionesCorrectas, "hola"/*pregunta.obtenerOpcionesCorrectas()*/);
     }
 }

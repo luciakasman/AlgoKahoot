@@ -1,15 +1,22 @@
 package edu.fiuba.algo3.modelo.pregunta;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.fiuba.algo3.modelo.Opcion;
 
 import java.util.List;
 
 public class LotePreguntas {
 
-    private List<Pregunta> verdaderoOFalso;
-    private List<Pregunta> multipleChoiceClasico;
+    public List<Pregunta> preguntas;
 
-    public String obtenerPreguntaVoFNumero(int numero) {
+    @JsonCreator
+    public LotePreguntas(@JsonProperty("preguntas") final List<Pregunta> preguntas) {
+        super();
+        this.preguntas = preguntas;
+    }
+
+    /*public String obtenerPreguntaVoFNumero(int numero) {
         return this.verdaderoOFalso.get(numero).getPregunta();
     }
 
@@ -49,4 +56,4 @@ public class LotePreguntas {
     public void setMultipleChoiceClasico(List<Pregunta> multipleChoiceClasico) {
         this.multipleChoiceClasico = multipleChoiceClasico;
     }
-}
+*/}
