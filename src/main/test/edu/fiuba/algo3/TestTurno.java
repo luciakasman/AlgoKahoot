@@ -33,13 +33,13 @@ public class TestTurno {
 
     @BeforeEach
     void setUp() {
-        juego = new Juego();
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
+        servicio = mock(Servicio.class);
+        juego = new Juego(servicio, generadorDePreguntas);
         List<Pregunta> preguntas = new LinkedList<>();
         preguntas.add(pregunta);
         when(generadorDePreguntas.obtenerPreguntas()).thenReturn(preguntas);
         jugador1 = new Jugador("Galileo");
-        servicio = mock(Servicio.class);
         respuestas = new LinkedList<>();
         opcionesCorrectas = new LinkedList<>();
         opcionesIncorrectas = new LinkedList<>();

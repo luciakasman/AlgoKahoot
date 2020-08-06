@@ -9,16 +9,16 @@ import java.util.List;
 public class Juego {
 
     private final List<Jugador> jugadores = new LinkedList<>();
-    private Controlador controlador;
-    private Servicio servicio;
+    private final Servicio servicio;
+    private final GeneradorDePreguntas generadorDePreguntas;
+
+    public Juego(Servicio servicio, GeneradorDePreguntas generadorDePreguntas) {
+        this.servicio = servicio;
+        this.generadorDePreguntas = generadorDePreguntas;
+    }
 
     public void comenzarJuego() {
-        controlador = new Controlador();
-        servicio = new Servicio(controlador);
-
         List<Pregunta> preguntas = crearPreguntas();
-        agregarJugador("A0");
-        agregarJugador("Cardozo");
 
         preguntas.forEach(pregunta -> {
             jugarRonda(pregunta, servicio);
@@ -37,8 +37,7 @@ public class Juego {
     }
 
     private List<Pregunta> crearPreguntas() {
-        GeneradorDePreguntas generador = new GeneradorDePreguntas();
-        return generador.obtenerPreguntas();
+        return generadorDePreguntas.obtenerPreguntas();
     }
 
     private void darPuntosAJugadores(List<Jugador> jugadores) {

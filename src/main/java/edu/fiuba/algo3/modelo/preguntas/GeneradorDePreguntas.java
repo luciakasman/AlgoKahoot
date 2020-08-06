@@ -17,7 +17,7 @@ public class GeneradorDePreguntas {
     private List<Pregunta> leerPreguntasJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File file = new File("src/main/java/edu/fiuba/algo3/modelo/pregunta/preguntas.json");
+        File file = new File("src/main/java/edu/fiuba/algo3/modelo/preguntas/preguntas.json");
 
         LotePreguntas preguntas = new LotePreguntas(new LinkedList<>());
         try {
