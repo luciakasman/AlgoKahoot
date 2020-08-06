@@ -9,20 +9,25 @@ import java.util.List;
 public class Juego {
 
     private final List<Jugador> jugadores = new LinkedList<>();
+    private Controlador controlador;
+    private Servicio servicio;
 
     public void comenzarJuego() {
+        controlador = new Controlador();
+        servicio = new Servicio(controlador);
+
         List<Pregunta> preguntas = crearPreguntas();
         agregarJugador("A0");
         agregarJugador("Cardozo");
 
         preguntas.forEach(pregunta -> {
-            jugarRonda(pregunta);
+            jugarRonda(pregunta, servicio);
             darPuntosAJugadores(jugadores);
         });
     }
 
-    private void jugarRonda(Pregunta pregunta) {
-        Turno turno = new Turno(pregunta);
+    private void jugarRonda(Pregunta pregunta, Servicio servicio) {
+        Turno turno = new Turno(pregunta, servicio);
         jugadores.forEach(turno::jugarTurno);
     }
 

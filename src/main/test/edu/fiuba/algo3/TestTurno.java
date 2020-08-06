@@ -1,9 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.preguntas.PreguntaVerdaderoOFalso;
+import edu.fiuba.algo3.modelo.preguntas.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,17 @@ public class TestTurno {
     List<Opcion> opcionesCorrectas;
     List<Opcion> opcionesIncorrectas;
     Juego juego;
-    Controlador controlador;
+    Servicio servicio;
+    List<Opcion> respuestas;
+    Jugador jugador1;
+    String falso = "falso";
+    String verdadero = "verdadero";
+    Opcion opcionA = new Opcion("AlgebraII");
+    Opcion opcionB = new Opcion("FisicaI");
+    Opcion opcionC = new Opcion("Algoritmos II");
+    Opcion opcionD = new Opcion("Quimica");
+    String preguntaMultipleChoice = "Que materias son del primer año?";
+    String preguntaVerdaderoOFalso = "Los gatitos son malos?";
 
     @BeforeEach
     void setUp() {
@@ -30,217 +38,322 @@ public class TestTurno {
         List<Pregunta> preguntas = new LinkedList<>();
         preguntas.add(pregunta);
         when(generadorDePreguntas.obtenerPreguntas()).thenReturn(preguntas);
-
-
+        jugador1 = new Jugador("Galileo");
+        servicio = mock(Servicio.class);
+        respuestas = new LinkedList<>();
+        opcionesCorrectas = new LinkedList<>();
+        opcionesIncorrectas = new LinkedList<>();
     }
 
     @Test
     void testPreguntaVerdaderoOFalsoRespuestaCorrecta() {
-        Jugador jugador1 = new Jugador("Galis");
-        Jugador jugador2 = new Jugador("Roman");
-
-        controlador = mock(Controlador.class);
-        List<Opcion> respuestas = new LinkedList<>();
-        Opcion respuesta = new Opcion("falso");
+        Opcion respuesta = new Opcion(falso);
         respuestas.add(respuesta);
-        when(controlador.obtenerRespuestas()).thenReturn(respuestas);
 
-        Turno sut = new Turno(crearPreguntaVerdaderoOFalso());
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalso(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
 
         sut.jugarTurno(jugador1);
 
-        assertEquals(1, jugador1.obtenerPuntajeTotal());
+        assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
 
-/*    @Test
-    public void testPreguntaVerdaderoOFalsoRespuestaIncorrecta() {
-        crearPreguntaVerdaderoOFalso();
-        juego.agregarJugador("Gisela");
-        juego.comenzarJuego();
-        Opcion opcionRespuesta = new Opcion("verdadero");
-        Respuesta respuesta = new RespuestaVerdaderoOFalso(opcionRespuesta);
+    @Test
+    void testPreguntaVerdaderoOFalsoRespuestaIncorrecta() {
+        Opcion respuesta = new Opcion(verdadero);
+        respuestas.add(respuesta);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalso(), servicio);
 
-        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
     public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaCorrecta() {
-        crearPreguntaVerdaderoOFalso();
-        juego.agregarJugador("Galis");
-        juego.comenzarJuego();
-        Opcion opcionRespuesta = new Opcion("falso");
-        Respuesta respuesta = new RespuestaVerdaderoOFalsoConPenalidad(opcionRespuesta);
+        Opcion respuesta = new Opcion(falso);
+        respuestas.add(respuesta);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad(), servicio);
 
-        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
     public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaIncorrecta() {
-        crearPreguntaVerdaderoOFalso();
-        juego.agregarJugador("Gisela");
-        juego.comenzarJuego();
-        Opcion opcionRespuesta = new Opcion("verdadero");
-        Respuesta respuesta = new RespuestaVerdaderoOFalsoConPenalidad(opcionRespuesta);
+        Opcion respuesta = new Opcion(verdadero);
+        respuestas.add(respuesta);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad(), servicio);
 
-        assertEquals(-1, juego.obtenerJugadorActual().obtenerPuntaje());
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(-1, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
-    public void testMultipleChoiceConPuntajeParcialCorrecto() {
-        List<Opcion> respuestaMultipleChoiceParcial = crearPreguntaMultipleChoice();
-        juego.agregarJugador("Gisela");
-        juego.comenzarJuego();
-        Respuesta respuesta = new RespuestaMultipleChoiceParcial(respuestaMultipleChoiceParcial);
+    public void testMultipleChoiceConPuntajeParcialConRespuestasCorrectas() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionB);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
 
-        assertEquals(2, juego.obtenerJugadorActual().obtenerPuntaje());
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
 
+        sut.jugarTurno(jugador1);
+
+        assertEquals(2, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
-    public void testMultipleChoiceClasico() {
-        List<Opcion> respuestaMultipleChoice = crearPreguntaMultipleChoice();
-        juego.agregarJugador("Alan");
-        juego.comenzarJuego();
-        Respuesta respuesta = new RespuestaMultipleChoiceClasico(respuestaMultipleChoice);
+    public void testMultipleChoiceConPuntajeParcialConUnaRespuestaIncorrecta() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionC);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
 
-        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
-    public void testMultipleChoiceConPenalidad() {
-        List<Opcion> respuestaMultipleChoiceConPenalidad = crearPreguntaMultipleChoice();
-        Opcion opcionE = new Opcion("Discreta");
-        respuestaMultipleChoiceConPenalidad.add(opcionE);
-        juego.agregarJugador("German");
-        juego.comenzarJuego();
-        Respuesta respuesta = new RespuestaMultipleChoiceConPenalidad(respuestaMultipleChoiceConPenalidad);
+    public void testMultipleChoiceConPuntajeParcialConTodasRespuestasIncorrectas() {
+        respuestas.add(opcionD);
+        respuestas.add(opcionC);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
 
-        assertEquals(1, juego.obtenerJugadorActual().obtenerPuntaje());
-    }*/
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
 
-    private Pregunta crearPreguntaVerdaderoOFalso() {
-        preguntaAHacer = "Los gatitos son malos.";
-        Opcion opcionCorrecta = new Opcion("falso");
-        Opcion opcionIncorrecta = new Opcion("verdadero");
-        opcionesCorrectas = new LinkedList<>();
-        opcionesIncorrectas = new LinkedList<>();
-        opcionesCorrectas.add(opcionCorrecta);
-        opcionesIncorrectas.add(opcionIncorrecta);
+        sut.jugarTurno(jugador1);
 
-        return new PreguntaVerdaderoOFalso(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
 
- /*   private List<Opcion> crearPreguntaMultipleChoice() {
-        preguntaAHacer = "cuales de estas materias son las peores de la facultad?";
-        List<Opcion> respuesta = new ArrayList<>();
-        opcionesCorrectas = new ArrayList<>();
-        Opcion opcionA = new Opcion("AlgebraII");
-        Opcion opcionB = new Opcion("FisicaI");
-        Opcion opcionC = new Opcion("Algoritmos II");
-        Opcion opcionD = new Opcion("Quimica");
-        respuesta.add(opcionA);
-        respuesta.add(opcionB);
-        opcionesCorrectas.add(opcionA);
-        opcionesCorrectas.add(opcionB);
-        opcionesIncorrectas = new LinkedList<>();
-        opcionesIncorrectas.add(opcionC);
-        opcionesIncorrectas.add(opcionD);
+    @Test
+    public void testMultipleChoiceClasicoConTodasOpcionesCorrectas() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionB);
 
-        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico(), servicio);
 
-        return respuesta;
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
 
-    private List<Opcion> crearPreguntaOrderedChoice() {
-        preguntaAHacer = "Ordenar las siguientes materias alfabeticamente";
-        List<Opcion> respuesta = new ArrayList<>();
-        opcionesCorrectas = new ArrayList<>();
-        Opcion opcionA = new Opcion("AlgebraII");
-        Opcion opcionB = new Opcion("Algoritmos II");
-        Opcion opcionC = new Opcion("FisicaI");
-        Opcion opcionD = new Opcion("Quimica");
-        respuesta.add(opcionA);
-        respuesta.add(opcionB);
-        respuesta.add(opcionD);
-        respuesta.add(opcionC);
+    @Test
+    public void testMultipleChoiceClasicoConUnaOpcionIncorrecta() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionD);
 
-        opcionesCorrectas.add(opcionA);
-        opcionesCorrectas.add(opcionB);
-        opcionesCorrectas.add(opcionC);
-        opcionesCorrectas.add(opcionD);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico(), servicio);
 
-        opcionesIncorrectas = new LinkedList<>();
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
 
-        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+        sut.jugarTurno(jugador1);
 
-        return respuesta;
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testMultipleChoiceConPenalidadConTodasRespuestasCorrectas() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionB);
+
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(2, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testMultipleChoiceConPenalidadConUnaRespuestaIncorrecta() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionD);
+
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testMultipleChoiceConPenalidadConTodasRespuestasIncorrectas() {
+        respuestas.add(opcionC);
+        respuestas.add(opcionD);
+
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(-2, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testOrderedChoiceCorrecto() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionB);
+        respuestas.add(opcionD);
+        respuestas.add(opcionC);
+
+        Turno sut = new Turno(crearPreguntaOrderedChoice(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
 
     @Test
     public void testOrderedChoiceIncorrecto() {
+        respuestas.add(opcionA);
+        respuestas.add(opcionB);
+        respuestas.add(opcionC);
+        respuestas.add(opcionD);
 
-        List<Opcion> respuestaOrderedChoice = crearPreguntaOrderedChoice();
-        juego.agregarJugador("German");
-        juego.comenzarJuego();
-        Respuesta respuesta = new RespuestaOrderedChoice(respuestaOrderedChoice);
+        Turno sut = new Turno(crearPreguntaOrderedChoice(), servicio);
 
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
+        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
 
-        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
+        sut.jugarTurno(jugador1);
+
+        assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
 
-    private List<Opcion> crearPreguntaGroupChoice() {
-        preguntaAHacer = "Ordenar en grupos pares e impares";
-        List<Opcion> respuestaGrupoA = new ArrayList<>();
-        List<Opcion> respuestaGrupoB = new ArrayList<>();
+    @Test
+    public void testGroupChoiceCorrecto() {
+        List<Opcion> respuestaGrupoA = new LinkedList<>();
+        respuestaGrupoA.add(opcionA);
+        respuestaGrupoA.add(opcionB);
+        respuestaGrupoA.add(opcionC);
 
-        List<Opcion> opcionesCorrectasGrupoA = new ArrayList<>();
-        List<Opcion> opcionesCorrectasGrupoB = new ArrayList<>();
+        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
 
-        Opcion opcionA = new Opcion("1");
-        Opcion opcionB = new Opcion("2");
-        Opcion opcionC = new Opcion("3");
-        Opcion opcionD = new Opcion("4");
+        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(1, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testGroupChoiceIncorrectoConRespuestaFaltante() {
+        List<Opcion> respuestaGrupoA = new LinkedList<>();
+        respuestaGrupoA.add(opcionA);
+        respuestaGrupoA.add(opcionB);
+
+        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    @Test
+    public void testGroupChoiceIncorrectoConRespuestaIncorrecta() {
+        List<Opcion> respuestaGrupoA = new LinkedList<>();
         respuestaGrupoA.add(opcionA);
         respuestaGrupoA.add(opcionB);
         respuestaGrupoA.add(opcionD);
-        respuestaGrupoB.add(opcionC);
 
+        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
+
+        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
+
+        sut.jugarTurno(jugador1);
+
+        assertEquals(0, jugador1.obtenerPuntajeDePregunta());
+    }
+
+    private Pregunta crearPreguntaVerdaderoOFalso() {
+        armarPreguntaVerdaderoOFalso();
+        return new PreguntaVerdaderoOFalso(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaVerdaderoOFalsoConPenalidad() {
+        armarPreguntaVerdaderoOFalso();
+        return new PreguntaVerdaderoOFalsoConPenalidad(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaMultipleChoiceClasico() {
+        armarPreguntaMultipleChoice();
+        return new PreguntaMultipleChoiceClasico(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaMultipleChoiceConPenalidad() {
+        armarPreguntaMultipleChoice();
+        return new PreguntaMultipleChoiceConPenalidad(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaMultipleChoiceParcial() {
+        armarPreguntaMultipleChoice();
+        return new PreguntaMultipleChoiceParcial(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaOrderedChoice() {
+        preguntaAHacer = "Ordenar las siguientes materias alfabeticamente";
+        opcionesCorrectas = new LinkedList<>();
+        opcionesCorrectas.add(opcionA);
+        opcionesCorrectas.add(opcionB);
+        opcionesCorrectas.add(opcionC);
+        opcionesCorrectas.add(opcionD);
+        opcionesIncorrectas = new LinkedList<>();
+
+        return new PreguntaOrderedChoice(preguntaAHacer, opcionesCorrectas, opcionesIncorrectas);
+    }
+
+    private Pregunta crearPreguntaGroupChoice() {
+        preguntaAHacer = "Ordenar en grupos pares e impares";
+        List<Opcion> opcionesCorrectasGrupoA = new LinkedList<>();
+        List<Opcion> opcionesCorrectasGrupoB = new LinkedList<>();
         opcionesCorrectasGrupoA.add(opcionA);
         opcionesCorrectasGrupoA.add(opcionB);
         opcionesCorrectasGrupoA.add(opcionC);
         opcionesCorrectasGrupoB.add(opcionD);
 
-        opcionesIncorrectas = new LinkedList<>();
-
-        pregunta = new Pregunta(preguntaAHacer, opcionesCorrectasGrupoA, opcionesIncorrectas);
-
-        return respuestaGrupoA;
+        return new PreguntaGroupChoice(preguntaAHacer, opcionesCorrectasGrupoA, opcionesCorrectasGrupoB);
     }
 
-    @Test
-    public void testGruopChoiceCorrecto() {
+    private void armarPreguntaVerdaderoOFalso() {
+        preguntaAHacer = preguntaVerdaderoOFalso;
+        Opcion opcionCorrecta = new Opcion(falso);
+        Opcion opcionIncorrecta = new Opcion(verdadero);
+        opcionesCorrectas.add(opcionCorrecta);
+        opcionesIncorrectas.add(opcionIncorrecta);
+    }
 
-        List<Opcion> respuestaGrupoA = crearPreguntaGroupChoice();
-        juego.agregarJugador("German");
-        juego.comenzarJuego();
-        Respuesta respuesta = new RespuestaGroupChoice(respuestaGrupoA);
-
-        juego.darPuntosAJugador(juego.obtenerJugadorActual(), pregunta, respuesta);
-
-        assertEquals(0, juego.obtenerJugadorActual().obtenerPuntaje());
-    }*/
-
+    private void armarPreguntaMultipleChoice() {
+        preguntaAHacer = preguntaMultipleChoice;
+        opcionesCorrectas.add(opcionA);
+        opcionesCorrectas.add(opcionB);
+        opcionesIncorrectas.add(opcionC);
+        opcionesIncorrectas.add(opcionD);
+    }
 }
