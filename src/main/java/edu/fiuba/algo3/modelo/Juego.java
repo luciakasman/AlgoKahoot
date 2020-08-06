@@ -1,55 +1,51 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.pregunta.GeneradorDePreguntas;
-import edu.fiuba.algo3.modelo.pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 public class Juego {
 
-    private Queue<Jugador> jugadores = new LinkedList<>();
-    private Queue<Pregunta> preguntas;
-    private Jugador jugadorActual;
+    private final List<Jugador> jugadores = new LinkedList<>();
+    private final Servicio servicio;
+    private final GeneradorDePreguntas generadorDePreguntas;
 
-
-    public void agregarJugador(String nombre) {
-
-        Jugador jugador = new Jugador(nombre);
-        jugadores.add(jugador);
-        jugadorActual = jugador;
-    }
-
-    public void cambiarJugador() {
-
-        jugadorActual = jugadores.remove();
-        jugadores.add(jugadorActual);
+    public Juego(Servicio servicio, GeneradorDePreguntas generadorDePreguntas) {
+        this.servicio = servicio;
+        this.generadorDePreguntas = generadorDePreguntas;
     }
 
     public void comenzarJuego() {
+        List<Pregunta> preguntas = crearPreguntas();
 
-        preguntas = crearPreguntas();
+        preguntas.forEach(pregunta -> {
+            jugarRonda(pregunta, servicio);
+            darPuntosAJugadores(jugadores);
+        });
     }
 
-    private Queue<Pregunta> crearPreguntas() {
-
-        GeneradorDePreguntas generador = new GeneradorDePreguntas();
-        return generador.obtenerPreguntas();
+    private void jugarRonda(Pregunta pregunta, Servicio servicio) {
+        Turno turno = new Turno(pregunta, servicio);
+        jugadores.forEach(turno::jugarTurno);
     }
 
-    public Jugador obtenerJugadorActual() {
-
-        return jugadorActual;
+    public void agregarJugador(String nombre) {
+        Jugador jugador = new Jugador(nombre);
+        jugadores.add(jugador);
     }
 
-    public void darPuntosAJugador(Pregunta pregunta, Respuesta respuesta) {
-
-        int puntos = evaluarRespuesta(pregunta, respuesta);
-        jugadorActual.asignarPuntaje(puntos);
+    private List<Pregunta> crearPreguntas() {
+        return generadorDePreguntas.obtenerPreguntas();
     }
 
-    private int evaluarRespuesta(Pregunta pregunta, Respuesta respuesta) {
+    private void darPuntosAJugadores(List<Jugador> jugadores) {
+        //meter exclusividad, se modifica el puntaje de pregunta.
+        jugadores.forEach(Jugador::asignarPuntajeTotal);
+    }
 
-        return pregunta.obtenerPuntaje(respuesta);
+    public List<Jugador> obtenerJugadores() {
+        return this.jugadores;
     }
 }

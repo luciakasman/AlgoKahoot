@@ -1,0 +1,38 @@
+{
+  "preguntas":[
+    {
+      "@type": "verdaderoOFalso",
+      "pregunta": "Estamos hechxs de torta?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ]
+    },
+    {
+      "@type": "multipleChoiceClasico",
+      "pregunta": "Peores materias de la facu?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "AMII"
+        },
+        {
+          "opcion": "AlgoritmosIII"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "AlgebraII"
+        },
+        {
+          "opcion": "Quimica"
+        }
+      ]
+    }
+  ]
+}

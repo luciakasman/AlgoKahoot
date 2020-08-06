@@ -1,8 +1,8 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.respuestas;
 
 
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.RespuestaMultipleChoiceParcial;
+import edu.fiuba.algo3.modelo.respuestas.RespuestaMultipleChoiceParcial;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
