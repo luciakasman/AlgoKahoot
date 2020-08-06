@@ -1,28 +1,39 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+
 public class Jugador {
 
     private final String nombre;
-    private int puntaje;
+    private int puntajeTotal;
     private Respuesta respuesta;
     private int multiplicador;
+    private int puntajeDePregunta;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.puntaje = 0;
+        this.puntajeTotal = 0;
         this.multiplicador = 1;
+    }
+
+    public void guardarPuntajeDePregunta(int puntajeDePregunta){
+        this.puntajeDePregunta = puntajeDePregunta;
+    }
+
+    public int obtenerPuntajeDePregunta(){
+        return this.puntajeDePregunta;
     }
 
     public String obtenerNombre() {
         return this.nombre;
     }
 
-    public int obtenerPuntaje() {
-        return this.puntaje;
+    public int obtenerPuntajeTotal() {
+        return this.puntajeTotal;
     }
 
-    public void asignarPuntaje(int puntaje) {
-        this.puntaje += (puntaje * multiplicador);
+    public void asignarPuntajeTotal() {
+        this.puntajeTotal += (puntajeDePregunta * multiplicador);
     }
 
     public Respuesta obtenerRespuesta() {

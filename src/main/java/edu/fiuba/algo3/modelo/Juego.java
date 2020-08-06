@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.pregunta.GeneradorDePreguntas;
-import edu.fiuba.algo3.modelo.pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,14 +15,15 @@ public class Juego {
         agregarJugador("A0");
         agregarJugador("Cardozo");
 
-        preguntas.forEach(this::jugarRonda);
+        preguntas.forEach(pregunta -> {
+            jugarRonda(pregunta);
+            darPuntosAJugadores(jugadores);
+        });
     }
 
     private void jugarRonda(Pregunta pregunta) {
-        List<Integer> puntaje = new LinkedList<>();
-        Ronda ronda = new Ronda(pregunta);
-        jugadores.forEach(jugador -> puntaje.add(ronda.jugarRonda(jugador)));
-        darPuntosAJugadores(jugadores, puntaje);
+        Turno turno = new Turno(pregunta);
+        jugadores.forEach(turno::jugarTurno);
     }
 
     public void agregarJugador(String nombre) {
@@ -35,9 +36,12 @@ public class Juego {
         return generador.obtenerPreguntas();
     }
 
-    public void darPuntosAJugadores(List<Jugador> jugadores, List<Integer> puntos) {
-        //meter exclusividad
+    private void darPuntosAJugadores(List<Jugador> jugadores) {
+        //meter exclusividad, se modifica el puntaje de pregunta.
+        jugadores.forEach(Jugador::asignarPuntajeTotal);
+    }
 
-        jugadores.get(0).asignarPuntaje(puntos.get(0));
+    public List<Jugador> obtenerJugadores() {
+        return this.jugadores;
     }
 }

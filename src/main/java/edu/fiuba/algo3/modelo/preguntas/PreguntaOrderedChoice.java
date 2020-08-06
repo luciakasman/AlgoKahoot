@@ -1,15 +1,15 @@
-package edu.fiuba.algo3.modelo.pregunta;
+package edu.fiuba.algo3.modelo.preguntas;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.Respuesta;
-import edu.fiuba.algo3.modelo.RespuestaGroupChoice;
-import edu.fiuba.algo3.modelo.RespuestaVerdaderoOFalso;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.RespuestaOrderedChoice;
+import edu.fiuba.algo3.modelo.respuestas.RespuestaVerdaderoOFalso;
 
 import java.util.List;
 
-public class PreguntaGroupChoice implements Pregunta {
+public class PreguntaOrderedChoice implements Pregunta {
 
     public final String pregunta;
     public final List<Opcion> opcionesIncorrectas;
@@ -17,9 +17,9 @@ public class PreguntaGroupChoice implements Pregunta {
     public RespuestaVerdaderoOFalso respuesta;
 
     @JsonCreator
-    public PreguntaGroupChoice(@JsonProperty("pregunta") String pregunta,
-                               @JsonProperty("opcionesCorrectas") List<Opcion> opcionesCorrectas,
-                               @JsonProperty("opcionesIncorrectas") List<Opcion> opcionesIncorrectas) {
+    public PreguntaOrderedChoice(@JsonProperty("pregunta") String pregunta,
+                                 @JsonProperty("opcionesCorrectas") List<Opcion> opcionesCorrectas,
+                                 @JsonProperty("opcionesIncorrectas") List<Opcion> opcionesIncorrectas) {
         this.pregunta = pregunta;
         this.opcionesIncorrectas = opcionesIncorrectas;
         this.opcionesCorrectas = opcionesCorrectas;
@@ -30,7 +30,7 @@ public class PreguntaGroupChoice implements Pregunta {
     }
 
     public Respuesta armarRespuesta(List<Opcion> respuesta) {
-        return new RespuestaGroupChoice(respuesta);
+        return new RespuestaOrderedChoice(respuesta);
     }
 
     public String getPregunta() {

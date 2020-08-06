@@ -2,7 +2,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.RespuestaMultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.respuestas.RespuestaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.pregunta.GeneradorDePreguntas;
 import edu.fiuba.algo3.modelo.pregunta.LotePreguntas;
 import org.junit.jupiter.api.BeforeEach;

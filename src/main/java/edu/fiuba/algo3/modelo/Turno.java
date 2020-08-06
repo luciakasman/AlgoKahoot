@@ -1,30 +1,27 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
-public class Ronda {
+public class Turno {
 
     private final Pregunta pregunta;
-    private Respuesta respuesta;
-    private Queue<Jugador> jugadores = new LinkedList<>();
-    private Jugador jugadorActual;
+    private Controlador controlador;
 
-    public Ronda(Pregunta pregunta) {
+    public Turno(Pregunta pregunta) {
         this.pregunta = pregunta;
+        this.controlador = new Controlador();
     }
 
-    public int jugarRonda(Jugador jugadorActual){
+    public void jugarTurno(Jugador jugadorActual) {
         //muestra la pregunta con sus opciones llamando al Controlador
         //recibe las respuestas del front del Controlador
         //evalua las respuestas, guardandose el puntaje
-        List<Opcion> respuestas = new LinkedList<>();
-        respuestas.add(new Opcion("v"));
+        List<Opcion> respuestas = controlador.obtenerRespuestas();
         Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas); //arma la respuesta correspondiente
-        return evaluarRespuesta(pregunta, respuestasObtenidas);
+        jugadorActual.guardarPuntajeDePregunta(evaluarRespuesta(pregunta, respuestasObtenidas));
     }
 
     private int evaluarRespuesta(Pregunta pregunta, Respuesta respuesta) {

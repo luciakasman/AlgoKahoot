@@ -2,7 +2,7 @@
   "preguntas":[
     {
       "@type": "verdaderoOFalso",
-      "pregunta": "\"Estamos hechxs de torta?\"",
+      "pregunta": "Estamos hechxs de torta?",
       "opcionesIncorrectas": [
         {
           "opcion": "verdadero"
@@ -16,7 +16,7 @@
     },
     {
       "@type": "multipleChoiceClasico",
-      "pregunta": "\"Peores materias de la facu?\"",
+      "pregunta": "Peores materias de la facu?",
       "opcionesIncorrectas": [
         {
           "opcion": "AMII"

@@ -1,8 +1,10 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.respuestas;
+
+import edu.fiuba.algo3.modelo.Opcion;
 
 import java.util.List;
 
-public class RespuestaGroupChoice implements Respuesta  {
+public class RespuestaGroupChoice implements Respuesta {
 
     //Tomamos como supuesto que todas las opciones tienen que pertenecer a un grupo
 

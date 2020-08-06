@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.modelo.pregunta;
+package edu.fiuba.algo3.modelo.preguntas;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 import java.util.List;
 
