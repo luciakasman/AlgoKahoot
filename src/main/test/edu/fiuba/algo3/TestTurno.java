@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -35,8 +36,9 @@ public class TestTurno {
     void setUp() {
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
         servicio = mock(Servicio.class);
-        juego = new Juego(servicio, generadorDePreguntas);
-        List<Pregunta> preguntas = new LinkedList<>();
+        juego = Juego.getInstance();
+        //juego = new Juego(servicio, generadorDePreguntas);
+        Queue<Pregunta> preguntas = new LinkedList<>();
         preguntas.add(pregunta);
         when(generadorDePreguntas.obtenerPreguntas()).thenReturn(preguntas);
         jugador1 = new Jugador("Galileo");

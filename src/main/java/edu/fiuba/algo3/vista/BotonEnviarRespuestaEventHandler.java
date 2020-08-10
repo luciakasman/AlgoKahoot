@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 
 public class BotonEnviarRespuestaEventHandler implements EventHandler<ActionEvent>{
 
+    //Clase que no se usa
         private TextField textField;
         private Label label;
 

@@ -7,14 +7,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class GeneradorDePreguntas {
+    //IMPORTANTE(ahre): hice que esto devuelva una Queue, no se si rompe algo pero parece que no
 
-    public List<Pregunta> obtenerPreguntas() {
+    public Queue<Pregunta> obtenerPreguntas() {
         return leerPreguntasJSON();
     }
 
-    private List<Pregunta> leerPreguntasJSON() {
+    private Queue<Pregunta> leerPreguntasJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
 
         File file = new File("src/main/java/edu/fiuba/algo3/modelo/preguntas/preguntas.json");

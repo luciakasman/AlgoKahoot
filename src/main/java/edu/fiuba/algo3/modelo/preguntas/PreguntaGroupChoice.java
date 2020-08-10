@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.respuestas.RespuestaGroupChoice;
 import edu.fiuba.algo3.modelo.respuestas.RespuestaVerdaderoOFalso;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PreguntaGroupChoice implements Pregunta {
@@ -44,4 +45,5 @@ public class PreguntaGroupChoice implements Pregunta {
     public List<Opcion> getOpcionesIncorrectas() {
         return opcionesIncorrectas;
     }
+
 }

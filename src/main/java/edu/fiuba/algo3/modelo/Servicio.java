@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Servicio {
 
+    //Clase que no se usa en esta version
+
     Controlador controlador;
 
     public Servicio(Controlador controlador) {

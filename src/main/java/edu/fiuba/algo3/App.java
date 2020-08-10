@@ -14,13 +14,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         VistaGeneral vistaGeneral = new VistaGeneral();
-        VBox contenedorPrincipal = vistaGeneral.start(stage);
+        vistaGeneral.start(stage);
 
-        Scene scene = new Scene(contenedorPrincipal, 300, 250);
+        /*Scene scene = new Scene(contenedorPrincipal, 300, 250);
 
         stage.setScene(scene);
 
-        stage.show();
+        stage.show();*/
 
         /*var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();

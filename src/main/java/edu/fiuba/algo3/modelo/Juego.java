@@ -1,51 +1,69 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.asignadores.Asignador;
+import edu.fiuba.algo3.modelo.asignadores.AsignadorComun;
 import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
+import edu.fiuba.algo3.vista.Observador;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Juego {
 
-    private final List<Jugador> jugadores = new LinkedList<>();
-    private final Servicio servicio;
-    private final GeneradorDePreguntas generadorDePreguntas;
+    private static Juego INSTANCE = new Juego(new GeneradorDePreguntas());
+    private final LinkedList<Jugador> jugadores = new LinkedList<>();
+    private GeneradorDePreguntas generadorDePreguntas;
+    private List<Observador> observadores = new LinkedList<Observador>();
+    private Queue<Pregunta> preguntas;
+    private Asignador asignador = new AsignadorComun();
 
-    public Juego(Servicio servicio, GeneradorDePreguntas generadorDePreguntas) {
-        this.servicio = servicio;
+    private Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
+        preguntas = crearPreguntas();
     }
 
-    public void comenzarJuego() {
-        List<Pregunta> preguntas = crearPreguntas();
-
-        preguntas.forEach(pregunta -> {
-            jugarRonda(pregunta, servicio);
-            darPuntosAJugadores(jugadores);
-        });
+    public static Juego getInstance(){
+        return INSTANCE;
     }
 
-    private void jugarRonda(Pregunta pregunta, Servicio servicio) {
-        Turno turno = new Turno(pregunta, servicio);
-        jugadores.forEach(turno::jugarTurno);
+    public Ronda armarSiguienteRonda(){
+        return new Ronda(jugadores, preguntas.remove());
     }
 
     public void agregarJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
         jugadores.add(jugador);
+        actualizarObservadores();
     }
 
-    private List<Pregunta> crearPreguntas() {
+    public void aplicarExclusividad(){
+        asignador = asignador.aplicarExclusividad();
+    }
+
+    private Queue<Pregunta> crearPreguntas() {
         return generadorDePreguntas.obtenerPreguntas();
     }
 
-    private void darPuntosAJugadores(List<Jugador> jugadores) {
-        //meter exclusividad, se modifica el puntaje de pregunta.
-        jugadores.forEach(Jugador::asignarPuntajeTotal);
+    public void darPuntosAJugadores(List<Jugador> jugadores) {
+        asignador.asignarPuntos(jugadores);
+        asignador = new AsignadorComun();
     }
 
     public List<Jugador> obtenerJugadores() {
         return this.jugadores;
     }
+
+    public void agregarObservador(Observador nuevoObservador){
+        observadores.add(nuevoObservador);
+        actualizarObservadores();
+    }
+
+    private void actualizarObservadores(){
+        observadores.stream().forEach((observador -> observador.update()));
+    }
+
 }

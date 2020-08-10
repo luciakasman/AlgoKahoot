@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class TextoEventHandler implements EventHandler<KeyEvent> {
-
+//Clase que no se usa
     private Button botonEnviar;
 
     public TextoEventHandler(Button botonEnviar) {

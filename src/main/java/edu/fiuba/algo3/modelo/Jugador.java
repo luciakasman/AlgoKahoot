@@ -9,12 +9,22 @@ public class Jugador {
     private Respuesta respuesta;
     private int multiplicador;
     private int puntajeDePregunta;
+    private int exclusividadDisponible;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntajeTotal = 0;
         this.multiplicador = 1;
+        this.exclusividadDisponible = 2;
     }
+
+    public void usarExclusividad(){
+        if (exclusividadDisponible > 0){
+        exclusividadDisponible -= 1;
+        }
+    }
+
+    public int getExclusividadDisponible(){ return exclusividadDisponible;}
 
     public void guardarPuntajeDePregunta(int puntajeDePregunta){
         this.puntajeDePregunta = puntajeDePregunta;

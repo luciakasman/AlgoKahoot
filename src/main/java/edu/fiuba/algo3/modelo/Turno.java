@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Turno {
 
+    //Clase que no se usa en esta version (reemplazada por clase Ronda)
+
     private final Pregunta pregunta;
     private Servicio servicio;
 

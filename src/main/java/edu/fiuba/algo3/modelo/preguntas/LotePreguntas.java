@@ -4,18 +4,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Queue;
 
 public class LotePreguntas {
 
-    private final List<Pregunta> preguntas;
+    private final Queue<Pregunta> preguntas;
 
     @JsonCreator
-    public LotePreguntas(@JsonProperty("preguntas") final List<Pregunta> preguntas) {
+    public LotePreguntas(@JsonProperty("preguntas") final Queue<Pregunta> preguntas) {
         super();
         this.preguntas = preguntas;
     }
 
-    public List<Pregunta> obtenerPreguntas() {
+    public Queue<Pregunta> obtenerPreguntas() {
         return this.preguntas;
     }
 }
