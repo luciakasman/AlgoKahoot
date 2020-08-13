@@ -7,10 +7,9 @@ import javafx.scene.control.TextField;
 
 public class BotonEnviarNombre extends Button {
 
-    public BotonEnviarNombre(TextField nombreJugador, Label labelAdvertencia){
+    public BotonEnviarNombre(TextField nombreJugador, Label labelAdvertencia) {
         EnviarNombresEventHandler eventHandler = new EnviarNombresEventHandler(nombreJugador, labelAdvertencia);
         this.setOnAction(eventHandler);
         this.setText("Enviar nombre");
     }
-
 }

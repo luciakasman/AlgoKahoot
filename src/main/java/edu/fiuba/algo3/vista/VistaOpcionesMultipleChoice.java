@@ -12,23 +12,22 @@ public class VistaOpcionesMultipleChoice extends HBox {
     List<Opcion> opciones;
     List<Opcion> respuesta;
 
-    public VistaOpcionesMultipleChoice(List<Opcion> opciones, List<Opcion> respuesta){
+    public VistaOpcionesMultipleChoice(List<Opcion> opciones, List<Opcion> respuesta) {
         this.setSpacing(20);
         this.opciones = opciones;
         this.respuesta = respuesta;
         update();
     }
 
-    private CheckBox armarCheckBox(String opcion, List<Opcion> respuesta){
+    private CheckBox armarCheckBox(String opcion, List<Opcion> respuesta) {
         CheckBox checkbox = new CheckBox(opcion);
         CheckBoxMultipleChoiceEventHandler eventHandler = new CheckBoxMultipleChoiceEventHandler(checkbox, respuesta);
         checkbox.setOnAction(eventHandler);
         return checkbox;
     }
 
-    public void update(){
+    public void update() {
         this.getChildren().clear();
         opciones.forEach(opcion -> this.getChildren().add(armarCheckBox(opcion.obtenerOpcion(), respuesta)));
     }
-
 }

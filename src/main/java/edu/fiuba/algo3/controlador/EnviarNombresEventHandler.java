@@ -8,17 +8,17 @@ import javafx.scene.control.TextField;
 
 public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
 
-    private TextField textFieldNombre;
-    private Label labelAdvertencia;
+    private final TextField textFieldNombre;
+    private final Label labelAdvertencia;
 
-    public EnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia){
+    public EnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia) {
         this.labelAdvertencia = labelAdvertencia;
         this.textFieldNombre = textFieldNombre;
     }
 
     @Override
-    public void handle(ActionEvent actionEvent){
-        if (textFieldNombre.getText().trim().isEmpty()){
+    public void handle(ActionEvent actionEvent) {
+        if (textFieldNombre.getText().trim().isEmpty()) {
             labelAdvertencia.setText("Debes ingresar algo broder");
             return;
         }
@@ -27,5 +27,4 @@ public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
         this.textFieldNombre.setText("");
         this.labelAdvertencia.setText("");
     }
-
 }

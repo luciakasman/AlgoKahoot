@@ -15,10 +15,7 @@ public class Turno {
         this.pregunta = pregunta;
     }
 
-    public void jugarTurno(Jugador jugadorActual,List<Opcion> respuestas) {
-        //muestra la pregunta con sus opciones llamando al Controlador
-        //recibe las respuestas del front del Controlador
-        //evalua las respuestas, guardandose el puntaje
+    public void jugarTurno(Jugador jugadorActual, List<Opcion> respuestas) {
         Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas); //arma la respuesta correspondiente
         jugadorActual.guardarPuntajeDePregunta(evaluarRespuesta(pregunta, respuestasObtenidas));
     }

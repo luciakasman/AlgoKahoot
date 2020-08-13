@@ -1,22 +1,9 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Ronda;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.preguntas.PreguntaMultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.preguntas.PreguntaVerdaderoOFalso;
 import javafx.application.Application;
-import javafx.beans.Observable;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.*;
 
 public class VistaGeneral extends Application {
 
@@ -35,7 +22,7 @@ public class VistaGeneral extends Application {
         }
     }*/
 
-@Override
+    @Override
     public void start(Stage stage) {
         this.stage = stage;
         stage.setFullScreen(true);

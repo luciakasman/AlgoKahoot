@@ -1,17 +1,12 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.preguntas.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Opcion;
+import edu.fiuba.algo3.modelo.Servicio;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class TestTurno {
 
@@ -32,7 +27,8 @@ public class TestTurno {
     String preguntaMultipleChoice = "Que materias son del primer año?";
     String preguntaVerdaderoOFalso = "Los gatitos son malos?";
 
-    @BeforeEach
+}
+/*    @BeforeEach
     void setUp() {
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
         servicio = mock(Servicio.class);
@@ -358,4 +354,4 @@ public class TestTurno {
         opcionesIncorrectas.add(opcionC);
         opcionesIncorrectas.add(opcionD);
     }
-}
+} */

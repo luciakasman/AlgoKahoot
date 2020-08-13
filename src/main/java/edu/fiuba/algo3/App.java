@@ -1,11 +1,7 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
 import edu.fiuba.algo3.vista.VistaGeneral;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**

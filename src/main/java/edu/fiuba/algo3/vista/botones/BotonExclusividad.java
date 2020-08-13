@@ -6,9 +6,9 @@ import javafx.scene.control.Button;
 
 public class BotonExclusividad extends Button {
 
-    public void actualizar(Jugador jugadorActual){
+    public void actualizar(Jugador jugadorActual) {
         int exclusividadJugador = jugadorActual.getExclusividadDisponible();
-        String text = "Aplicar exclusividad (" + String.valueOf(exclusividadJugador) + ")";
+        String text = "Aplicar exclusividad (" + exclusividadJugador + ")";
         this.setText(text);
         AplicarExclusividadEventHandler botonExclusividadEventHandler = new AplicarExclusividadEventHandler(this, jugadorActual);
         this.setOnAction(botonExclusividadEventHandler);

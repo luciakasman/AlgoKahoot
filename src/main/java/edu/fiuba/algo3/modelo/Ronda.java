@@ -41,6 +41,5 @@ public class Ronda {
         int puntaje = pregunta.obtenerPuntaje(respuesta);
         Jugador jugador = jugadores.poll();
         jugador.guardarPuntajeDePregunta(puntaje);
-        observador.update();
     }
 }

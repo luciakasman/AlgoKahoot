@@ -3,66 +3,73 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.Ronda;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class VistaMultipleChoiceClasico extends VBox implements Observador {
 
-    private List<Opcion> respuesta = new LinkedList<Opcion>();
-    private Label infoJugador = new Label();
-    private Label labelPregunta;
+    private final List<Opcion> respuesta = new LinkedList<>();
+    private final Label infoJugador = new Label();
     private VistaOpcionesMultipleChoice vistaOpciones;
-    private BotonExclusividad botonExclusividad;
-    private Pregunta pregunta;
+    private final BotonExclusividad botonExclusividad = new BotonExclusividad();
+    private final Pregunta pregunta;
+    private final Stage stage;
+    private final Queue<Jugador> jugadores;
 
-    public VistaMultipleChoiceClasico(Pregunta pregunta){
+    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage) {
         this.setSpacing(20);
         this.pregunta = pregunta;
-        update();
+        this.stage = stage;
+        this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
     }
 
-    public void armarVistaPropia(){
+    public void armarVistaPropia() {
+        Juego.getInstance().guardarObservador(this);
+
         //Agregado de la info del jugador
         this.getChildren().add(infoJugador);
+
         //Agregado de la pregunta
         String pregunta = this.pregunta.getPregunta();
-        labelPregunta = new Label("Multiple Choice Clasico: " + pregunta);
+        Label labelPregunta = new Label("Multiple Choice Clasico: " + pregunta);
         this.getChildren().add(labelPregunta);
+
         //Agregado de las opciones (se resume mucho si hacemos que las preguntas devuelvan todas las opciones)
         List<Opcion> opciones = new LinkedList<>(this.pregunta.getOpcionesCorrectas());
         opciones.addAll(this.pregunta.getOpcionesIncorrectas());
         Collections.shuffle(opciones);
         vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
         this.getChildren().add(vistaOpciones);
+
         //Agregado de la exclusividad
         this.getChildren().add(botonExclusividad);
+
         //Agregado del enviar
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta);
         this.getChildren().add(botonEnviar);
+
+        update();
     }
 
-    public void update(){
+    public void update() {
         try {
             respuesta.clear();
-            Jugador jugadorActual = rondaObservada.obtenerJugadorActual();
+            Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
             int puntos = jugadorActual.obtenerPuntajeTotal();
-            String puntosString = String.valueOf(puntos);
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntosString);
+            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
             vistaOpciones.update();
             botonExclusividad.actualizar(jugadorActual);
-        } catch(NoSuchElementException e) {
-            Juego.getInstance().darPuntosAJugadores(Juego.getInstance().obtenerJugadores());
-            vistaGeneral.jugarSiguienteRonda();
+        } catch (NoSuchElementException e) {
+            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
+            VistaRonda vistaRonda = new VistaRonda(this.stage);
+            vistaRonda.armarVistaDeRonda();
         }
     }
 }

@@ -13,7 +13,7 @@ public class AsignadorComun implements Asignador{
 
     @Override
     public void asignarPuntos(List<Jugador> jugadores){
-        jugadores.stream().forEach(Jugador::asignarPuntajeTotal);
+        jugadores.forEach(Jugador::asignarPuntajeTotal);
     }
 
 }
