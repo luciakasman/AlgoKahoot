@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Ronda;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaVerdaderoOFalso;
+import javafx.application.Application;
 import javafx.beans.Observable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -17,42 +18,33 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
-public class VistaGeneral {
+public class VistaGeneral extends Application {
 
     Juego juego = Juego.getInstance();
     Stage stage;
 
-    public void jugarSiguienteRonda(){
+    /*public void jugarSiguienteRonda(){
         try{
             Ronda ronda = juego.armarSiguienteRonda();
+
             VistaRonda vistaRonda = new VistaRonda(ronda, this);
             Scene escenaRonda = new Scene(vistaRonda);
             stage.setScene(escenaRonda);
         } catch(NoSuchElementException e){
             mostrarGanador(juego.obtenerJugadores());
         }
-    }
+    }*/
 
-    public void mostrarGanador(List<Jugador> jugadores){
-        Jugador jugadorGanador = jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
-        Jugador jugadorPerdedor = jugadores.stream().min(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
-        String textoGanador = "El ganador es " + jugadorGanador.obtenerNombre() + " con " + jugadorGanador.obtenerPuntajeTotal() + " puntos.";
-        String textoPerdedor = "El perdedor es " + jugadorPerdedor.obtenerNombre() + " con " + jugadorPerdedor.obtenerPuntajeTotal() + " puntos.";
-        Label labelGanador = new Label(textoGanador);
-        Label labelPerdedor = new Label(textoPerdedor);
-        VBox vboxFinal = new VBox(labelGanador, labelPerdedor);
-        Scene escenaGanador = new Scene(vboxFinal);
-        stage.setScene(escenaGanador);
-    }
-
+@Override
     public void start(Stage stage) {
         this.stage = stage;
-        VistaRegistroDeJugadores vistaRegistroDeJugadores = new VistaRegistroDeJugadores(this);
+        stage.setFullScreen(true);
+        VistaRegistroDeJugadores vistaRegistroDeJugadores = new VistaRegistroDeJugadores(stage);
         stage.setTitle("El mejor Kahoot del mundo");
         Scene escena = new Scene(vistaRegistroDeJugadores);
         stage.setScene(escena);
         stage.show();
-
+    }
        /*// TextField texto = new TextField();
        // texto.setPromptText("Escriba su nombre");
 
@@ -83,5 +75,5 @@ public class VistaGeneral {
    //     TextoEventHandler textoEventHandler = new TextoEventHandler(botonOpcionCorrecta);
    //     texto.setOnKeyPressed(textoEventHandler);*/
 
-    }
+
 }

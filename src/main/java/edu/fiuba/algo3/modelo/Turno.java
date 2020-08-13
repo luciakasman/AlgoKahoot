@@ -10,18 +10,15 @@ public class Turno {
     //Clase que no se usa en esta version (reemplazada por clase Ronda)
 
     private final Pregunta pregunta;
-    private Servicio servicio;
 
-    public Turno(Pregunta pregunta, Servicio servicio) {
+    public Turno(Pregunta pregunta) {
         this.pregunta = pregunta;
-        this.servicio = servicio;
     }
 
-    public void jugarTurno(Jugador jugadorActual) {
+    public void jugarTurno(Jugador jugadorActual,List<Opcion> respuestas) {
         //muestra la pregunta con sus opciones llamando al Controlador
         //recibe las respuestas del front del Controlador
         //evalua las respuestas, guardandose el puntaje
-        List<Opcion> respuestas = servicio.obtenerRespuestas();
         Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas); //arma la respuesta correspondiente
         jugadorActual.guardarPuntajeDePregunta(evaluarRespuesta(pregunta, respuestasObtenidas));
     }

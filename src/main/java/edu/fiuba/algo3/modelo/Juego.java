@@ -14,12 +14,14 @@ import java.util.Queue;
 
 public class Juego {
 
-    private static Juego INSTANCE = new Juego(new GeneradorDePreguntas());
+    private static Juego INSTANCE;
     private final LinkedList<Jugador> jugadores = new LinkedList<>();
     private GeneradorDePreguntas generadorDePreguntas;
     private List<Observador> observadores = new LinkedList<Observador>();
     private Queue<Pregunta> preguntas;
     private Asignador asignador = new AsignadorComun();
+    private Pregunta preguntaActual;
+    private Jugador jugadorActual;
 
     private Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
@@ -27,6 +29,9 @@ public class Juego {
     }
 
     public static Juego getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new Juego(new GeneradorDePreguntas());
+        }
         return INSTANCE;
     }
 
@@ -38,6 +43,7 @@ public class Juego {
         Jugador jugador = new Jugador(nombre);
         jugadores.add(jugador);
         actualizarObservadores();
+
     }
 
     public void aplicarExclusividad(){
@@ -66,4 +72,13 @@ public class Juego {
         observadores.stream().forEach((observador -> observador.update()));
     }
 
+    public void jugarTurno(List<Opcion> listaRespuesta) {
+        Turno turno = new Turno(this.preguntaActual);
+        turno.jugarTurno(this.jugadorActual,listaRespuesta);
+    }
+
+    public Pregunta obtenerPreguntaNueva() {
+        this.preguntaActual = preguntas.poll();
+        return this.preguntaActual;
+    }
 }

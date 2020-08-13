@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controladores.botonhandler;
+package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.event.ActionEvent;

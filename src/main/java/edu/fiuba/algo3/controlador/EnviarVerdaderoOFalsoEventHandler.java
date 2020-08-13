@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.controladores.botonhandler;
+package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.Ronda;
 import javafx.event.ActionEvent;
@@ -11,21 +12,18 @@ import java.util.List;
 
 public class EnviarVerdaderoOFalsoEventHandler implements EventHandler<ActionEvent> {
 
-    private Ronda ronda;
-    private Button botonRespuesta;
+    private String respuesta;
 
-    public EnviarVerdaderoOFalsoEventHandler(Ronda ronda, Button botonRespuesta){
-        this.ronda = ronda;
-        this.botonRespuesta = botonRespuesta;
+    public EnviarVerdaderoOFalsoEventHandler(String respuesta){
+        this.respuesta = respuesta;
     }
 
     @Override
     public void handle(ActionEvent actionEvent){
-        Opcion respuesta = new Opcion(botonRespuesta.getText());
+        Opcion respuesta = new Opcion(this.respuesta);
         List<Opcion> listaRespuesta = new LinkedList<Opcion>();
         listaRespuesta.add(respuesta);
-        ronda.enviarRespuesta(listaRespuesta);
-
+        Juego.getInstance().jugarTurno(listaRespuesta);
     }
 
 }
