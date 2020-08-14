@@ -52,6 +52,8 @@ public class Juego {
         asignador = new AsignadorComun();
     }
 
+    public Boolean noQuedanPreguntas(){ return this.preguntas.isEmpty();}
+
     public Queue<Jugador> obtenerJugadores() {
         return this.jugadores;
     }

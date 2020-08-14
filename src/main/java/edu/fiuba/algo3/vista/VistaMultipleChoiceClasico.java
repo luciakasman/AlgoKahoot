@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -58,7 +59,18 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     }
 
     public void update() {
-        try {
+        if(jugadores.isEmpty()){
+            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
+            if (Juego.getInstance().noQuedanPreguntas()) {
+                VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
+                vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
+            } else {
+                VistaRonda vistaRonda = new VistaRonda(this.stage);
+                vistaRonda.armarVistaDeRonda();
+                Scene scene = new Scene(vistaRonda);
+                this.stage.setScene(scene);
+            }
+        }else{
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
@@ -66,10 +78,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
             infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
             vistaOpciones.update();
             botonExclusividad.actualizar(jugadorActual);
-        } catch (NoSuchElementException e) {
-            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
-            VistaRonda vistaRonda = new VistaRonda(this.stage);
-            vistaRonda.armarVistaDeRonda();
         }
     }
 }
+

@@ -8,15 +8,16 @@ import javafx.stage.Stage;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Queue;
 
-public class VistaMostrasGanador{
+public class VistaMostrarGanador {
     private Stage stage;
 
-    public VistaMostrasGanador(Stage stage) {
+    public VistaMostrarGanador(Stage stage) {
         this.stage = stage;
     }
 
-    public void mostrarGanador(List<Jugador> jugadores){
+    public void mostrarGanador(Queue<Jugador> jugadores){
         Jugador jugadorGanador = jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
         Jugador jugadorPerdedor = jugadores.stream().min(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
         String textoGanador = "El ganador es " + jugadorGanador.obtenerNombre() + " con " + jugadorGanador.obtenerPuntajeTotal() + " puntos.";
