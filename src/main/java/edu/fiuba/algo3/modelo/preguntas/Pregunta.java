@@ -7,23 +7,62 @@ import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 import java.util.List;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
-
-@JsonTypeInfo(use = NAME, include = PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+              property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value=PreguntaVerdaderoOFalso.class, name = "verdaderoOFalso"),
-        @JsonSubTypes.Type(value=PreguntaMultipleChoiceClasico.class, name = "multipleChoiceClasico"),
+        @JsonSubTypes.Type(value = PreguntaVerdaderoOFalso.class, name = "verdaderoOFalso"),
+        @JsonSubTypes.Type(value = PreguntaVerdaderoOFalsoConPenalidad.class, name = "verdaderoOFalsoPenalidad"),
+        @JsonSubTypes.Type(value = PreguntaMultipleChoiceClasico.class, name = "multipleChoiceClasico"),
+        @JsonSubTypes.Type(value = PreguntaMultipleChoiceConPenalidad.class, name = "multipleChoicePenalidad"),
+        @JsonSubTypes.Type(value = PreguntaMultipleChoiceParcial.class, name = "multipleChoiceParcial"),
+        @JsonSubTypes.Type(value = PreguntaOrderedChoice.class, name = "orderedChoice"),
+        @JsonSubTypes.Type(value = PreguntaGroupChoice.class, name = "groupChoice"),
+
 })
-public interface Pregunta {
 
-    int obtenerPuntaje(Respuesta respuesta);
+public abstract class Pregunta {
+    private String pregunta;
+    private List<Opcion> opcionesIncorrectas;
+    private List<Opcion> opcionesCorrectas;
 
-    Respuesta armarRespuesta (List<Opcion> respuesta);
+    public Pregunta(String pregunta,
+                    List<Opcion> opcionesCorrectas,
+                   List<Opcion> opcionesIncorrectas) {
+        this.pregunta = pregunta;
+        this.opcionesIncorrectas = opcionesIncorrectas;
+        this.opcionesCorrectas = opcionesCorrectas;
+    }
 
-    String getPregunta();
 
-    List<Opcion> getOpcionesCorrectas();
+    public int obtenerPuntaje(Respuesta respuesta) {
+        return respuesta.obtenerPuntaje(this.opcionesCorrectas);
+    }
 
-    List<Opcion> getOpcionesIncorrectas();
+    public abstract Respuesta armarRespuesta (List<Opcion> respuesta);
+
+    /* Setters y getters para Jackson*/
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public List<Opcion> getOpcionesCorrectas() {
+        return opcionesCorrectas;
+    }
+
+    public List<Opcion> getOpcionesIncorrectas() {
+        return opcionesIncorrectas;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public void setOpcionesIncorrectas(List<Opcion> opcionesIncorrectas) {
+        this.opcionesIncorrectas = opcionesIncorrectas;
+    }
+
+    public void setOpcionesCorrectas(List<Opcion> opcionesCorrectas) {
+        this.opcionesCorrectas = opcionesCorrectas;
+    }
 }
