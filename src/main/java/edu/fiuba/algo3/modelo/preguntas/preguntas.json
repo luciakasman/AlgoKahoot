@@ -15,20 +15,6 @@
       ]
     },
     {
-      "type": "verdaderoOFalsoPenalidad",
-      "pregunta": "Gise tiene sueño?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "falso"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "verdadero"
-        }
-      ]
-    },
-    {
       "type": "multipleChoiceClasico",
       "pregunta": "Materias mas aburridas de la facu?",
       "opcionesIncorrectas": [
@@ -45,6 +31,20 @@
       "opcionesCorrectas": [
         {
           "opcion": "Quimica"
+        }
+      ]
+    },
+    {
+      "type": "verdaderoOFalsoPenalidad",
+      "pregunta": "Gise tiene sueño?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "verdadero"
         }
       ]
     },
