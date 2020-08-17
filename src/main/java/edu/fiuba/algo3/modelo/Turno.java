@@ -6,9 +6,6 @@ import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 import java.util.List;
 
 public class Turno {
-
-    //Clase que no se usa en esta version (reemplazada por clase Ronda)
-
     private final Pregunta pregunta;
 
     public Turno(Pregunta pregunta) {
@@ -16,7 +13,7 @@ public class Turno {
     }
 
     public void jugarTurno(Jugador jugadorActual, List<Opcion> respuestas) {
-        Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas); //arma la respuesta correspondiente
+        Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas);
         jugadorActual.guardarPuntajeDePregunta(evaluarRespuesta(pregunta, respuestasObtenidas));
     }
 

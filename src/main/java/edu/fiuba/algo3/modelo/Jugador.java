@@ -22,9 +22,9 @@ public class Jugador {
         this.triplicadorDePuntos = new Multiplicador(3);
     }
 
-    public void usarExclusividad(){
-        if (exclusividadDisponible > 0){
-        exclusividadDisponible -= 1;
+    public void usarExclusividad() {
+        if (exclusividadDisponible > 0) {
+            exclusividadDisponible -= 1;
         }
     }
 
@@ -35,13 +35,15 @@ public class Jugador {
         return this.triplicadorDePuntos;
     }
 
-    public int getExclusividadDisponible(){ return exclusividadDisponible;}
+    public int getExclusividadDisponible() {
+        return exclusividadDisponible;
+    }
 
-    public void guardarPuntajeDePregunta(int puntajeDePregunta){
+    public void guardarPuntajeDePregunta(int puntajeDePregunta) {
         this.puntajeDePregunta = puntajeDePregunta;
     }
 
-    public int obtenerPuntajeDePregunta(){
+    public int obtenerPuntajeDePregunta() {
         return this.puntajeDePregunta;
     }
 

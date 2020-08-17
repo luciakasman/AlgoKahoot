@@ -3,7 +3,6 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.Servicio;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.util.List;
@@ -15,7 +14,6 @@ public class TestTurno {
     List<Opcion> opcionesCorrectas;
     List<Opcion> opcionesIncorrectas;
     Juego juego;
-    Servicio servicio;
     List<Opcion> respuestas;
     Jugador jugador1;
     String falso = "falso";
