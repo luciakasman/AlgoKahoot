@@ -11,7 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class VistaMultipleChoiceClasico extends VBox implements Observador {
 
@@ -22,6 +25,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
+    private final LabelTiempo labelTiempo = new LabelTiempo(5);
 
     public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage) {
         this.setSpacing(20);
@@ -32,6 +36,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
 
     public void armarVistaPropia() {
         Juego.getInstance().guardarObservador(this);
+
+        this.getChildren().add(labelTiempo);
 
         //Agregado de la info del jugador
         this.getChildren().add(infoJugador);
@@ -59,7 +65,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     }
 
     public void update() {
-        if(jugadores.isEmpty()){
+        labelTiempo.stop();
+        if (jugadores.isEmpty()) {
             Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
             if (Juego.getInstance().noQuedanPreguntas()) {
                 VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
@@ -70,7 +77,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
                 Scene scene = new Scene(vistaRonda);
                 this.stage.setScene(scene);
             }
-        }else{
+        } else {
+            labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
