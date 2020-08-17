@@ -25,7 +25,7 @@ public class VistaGeneral extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
         VistaRegistroDeJugadores vistaRegistroDeJugadores = new VistaRegistroDeJugadores(stage);
         stage.setTitle("El mejor Kahoot del mundo");
         Scene escena = new Scene(vistaRegistroDeJugadores);

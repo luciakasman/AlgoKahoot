@@ -33,6 +33,40 @@
           "opcion": "Quimica"
         }
       ]
+    },
+    {
+      "type": "verdaderoOFalsoPenalidad",
+      "pregunta": "Gise tiene sueño?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ]
+    },
+    {
+      "type": "multipleChoicePenalidad",
+      "pregunta": "Materias mas robo de la facu?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "AlgebraII"
+        },
+        {
+          "opcion": "AMII"
+        },
+        {
+          "opcion": "AlgoritmosIII"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Numerico"
+        }
+      ]
     }
   ]
 }
