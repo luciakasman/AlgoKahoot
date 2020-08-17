@@ -16,8 +16,12 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
     public VistaRegistroDeJugadores(Stage stage) {
         this.setSpacing(20);
-        Juego.getInstance().guardarObservador(this);
         this.stage = stage;
+        Juego.getInstance().guardarObservador(this);
+        armarVistaPropia();
+    }
+
+    private void armarVistaPropia() {
         TextField nombreJugador = new TextField();
         nombreJugador.setPromptText("Ingrese el nombre del jugador");
         Label labelAdvertencia = new Label("");
@@ -29,8 +33,7 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
     @Override
     public void update() {
-        int cantidadJugadores = Juego.getInstance().obtenerJugadores().size();
-        if (cantidadJugadores == 2) {
+        if (Juego.getInstance().obtenerJugadores().size() == 2) {
             VistaRonda vistaRonda = new VistaRonda(stage);
             vistaRonda.armarVistaDeRonda();
             Scene scene = new Scene(vistaRonda);

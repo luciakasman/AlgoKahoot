@@ -14,7 +14,6 @@ public class VistaRonda extends VBox {
     }
 
     public void armarVistaDeRonda() {
-        //this.getChildren().remove();
         Pregunta preguntaRonda = Juego.getInstance().obtenerPreguntaNueva();
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalso.class)) {
             VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage);

@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
-import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -21,7 +20,7 @@ public class VistaMultipleChoiceConPenalidad extends VBox implements Observador 
     private final List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
     private VistaOpcionesMultipleChoice vistaOpciones;
-    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores();
+    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores();
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
@@ -62,7 +61,7 @@ public class VistaMultipleChoiceConPenalidad extends VBox implements Observador 
     }
 
     public void update() {
-        if(jugadores.isEmpty()){
+        if (jugadores.isEmpty()) {
             Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
             if (Juego.getInstance().noQuedanPreguntas()) {
                 VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
@@ -73,7 +72,7 @@ public class VistaMultipleChoiceConPenalidad extends VBox implements Observador 
                 Scene scene = new Scene(vistaRonda);
                 this.stage.setScene(scene);
             }
-        }else{
+        } else {
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();

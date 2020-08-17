@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -16,8 +15,8 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
     private final Label infoJugador = new Label();
     private final String preguntaLabel;
     private final Stage stage;
-    private Queue<Jugador> jugadores;
-    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores();
+    private final Queue<Jugador> jugadores;
+    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores();
 
     public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage) {
         this.preguntaLabel = pregunta.getPregunta();
@@ -41,7 +40,7 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
     public void update() {
         // este if es igual en todas las vistas, difiere el else
         // todo : extraer comportamiento del if en un metodo
-        if(jugadores.isEmpty()){
+        if (jugadores.isEmpty()) {
             Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
             if (Juego.getInstance().noQuedanPreguntas()) {
                 VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
@@ -52,7 +51,7 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
                 Scene scene = new Scene(vistaRonda);
                 this.stage.setScene(scene);
             }
-        }else {
+        } else {
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
             int puntaje = jugadorActual.obtenerPuntajeTotal();

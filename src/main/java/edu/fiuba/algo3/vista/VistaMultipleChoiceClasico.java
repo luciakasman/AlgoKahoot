@@ -1,24 +1,20 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.ControladorDeTiempo;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.preguntas.PreguntaMultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.preguntas.PreguntaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class VistaMultipleChoiceClasico extends VBox implements Observador {
 
@@ -29,11 +25,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    /*private Timeline timeline = new Timeline();
-    private static final int starttime = 5;
-    private Label labelTiempo = new Label(String.valueOf(starttime));
-    private int timeseconds = starttime;*/
-    private LabelTiempo labelTiempo = new LabelTiempo(5);
+    private final LabelTiempo labelTiempo = new LabelTiempo(5);
 
     public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage) {
         this.setSpacing(20);
@@ -74,7 +66,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
 
     public void update() {
         labelTiempo.stop();
-        if(jugadores.isEmpty()){
+        if (jugadores.isEmpty()) {
             Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
             if (Juego.getInstance().noQuedanPreguntas()) {
                 VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
@@ -85,7 +77,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
                 Scene scene = new Scene(vistaRonda);
                 this.stage.setScene(scene);
             }
-        }else{
+        } else {
             labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
@@ -96,15 +88,5 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
             botonExclusividad.actualizar(jugadorActual);
         }
     }
-
-    /*private HBox obtenerVentajaAdecuada(){
-        HBox ventaja = new HBox();
-        if(pregunta.getClass() == PreguntaMultipleChoiceConPenalidad.class){
-            ventaja.getChildren().add(new BotonExclusividad());
-            return ventaja;
-        }
-        //agregar los multiplicadores a la ventaja y devolverla
-    }*/
-
 }
 
