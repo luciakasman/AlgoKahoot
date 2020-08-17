@@ -44,24 +44,21 @@ public class Juego {
         this.jugadorActual.usarExclusividad();
     }
     public int exclusividadDisponibleJugadorActual(){
-        return this.jugadorActual.getExclusividadDisponible();
+        return this.jugadorActual.obtenerExclusividadDisponible();
     }
 
     public void activarDuplicadorDePuntos() {
-        if(this.jugadorActual.esDuplicadorActivable()) {
-            this.jugadorActual.activarDuplicadorDePuntos();
-        }
+        this.jugadorActual.activarDuplicadorDePuntos();
     }
 
     public void activarTriplicadorDePuntos() {
-        if(this.jugadorActual.esTriplicadorActivable()) {
-            this.jugadorActual.activarTriplicadorDePuntos();
-        }
+        this.jugadorActual.activarTriplicadorDePuntos();
     }
-    public Boolean esDuplicadorActivable(){
+
+    public boolean esDuplicadorActivable(){
         return this.jugadorActual.esDuplicadorActivable();
     }
-    public Boolean esTriplicadorActivable(){
+    public boolean esTriplicadorActivable(){
         return this.jugadorActual.esTriplicadorActivable();
     }
 
@@ -74,7 +71,7 @@ public class Juego {
         asignador = new AsignadorComun();
     }
 
-    public Boolean noQuedanPreguntas() {
+    public boolean noQuedanPreguntas() {
         return this.preguntas.isEmpty();
     }
 

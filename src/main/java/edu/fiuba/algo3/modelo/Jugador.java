@@ -1,14 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.respuestas.Respuesta;
-
 public class Jugador {
 
     private final String nombre;
     private int puntajeTotal;
-    private Respuesta respuesta;
-    private Multiplicador duplicadorDePuntos;
-    private Multiplicador triplicadorDePuntos;
+    private final Multiplicador duplicadorDePuntos;
+    private final Multiplicador triplicadorDePuntos;
     private int multiplicador;
     private int puntajeDePregunta;
     private int exclusividadDisponible;
@@ -28,14 +25,7 @@ public class Jugador {
         }
     }
 
-    public Multiplicador getDuplicadorDePuntos(){
-        return this.duplicadorDePuntos;
-    }
-    public Multiplicador getTriplicadorDePuntos(){
-        return this.triplicadorDePuntos;
-    }
-
-    public int getExclusividadDisponible() {
+    public int obtenerExclusividadDisponible() {
         return exclusividadDisponible;
     }
 
@@ -60,14 +50,6 @@ public class Jugador {
         desactivarMultiplicador();
     }
 
-    public Respuesta obtenerRespuesta() {
-        return respuesta;
-    }
-
-    public void asignarRespuesta(Respuesta respuesta) {
-        this.respuesta = respuesta;
-    }
-
     public void activarDuplicadorDePuntos() {
         this.multiplicador = this.duplicadorDePuntos.activar();
     }
@@ -76,9 +58,11 @@ public class Jugador {
         this.multiplicador = this.triplicadorDePuntos.activar();
     }
 
-    public Boolean esDuplicadorActivable(){ return this.duplicadorDePuntos.esActivable(); }
+    public boolean esDuplicadorActivable() {
+        return this.duplicadorDePuntos.esActivable();
+    }
 
-    public Boolean esTriplicadorActivable(){
+    public boolean esTriplicadorActivable() {
         return this.triplicadorDePuntos.esActivable();
     }
 

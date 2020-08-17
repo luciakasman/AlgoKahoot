@@ -6,26 +6,26 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+import static javafx.animation.Animation.INDEFINITE;
+
 public class LabelTiempo extends Label {
 
-    private int tiempoInicio;
-    private Timeline timeline = new Timeline(); /* hago este new porque sino
-    se rompe en el stop cuando no se llamo anteriormente a un start ( cosa que pasa )
-    se podria evitar con un if pero no se no me gustaba qcyoxdxdxxxdxdxd*/
+    private final int tiempoInicio;
+    private Timeline timeline = new Timeline();
 
-    public LabelTiempo(int tiempoInicio){
+    public LabelTiempo(int tiempoInicio) {
         this.tiempoInicio = tiempoInicio;
     }
 
-    public void start(){
+    public void start() {
         this.setText("Tiempo: " + tiempoInicio);
         timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new ControladorDeTiempo(tiempoInicio, this)));
         timeline.playFromStart();
     }
 
-    public void stop(){
+    public void stop() {
         timeline.stop();
     }
 }

@@ -9,15 +9,15 @@ import javafx.scene.control.Button;
 
 public class AplicarTriplicadorEventHandler implements EventHandler<ActionEvent> {
     private final BotonDuplicador botonDuplicador;
-    private Button botonTriplicador;
-    private Juego juego = Juego.getInstance();
+    private final Button botonTriplicador;
+    private final Juego juego = Juego.getInstance();
 
-    public AplicarTriplicadorEventHandler(BotonTriplicador botonTriplicador, BotonDuplicador botonDuplicador){
+    public AplicarTriplicadorEventHandler(BotonTriplicador botonTriplicador, BotonDuplicador botonDuplicador) {
         this.botonTriplicador = botonTriplicador;
         this.botonDuplicador = botonDuplicador;
     }
 
-    public void handle(ActionEvent actionEvent){
+    public void handle(ActionEvent actionEvent) {
         juego.activarTriplicadorDePuntos();
         botonTriplicador.setText("Aplicar Triplicador (0)");
         botonTriplicador.setDisable(true);

@@ -89,4 +89,3 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         }
     }
 }
-
