@@ -7,20 +7,43 @@ public class Jugador {
     private final String nombre;
     private int puntajeTotal;
     private Respuesta respuesta;
+    private Multiplicador duplicadorDePuntos;
+    private Multiplicador triplicadorDePuntos;
     private int multiplicador;
     private int puntajeDePregunta;
+    private int exclusividadDisponible;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntajeTotal = 0;
         this.multiplicador = 1;
+        this.exclusividadDisponible = 2;
+        this.duplicadorDePuntos = new Multiplicador(2);
+        this.triplicadorDePuntos = new Multiplicador(3);
     }
 
-    public void guardarPuntajeDePregunta(int puntajeDePregunta){
+    public void usarExclusividad() {
+        if (exclusividadDisponible > 0) {
+            exclusividadDisponible -= 1;
+        }
+    }
+
+    public Multiplicador getDuplicadorDePuntos(){
+        return this.duplicadorDePuntos;
+    }
+    public Multiplicador getTriplicadorDePuntos(){
+        return this.triplicadorDePuntos;
+    }
+
+    public int getExclusividadDisponible() {
+        return exclusividadDisponible;
+    }
+
+    public void guardarPuntajeDePregunta(int puntajeDePregunta) {
         this.puntajeDePregunta = puntajeDePregunta;
     }
 
-    public int obtenerPuntajeDePregunta(){
+    public int obtenerPuntajeDePregunta() {
         return this.puntajeDePregunta;
     }
 
@@ -34,6 +57,7 @@ public class Jugador {
 
     public void asignarPuntajeTotal() {
         this.puntajeTotal += (puntajeDePregunta * multiplicador);
+        desactivarMultiplicador();
     }
 
     public Respuesta obtenerRespuesta() {
@@ -44,12 +68,18 @@ public class Jugador {
         this.respuesta = respuesta;
     }
 
-    public void activarMultiplicadorx2() {
-        this.multiplicador = 2;
+    public void activarDuplicadorDePuntos() {
+        this.multiplicador = this.duplicadorDePuntos.activar();
     }
 
-    public void activarMultiplicadorx3() {
-        this.multiplicador = 3;
+    public void activarTriplicadorDePuntos() {
+        this.multiplicador = this.triplicadorDePuntos.activar();
+    }
+
+    public Boolean esDuplicadorActivable(){ return this.duplicadorDePuntos.esActivable(); }
+
+    public Boolean esTriplicadorActivable(){
+        return this.triplicadorDePuntos.esActivable();
     }
 
     public void desactivarMultiplicador() {

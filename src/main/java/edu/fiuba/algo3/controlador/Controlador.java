@@ -1,5 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.controlador;
 
+
+import edu.fiuba.algo3.modelo.Opcion;
 
 import java.util.LinkedList;
 import java.util.List;

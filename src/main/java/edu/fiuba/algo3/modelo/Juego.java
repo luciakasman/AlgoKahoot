@@ -1,51 +1,109 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.asignadores.Asignador;
+import edu.fiuba.algo3.modelo.asignadores.AsignadorComun;
 import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.vista.Observador;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Juego {
 
-    private final List<Jugador> jugadores = new LinkedList<>();
-    private final Servicio servicio;
+    private static Juego INSTANCE;
+    private final Queue<Jugador> jugadores = new LinkedList<>();
     private final GeneradorDePreguntas generadorDePreguntas;
+    private Observador observador;
+    private final Queue<Pregunta> preguntas;
+    private Asignador asignador = new AsignadorComun();
+    private Pregunta preguntaActual;
+    private Jugador jugadorActual;
 
-    public Juego(Servicio servicio, GeneradorDePreguntas generadorDePreguntas) {
-        this.servicio = servicio;
+    private Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
+        preguntas = crearPreguntas();
     }
 
-    public void comenzarJuego() {
-        List<Pregunta> preguntas = crearPreguntas();
-
-        preguntas.forEach(pregunta -> {
-            jugarRonda(pregunta, servicio);
-            darPuntosAJugadores(jugadores);
-        });
-    }
-
-    private void jugarRonda(Pregunta pregunta, Servicio servicio) {
-        Turno turno = new Turno(pregunta, servicio);
-        jugadores.forEach(turno::jugarTurno);
+    public static Juego getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Juego(new GeneradorDePreguntas());
+        }
+        return INSTANCE;
     }
 
     public void agregarJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
         jugadores.add(jugador);
+        actualizarObservador();
     }
 
-    private List<Pregunta> crearPreguntas() {
+    public void aplicarExclusividad() {
+        asignador = asignador.aplicarExclusividad();
+        this.jugadorActual.usarExclusividad();
+    }
+    public int exclusividadDisponibleJugadorActual(){
+        return this.jugadorActual.getExclusividadDisponible();
+    }
+
+    public void activarDuplicadorDePuntos() {
+        if(this.jugadorActual.esDuplicadorActivable()) {
+            this.jugadorActual.activarDuplicadorDePuntos();
+        }
+    }
+
+    public void activarTriplicadorDePuntos() {
+        if(this.jugadorActual.esTriplicadorActivable()) {
+            this.jugadorActual.activarTriplicadorDePuntos();
+        }
+    }
+    public Boolean esDuplicadorActivable(){
+        return this.jugadorActual.esDuplicadorActivable();
+    }
+    public Boolean esTriplicadorActivable(){
+        return this.jugadorActual.esTriplicadorActivable();
+    }
+
+    private Queue<Pregunta> crearPreguntas() {
         return generadorDePreguntas.obtenerPreguntas();
     }
 
-    private void darPuntosAJugadores(List<Jugador> jugadores) {
-        //meter exclusividad, se modifica el puntaje de pregunta.
-        jugadores.forEach(Jugador::asignarPuntajeTotal);
+    public void darPuntosAJugadores(List<Jugador> jugadores) {
+        asignador.asignarPuntos(jugadores);
+        asignador = new AsignadorComun();
     }
 
-    public List<Jugador> obtenerJugadores() {
+    public Boolean noQuedanPreguntas() {
+        return this.preguntas.isEmpty();
+    }
+
+    public Queue<Jugador> obtenerJugadores() {
         return this.jugadores;
+    }
+
+    public void guardarObservador(Observador observador) {
+        this.observador = observador;
+    }
+
+    private void actualizarObservador() {
+        observador.update();
+    }
+
+    public void jugarTurno(List<Opcion> listaRespuesta) {
+        Turno turno = new Turno(this.preguntaActual);
+        turno.jugarTurno(obtenerJugadorActual(), listaRespuesta);
+        actualizarObservador();
+    }
+
+    public Pregunta obtenerPreguntaNueva() {
+        this.preguntaActual = preguntas.poll();
+        return this.preguntaActual;
+    }
+
+    public Jugador obtenerJugadorActual() {
+        this.jugadorActual = jugadores.poll();
+        jugadores.add(this.jugadorActual);
+        return this.jugadorActual;
     }
 }
