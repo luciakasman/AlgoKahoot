@@ -1,7 +1,7 @@
 {
   "preguntas":[
     {
-      "@type": "verdaderoOFalso",
+      "type": "verdaderoOFalso",
       "pregunta": "Estamos hechxs de torta?",
       "opcionesIncorrectas": [
         {
@@ -15,20 +15,20 @@
       ]
     },
     {
-      "@type": "multipleChoiceClasico",
-      "pregunta": "Peores materias de la facu?",
+      "type": "multipleChoiceClasico",
+      "pregunta": "Materias mas aburridas de la facu?",
       "opcionesIncorrectas": [
         {
           "opcion": "AMII"
         },
         {
           "opcion": "AlgoritmosIII"
+        },
+        {
+          "opcion": "AlgebraII"
         }
       ],
       "opcionesCorrectas": [
-        {
-          "opcion": "AlgebraII"
-        },
         {
           "opcion": "Quimica"
         }

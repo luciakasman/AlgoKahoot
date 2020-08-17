@@ -8,9 +8,15 @@ import edu.fiuba.algo3.modelo.respuestas.RespuestaVerdaderoOFalso;
 
 import java.util.List;
 
-public class PreguntaVerdaderoOFalso implements Pregunta {
+public class PreguntaVerdaderoOFalso extends Pregunta {
+    @JsonCreator
+    public PreguntaVerdaderoOFalso(@JsonProperty("pregunta") String pregunta,
+                                   @JsonProperty("opcionesCorrectas")List<Opcion> opcionesCorrectas,
+                                   @JsonProperty("opcionesIncorrectas")List<Opcion> opcionesIncorrectas) {
+        super(pregunta, opcionesCorrectas, opcionesIncorrectas);
+    }
 
-    public final String pregunta;
+/*    public final String pregunta;
     public final List<Opcion> opcionesIncorrectas;
     public final List<Opcion> opcionesCorrectas;
     public RespuestaVerdaderoOFalso respuesta;
@@ -22,9 +28,9 @@ public class PreguntaVerdaderoOFalso implements Pregunta {
         this.pregunta = pregunta;
         this.opcionesIncorrectas = opcionesIncorrectas;
         this.opcionesCorrectas = opcionesCorrectas;
-    }
+    }*/
 
-    public String obtenerPregunta() {
+/*    public String obtenerPregunta() {
         return pregunta;
     }
 
@@ -38,13 +44,13 @@ public class PreguntaVerdaderoOFalso implements Pregunta {
 
     public int obtenerPuntaje(Respuesta respuesta) {
         return respuesta.obtenerPuntaje(this.opcionesCorrectas);
-    }
+    }*/
 
     public Respuesta armarRespuesta(List<Opcion> respuesta) {
         return new RespuestaVerdaderoOFalso(respuesta.get(0));
     }
 
-    public String getPregunta() {
+/*    public String getPregunta() {
         return pregunta;
     }
 
@@ -54,5 +60,5 @@ public class PreguntaVerdaderoOFalso implements Pregunta {
 
     public List<Opcion> getOpcionesIncorrectas() {
         return opcionesIncorrectas;
-    }
+    }*/
 }

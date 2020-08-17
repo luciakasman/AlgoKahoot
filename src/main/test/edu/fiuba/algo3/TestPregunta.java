@@ -7,25 +7,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestPregunta {
 
-    List<Pregunta> preguntas;
+    Queue<Pregunta> preguntas;
     String preguntaAHacer;
     List<Opcion> opcionesCorrectas;
     GeneradorDePreguntas generadorDePreguntas = new GeneradorDePreguntas();
 
-    /*@BeforeEach
+    @BeforeEach
     void setUp() {
         preguntas = generadorDePreguntas.obtenerPreguntas();
-    }*/
+    }
 
-    /*@Test
+    @Test
     void testPuedeCrearseIndicandoleRespuestaCorrecta() {
-        assertEquals("Estamos hechxs de torta?", preguntas.get(0).getPregunta());
+        System.out.println("OPCIONES CORRECTAS");
+        preguntas.forEach(pregunta -> {
+            pregunta.getOpcionesCorrectas().forEach(opcion ->
+                    System.out.println(pregunta.getPregunta() + "\t" +opcion.getOpcion()));
+        });
+        System.out.println("OPCIONES INCORRECTAS");
+        preguntas.forEach(pregunta -> {
+            pregunta.getOpcionesIncorrectas().forEach(opcion ->
+                    System.out.println(pregunta.getPregunta() + "\t" + opcion.getOpcion()));
+        });
+        /*assertEquals("Estamos hechxs de torta?", preguntas.element().getPregunta());
         assertEquals("Peores materias de la facu?", preguntas.get(1).getPregunta());
 
         assertEquals("falso", preguntas.get(0).getOpcionesCorrectas().get(0).getOpcion());
@@ -34,7 +45,7 @@ public class TestPregunta {
         assertEquals("AlgebraII", preguntas.get(1).getOpcionesCorrectas().get(0).getOpcion());
         assertEquals("Quimica", preguntas.get(1).getOpcionesCorrectas().get(1).getOpcion());
         assertEquals("AMII", preguntas.get(1).getOpcionesIncorrectas().get(0).getOpcion());
-        assertEquals("AlgoritmosIII", preguntas.get(1).getOpcionesIncorrectas().get(1).getOpcion());
-    }*/
+        assertEquals("AlgoritmosIII", preguntas.get(1).getOpcionesIncorrectas().get(1).getOpcion());*/
+    }
 
 }

@@ -1,0 +1,141 @@
+{
+  "preguntas":[
+    {
+      "type": "verdaderoOFalso",
+      "pregunta": "Estamos hechxs de torta?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ]
+    },
+    {
+      "type": "multipleChoiceClasico",
+      "pregunta": "Materias mas aburridas de la facu?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "AMII"
+        },
+        {
+          "opcion": "AlgoritmosIII"
+        },
+        {
+          "opcion": "AlgebraII"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Quimica"
+        }
+      ]
+    },
+    {
+      "type": "verdaderoOFalsoPenalidad",
+      "pregunta": "Gise tiene sueño?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ]
+    },
+    {
+      "type": "multipleChoicePenalidad",
+      "pregunta": "Materias mas robo de la facu?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "AlgebraII"
+        },
+        {
+          "opcion": "AMII"
+        },
+        {
+          "opcion": "AlgoritmosIII"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Numerico"
+        }
+      ]
+    },
+    {
+      "type": "multipleChoiceParcial",
+      "pregunta": "Cantantes de cumbia",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "Gardel"
+        },
+        {
+          "opcion": "Cerati"
+        },
+        {
+          "opcion": "Justin Bieber"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Pablo lescano"
+        }
+      ]
+    },
+    {
+      "type" : "orderedChoice",
+      "pregunta": "Pasar a texto la secuencia I, II, II, IV",
+      "opcionesIncorrectas": [
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Uno"
+        },
+        {
+          "opcion": "Dos"
+        },
+        {
+          "opcion": "Tres"
+        },
+        {
+          "opcion": "Cuatro"
+        }
+      ]
+    },
+    {
+      "type" : "groupChoice",
+      "pregunta": "Capitales de Europa y capitales de America",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "Paris"
+        },
+        {
+          "opcion": "Madrid"
+        },
+        {
+          "opcion": "Roma"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Buenos Aires"
+        },
+        {
+          "opcion": "Santiago"
+        },
+        {
+          "opcion": "Lima"
+        },
+        {
+          "opcion": "La Paz"
+        }
+      ]
+    }
+  ]
+}
