@@ -43,8 +43,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.getChildren().add(infoJugador);
 
         //Agregado de la pregunta
-        String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label("Multiple Choice Clasico: " + pregunta);
+        Label labelPregunta = new Label("Multiple Choice Clasico: " + this.pregunta.getPregunta());
         this.getChildren().add(labelPregunta);
 
         //Agregado de las opciones (se resume mucho si hacemos que las preguntas devuelvan todas las opciones)
@@ -89,4 +88,3 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         }
     }
 }
-
