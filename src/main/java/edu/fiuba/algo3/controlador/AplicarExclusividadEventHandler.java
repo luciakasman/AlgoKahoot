@@ -12,16 +12,14 @@ public class AplicarExclusividadEventHandler implements EventHandler<ActionEvent
     private Juego juego = Juego.getInstance();
     private Jugador jugadorActual;
 
-    public AplicarExclusividadEventHandler(Button botonExclusividad, Jugador jugadorActual){
+    public AplicarExclusividadEventHandler(Button botonExclusividad){
         this.botonExclusividad = botonExclusividad;
-        this.jugadorActual = jugadorActual;
     }
 
     public void handle(ActionEvent actionEvent){
         juego.aplicarExclusividad();
-        jugadorActual.usarExclusividad();
-        int exclusividadDisponible = jugadorActual.getExclusividadDisponible();
-        String text = "Aplicar exclusividad (" + String.valueOf(exclusividadDisponible) + ")";
+        int exclusividadDisponible = Juego.getInstance().exclusividadDisponibleJugadorActual();
+        String text = "Aplicar exclusividad (" + exclusividadDisponible + ")";
         botonExclusividad.setText(text);
         botonExclusividad.setDisable(true);
     }

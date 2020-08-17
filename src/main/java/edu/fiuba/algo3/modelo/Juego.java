@@ -41,6 +41,28 @@ public class Juego {
 
     public void aplicarExclusividad() {
         asignador = asignador.aplicarExclusividad();
+        this.jugadorActual.usarExclusividad();
+    }
+    public int exclusividadDisponibleJugadorActual(){
+        return this.jugadorActual.getExclusividadDisponible();
+    }
+
+    public void activarDuplicadorDePuntos() {
+        if(this.jugadorActual.esDuplicadorActivable()) {
+            this.jugadorActual.activarDuplicadorDePuntos();
+        }
+    }
+
+    public void activarTriplicadorDePuntos() {
+        if(this.jugadorActual.esTriplicadorActivable()) {
+            this.jugadorActual.activarTriplicadorDePuntos();
+        }
+    }
+    public Boolean esDuplicadorActivable(){
+        return this.jugadorActual.esDuplicadorActivable();
+    }
+    public Boolean esTriplicadorActivable(){
+        return this.jugadorActual.esTriplicadorActivable();
     }
 
     private Queue<Pregunta> crearPreguntas() {
