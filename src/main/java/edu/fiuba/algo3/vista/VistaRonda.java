@@ -32,16 +32,16 @@ public class VistaRonda extends VBox {
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceConPenalidad.class)) {
-            VistaMultipleChoiceConPenalidad vista = new VistaMultipleChoiceConPenalidad(preguntaRonda, stage);
-            vista.armarVistaPropia();
+            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage);
+            vista.armarVistaPropia("con Penalidad");
             this.getChildren().add(vista);
         }
-        /*if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceParcial.class)) {
-            VistaMultipleChoiceParcial vista = new VistaMultipleChoiceParcial(preguntaRonda, stage);
-            vista.armarVistaPropia();
+        if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceParcial.class)) {
+            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage);
+            vista.armarVistaPropia("con Puntaje parcial");
             this.getChildren().add(vista);
         }
-
+        /*
         if (preguntaRonda.getClass().equals(PreguntaOrderedChoice.class)) {
             VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage);
             vista.armarVistaPropia();

@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class VistaMultipleChoiceConPenalidad extends VBox implements Observador {
+public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Observador {
 
     private final List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
@@ -26,14 +26,14 @@ public class VistaMultipleChoiceConPenalidad extends VBox implements Observador 
     private final Stage stage;
     private final Queue<Jugador> jugadores;
 
-    public VistaMultipleChoiceConPenalidad(Pregunta pregunta, Stage stage) {
+    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage) {
         this.setSpacing(20);
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
     }
 
-    public void armarVistaPropia() {
+    public void armarVistaPropia(String clase) {
         Juego.getInstance().guardarObservador(this);
 
         //Agregado de la info del jugador
@@ -41,7 +41,7 @@ public class VistaMultipleChoiceConPenalidad extends VBox implements Observador 
 
         //Agregado de la pregunta
         String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label("Multiple Choice con penalidad: " + pregunta);
+        Label labelPregunta = new Label("Multiple Choice "+ clase + " : "  + pregunta);
         this.getChildren().add(labelPregunta);
 
         //Agregado de las opciones (se resume mucho si hacemos que las preguntas devuelvan todas las opciones)

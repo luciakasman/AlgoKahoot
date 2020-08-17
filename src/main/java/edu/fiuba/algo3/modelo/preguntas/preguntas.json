@@ -67,6 +67,26 @@
           "opcion": "Numerico"
         }
       ]
+    },
+    {
+      "type": "multipleChoiceParcial",
+      "pregunta": "Cantantes de cumbia",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "Gardel"
+        },
+        {
+          "opcion": "Cerati"
+        },
+        {
+          "opcion": "Justin Bieber"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Pablo lescano"
+        }
+      ]
     }
   ]
 }
