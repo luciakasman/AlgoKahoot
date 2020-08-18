@@ -19,7 +19,7 @@ public class Juego {
     private final Queue<Pregunta> preguntas;
     private Asignador asignador = new AsignadorComun();
     private Pregunta preguntaActual;
-    private Jugador jugadorActual;
+    //private Jugador jugadorActual;
 
     private Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
@@ -41,25 +41,25 @@ public class Juego {
 
     public void aplicarExclusividad() {
         asignador = asignador.aplicarExclusividad();
-        this.jugadorActual.usarExclusividad();
+        jugadorActual().usarExclusividad();
     }
     public int exclusividadDisponibleJugadorActual(){
-        return this.jugadorActual.obtenerExclusividadDisponible();
+        return jugadorActual().obtenerExclusividadDisponible();
     }
 
     public void activarDuplicadorDePuntos() {
-        this.jugadorActual.activarDuplicadorDePuntos();
+        jugadorActual().activarDuplicadorDePuntos();
     }
 
     public void activarTriplicadorDePuntos() {
-        this.jugadorActual.activarTriplicadorDePuntos();
+        jugadorActual().activarTriplicadorDePuntos();
     }
 
     public boolean esDuplicadorActivable(){
-        return this.jugadorActual.esDuplicadorActivable();
+        return jugadorActual().esDuplicadorActivable();
     }
     public boolean esTriplicadorActivable(){
-        return this.jugadorActual.esTriplicadorActivable();
+        return jugadorActual().esTriplicadorActivable();
     }
 
     private Queue<Pregunta> crearPreguntas() {
@@ -89,7 +89,8 @@ public class Juego {
 
     public void jugarTurno(List<Opcion> listaRespuesta) {
         Turno turno = new Turno(this.preguntaActual);
-        turno.jugarTurno(obtenerJugadorActual(), listaRespuesta);
+        turno.jugarTurno(jugadorActual(), listaRespuesta);
+        actualizarJugadorActual();
         actualizarObservador();
     }
 
@@ -98,9 +99,18 @@ public class Juego {
         return this.preguntaActual;
     }
 
-    public Jugador obtenerJugadorActual() {
+    private Jugador jugadorActual(){
+        return jugadores.element();
+    }
+
+    private void actualizarJugadorActual(){
+        Jugador jugadorActual = jugadores.poll();
+        jugadores.add(jugadorActual);
+    }
+
+    /*public Jugador obtenerJugadorActual() {
         this.jugadorActual = jugadores.poll();
         jugadores.add(this.jugadorActual);
         return this.jugadorActual;
-    }
+    }*/
 }
