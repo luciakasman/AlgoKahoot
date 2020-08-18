@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -52,8 +53,11 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
     public void update() {
         if (Juego.getInstance().obtenerJugadores().size() == 2) {
             VistaRonda vistaRonda = new VistaRonda(stage);
-            vistaRonda.armarVistaDeRonda();
+            final ImageView imagenVista = new ImageView();
             Scene scene = new Scene(vistaRonda, 900, 600);
+            imagenVista.fitWidthProperty().bind(scene.widthProperty());
+            imagenVista.fitHeightProperty().bind(scene.heightProperty());
+            vistaRonda.armarVistaDeRonda(imagenVista);
             stage.setScene(scene);
         }
     }

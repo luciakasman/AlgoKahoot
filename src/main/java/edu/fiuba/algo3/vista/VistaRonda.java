@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.preguntas.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -13,10 +14,10 @@ public class VistaRonda extends VBox {
         this.stage = stage;
     }
 
-    public void armarVistaDeRonda() {
+    public void armarVistaDeRonda(ImageView imagenVista) {
         Pregunta preguntaRonda = Juego.getInstance().obtenerPreguntaNueva();
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalso.class)) {
-            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage);
+            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage, imagenVista);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }

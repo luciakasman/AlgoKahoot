@@ -7,8 +7,18 @@ public class VistaOpcionesVerdaderoOFalso extends HBox {
 
     public VistaOpcionesVerdaderoOFalso() {
         this.setSpacing(20);
-        this.getChildren().add(new BotonVerdaderoOFalso("verdadero"));
-        this.getChildren().add(new BotonVerdaderoOFalso("falso"));
+        BotonVerdaderoOFalso botonVerdadero = new BotonVerdaderoOFalso("verdadero");
+        botonVerdadero.setMaxSize(350,40);
+        botonVerdadero.setStyle("-fx-font-size:30; -fx-background-radius: 25;");
+        botonVerdadero.setTranslateX(200);
+        botonVerdadero.setTranslateY(450);
+        this.getChildren().add(botonVerdadero);
+        BotonVerdaderoOFalso botonFalso = new BotonVerdaderoOFalso("falso");
+        botonFalso.setMaxSize(300,40);
+        botonFalso.setStyle("-fx-font-size:30; -fx-background-radius: 25;");
+        botonFalso.setTranslateX(400);
+        botonFalso.setTranslateY(450);
+        this.getChildren().add(botonFalso);
     }
 
 }
