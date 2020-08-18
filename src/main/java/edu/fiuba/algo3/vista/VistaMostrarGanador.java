@@ -24,7 +24,7 @@ public class VistaMostrarGanador {
         Label labelGanador = new Label(textoGanador);
         Label labelPerdedor = new Label(textoPerdedor);
         VBox vboxFinal = new VBox(labelGanador, labelPerdedor);
-        Scene escenaGanador = new Scene(vboxFinal);
+        Scene escenaGanador = new Scene(vboxFinal, 900, 600);
         stage.setScene(escenaGanador);
     }
 }

@@ -4,6 +4,8 @@ import edu.fiuba.algo3.controlador.EnviarNombresEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class BotonEnviarNombre extends Button {
 
@@ -11,5 +13,7 @@ public class BotonEnviarNombre extends Button {
         EnviarNombresEventHandler eventHandler = new EnviarNombresEventHandler(nombreJugador, labelAdvertencia);
         this.setOnAction(eventHandler);
         this.setText("Enviar nombre");
+        this.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
+        this.setTranslateY(80);
     }
 }

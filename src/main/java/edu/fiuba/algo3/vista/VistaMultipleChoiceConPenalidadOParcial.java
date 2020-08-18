@@ -69,7 +69,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
             } else {
                 VistaRonda vistaRonda = new VistaRonda(this.stage);
                 vistaRonda.armarVistaDeRonda();
-                Scene scene = new Scene(vistaRonda);
+                Scene scene = new Scene(vistaRonda, 900, 600);
                 this.stage.setScene(scene);
             }
         } else {
