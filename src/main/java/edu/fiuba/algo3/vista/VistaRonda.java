@@ -2,21 +2,24 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.preguntas.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VistaRonda extends VBox {
 
     private final Stage stage;
+    private final SonidoHandler sonido;
 
-    public VistaRonda(Stage stage) {
+    public VistaRonda(Stage stage, SonidoHandler sonido) {
         this.stage = stage;
+        this.sonido = sonido;
     }
 
-    public void armarVistaDeRonda() {
+    public void armarVistaDeRonda(ImageView imagenVista) {
         Pregunta preguntaRonda = Juego.getInstance().obtenerPreguntaNueva();
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalso.class)) {
-            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage);
+            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage, imagenVista, sonido);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }

@@ -7,15 +7,18 @@ import java.io.File;
 
 public class SonidoHandler {
 
-    private File archivoSonido;
+    private MediaPlayer mediaPlayer;
 
-    public SonidoHandler(File file){
-        this.archivoSonido = file;
+    public void reproducirSonido(File file){
+        detenerSonido();
+        Media sound = new Media(file.toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
     }
 
-    public void reproducirSonido(){
-        Media sound = new Media(this.archivoSonido.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+    public void detenerSonido(){
+        if(mediaPlayer != null){
+            mediaPlayer.stop();
+        }
     }
 }
