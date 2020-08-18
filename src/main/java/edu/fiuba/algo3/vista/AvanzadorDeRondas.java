@@ -14,7 +14,7 @@ public class AvanzadorDeRondas {
             VistaMostrarGanador vistaFinal = new VistaMostrarGanador(stage);
             vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
         } else {
-            VistaRonda vistaRonda = new VistaRonda(stage);
+            VistaRonda vistaRonda = new VistaRonda(stage, new SonidoHandler());
             vistaRonda.armarVistaDeRonda(new ImageView());
             Scene scene = new Scene(vistaRonda);
             stage.setScene(scene);

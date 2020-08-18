@@ -20,8 +20,8 @@ public class VistaGeneral extends Application {
     public void start(Stage stage) {
         this.stage = stage;
         StackPane root =  new StackPane();
-        SonidoHandler sonido = new SonidoHandler(new File("src/resources/kahoot-lobby-music.mp3"));
-        sonido.reproducirSonido();
+        SonidoHandler sonido = new SonidoHandler();
+        sonido.reproducirSonido(new File("src/resources/kahoot-lobby-music.mp3"));
         Button botonInicio = new Button();
         botonInicio.setStyle("-fx-background-radius: 25");
         Image imagen = new Image("file:src/resources/ImagenInicio.jpg",512,250,true,false);
@@ -32,7 +32,7 @@ public class VistaGeneral extends Application {
         imagenVista.fitHeightProperty().bind(escena.heightProperty());
         botonInicio.setText("Iniciar juego");
         botonInicio.setFont(Font.font("Calibri",FontWeight.BOLD, 30));
-        botonInicio.setOnAction(new IniciarJuegoHandler(stage));
+        botonInicio.setOnAction(new IniciarJuegoHandler(stage, sonido));
         botonInicio.setMaxSize(300,100);
         botonInicio.setTranslateX(10);
         botonInicio.setTranslateY(170);

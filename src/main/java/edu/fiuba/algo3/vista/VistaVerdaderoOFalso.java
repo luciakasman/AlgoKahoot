@@ -23,29 +23,36 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
 
     private final BotonExclusividad botonExclusividad = new BotonExclusividad();
     private final Label infoJugador = new Label();
-    private final String preguntaLabel;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
     private final LabelTiempo labelTiempo = new LabelTiempo(5);
     private final ImageView imagenVista;
+    private final Label pregunta;
+    private final VistaOpcionesVerdaderoOFalso opciones;
+    private final SonidoHandler sonido;
 
-    public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista) {
-        this.preguntaLabel = pregunta.getPregunta();
+    public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista,  SonidoHandler sonido) {
+        String preguntaLabel = pregunta.getPregunta();
         this.stage = stage;
         this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
         this.imagenVista = imagenVista;
+        this.pregunta = new Label("Verdadero o falso clasico: " + preguntaLabel);
+        this.opciones = new VistaOpcionesVerdaderoOFalso();
+        this.sonido = sonido;
     }
 
     public void armarVistaPropia() {
         Juego.getInstance().guardarObservador(this);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, pregunta, opciones, botonExclusividad);
+        sonido.reproducirSonido(new File("src/resources/sweet-dreams-kahoot.mp3"));
+        crearVistaActual();
+        update();
+    }
+
+    private void crearVistaActual() {
         Image imagen = new Image("file:src/resources/imagen3.gif",512,250,true,false);
         imagenVista.setImage(imagen);
-        SonidoHandler sonido = new SonidoHandler(new File("src/resources/sweet-dreams-kahoot.mp3"));
-        sonido.reproducirSonido();
-        Label pregunta = new Label("Verdadero o falso clasico: " + this.preguntaLabel);
         pregunta.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
-        VistaOpcionesVerdaderoOFalso opciones = new VistaOpcionesVerdaderoOFalso();
-        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, pregunta, opciones, botonExclusividad);
         labelTiempo.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         labelTiempo.setTextFill(Color.web("#ff0000"));
         setAlignment(labelTiempo, Pos.TOP_RIGHT);
@@ -57,7 +64,11 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
         setAlignment(opciones, Pos.BOTTOM_CENTER);
         setAlignment(botonExclusividad, Pos.BOTTOM_CENTER);
         setMargin(botonExclusividad, new Insets(0, 0, 0, 300));
-        update();
+
+        infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        botonExclusividad.setMaxSize(300, 40);
+        botonExclusividad.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        botonExclusividad.setStyle("-fx-background-radius: 15;");
     }
 
     @Override
@@ -72,11 +83,8 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
             String nombreJugadorActual = jugadorActual.obtenerNombre();
             int puntaje = jugadorActual.obtenerPuntajeTotal();
             infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntaje);
-            infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
             botonExclusividad.actualizar(jugadorActual);
-            botonExclusividad.setMaxSize(300, 40);
-            botonExclusividad.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-            botonExclusividad.setStyle("-fx-background-radius: 15;");
+
         }
     }
 }

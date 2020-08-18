@@ -9,15 +9,17 @@ import javafx.stage.Stage;
 public class VistaRonda extends VBox {
 
     private final Stage stage;
+    private final SonidoHandler sonido;
 
-    public VistaRonda(Stage stage) {
+    public VistaRonda(Stage stage, SonidoHandler sonido) {
         this.stage = stage;
+        this.sonido = sonido;
     }
 
     public void armarVistaDeRonda(ImageView imagenVista) {
         Pregunta preguntaRonda = Juego.getInstance().obtenerPreguntaNueva();
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalso.class)) {
-            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage, imagenVista);
+            VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage, imagenVista, sonido);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
