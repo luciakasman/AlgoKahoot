@@ -14,7 +14,8 @@ public class Turno {
 
     public void jugarTurno(Jugador jugadorActual, List<Opcion> respuestas) {
         Respuesta respuestasObtenidas = pregunta.armarRespuesta(respuestas);
-        jugadorActual.guardarPuntajeDePregunta(evaluarRespuesta(pregunta, respuestasObtenidas));
+        int puntaje = evaluarRespuesta(pregunta, respuestasObtenidas);
+        jugadorActual.guardarPuntajeDePregunta(puntaje);
     }
 
     private int evaluarRespuesta(Pregunta pregunta, Respuesta respuesta) {

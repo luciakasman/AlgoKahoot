@@ -21,7 +21,7 @@ public class Juego {
     private Pregunta preguntaActual;
     private Jugador jugadorActual;
 
-    private Juego(GeneradorDePreguntas generadorDePreguntas) {
+    public Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
         preguntas = crearPreguntas();
     }
