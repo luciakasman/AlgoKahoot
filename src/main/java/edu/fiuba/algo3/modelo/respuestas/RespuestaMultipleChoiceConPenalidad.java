@@ -16,10 +16,8 @@ public class RespuestaMultipleChoiceConPenalidad implements Respuesta {
     public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
         List<Opcion> interseccionEntreRespuestasYOpcionesCorrectas = new LinkedList<>(respuestas);
         interseccionEntreRespuestasYOpcionesCorrectas.retainAll(opcionesCorrectas);
-
         int puntajeRespuestasCorrectas = interseccionEntreRespuestasYOpcionesCorrectas.size();
         int puntajeRespuestasIncorrectas = respuestas.size() - puntajeRespuestasCorrectas;
-
         return puntajeRespuestasCorrectas - puntajeRespuestasIncorrectas;
     }
 }

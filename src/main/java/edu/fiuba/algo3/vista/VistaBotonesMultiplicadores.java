@@ -5,8 +5,8 @@ import edu.fiuba.algo3.vista.botones.BotonTriplicador;
 import javafx.scene.layout.HBox;
 
 public class VistaBotonesMultiplicadores extends HBox {
-    private BotonDuplicador botonDuplicador;
-    private BotonTriplicador botonTriplicador;
+    private final BotonDuplicador botonDuplicador;
+    private final BotonTriplicador botonTriplicador;
 
     public VistaBotonesMultiplicadores(){
         this.setSpacing(30);

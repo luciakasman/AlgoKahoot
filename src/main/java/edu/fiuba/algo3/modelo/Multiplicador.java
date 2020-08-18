@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 public class Multiplicador {
-    private int multiplo;
+    private final int multiplo;
     private Boolean disponibilidad;
 
     public Multiplicador(int multiplo){
@@ -9,7 +9,7 @@ public class Multiplicador {
         this.disponibilidad = true;
     }
 
-    public Boolean esActivable(){
+    public boolean esActivable(){
         return this.disponibilidad;
     }
     public int activar(){

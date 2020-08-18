@@ -7,13 +7,14 @@ import java.util.List;
 public class RespuestaVerdaderoOFalso implements Respuesta {
 
     private final Opcion respuesta;
+    private final RespuestasHelper respuestasHelper = new RespuestasHelper();
 
     public RespuestaVerdaderoOFalso(Opcion respuesta) {
         this.respuesta = respuesta;
     }
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
-        return opcionesCorrectas.stream().anyMatch(opcionCorrecta ->
-                opcionCorrecta.equals(respuesta)) ? 1 : 0;
+        return respuestasHelper.respuestaEsLaOpcionCorrecta(opcionesCorrectas, respuesta) ?
+                1 : 0;
     }
 }
