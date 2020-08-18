@@ -32,7 +32,7 @@ public class VistaVerdaderoOFalso extends VBox implements Observador {
         this.getChildren().add(labelTiempo);
         Juego.getInstance().guardarObservador(this);
         this.getChildren().add(infoJugador);
-        Label label = new Label(this.preguntaLabel);
+        Label label = new Label("Verdadero o falso clasico : " + this.preguntaLabel);
         this.getChildren().add(label);
         VistaOpcionesVerdaderoOFalso opciones = new VistaOpcionesVerdaderoOFalso();
         this.getChildren().add(opciones);
@@ -42,20 +42,10 @@ public class VistaVerdaderoOFalso extends VBox implements Observador {
 
     @Override
     public void update() {
-        // este if es igual en todas las vistas, difiere el else
-        // todo : extraer comportamiento del if en un metodo
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
-            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
-            if (Juego.getInstance().noQuedanPreguntas()) {
-                VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
-                vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
-            } else {
-                VistaRonda vistaRonda = new VistaRonda(this.stage);
-                vistaRonda.armarVistaDeRonda();
-                Scene scene = new Scene(vistaRonda, 900, 600);
-                this.stage.setScene(scene);
-            }
+            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
+            avanzador.avanzarRonda(this.stage);
         } else {
             labelTiempo.start();
             Jugador jugadorActual = jugadores.remove();

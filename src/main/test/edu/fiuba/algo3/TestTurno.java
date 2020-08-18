@@ -3,9 +3,18 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.Turno;
+import edu.fiuba.algo3.modelo.preguntas.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TestTurno {
 
@@ -25,11 +34,9 @@ public class TestTurno {
     String preguntaMultipleChoice = "Que materias son del primer año?";
     String preguntaVerdaderoOFalso = "Los gatitos son malos?";
 
-}
-/*    @BeforeEach
+    @BeforeEach
     void setUp() {
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
-        servicio = mock(Servicio.class);
         juego = Juego.getInstance();
         //juego = new Juego(servicio, generadorDePreguntas);
         Queue<Pregunta> preguntas = new LinkedList<>();
@@ -46,11 +53,9 @@ public class TestTurno {
         Opcion respuesta = new Opcion(falso);
         respuestas.add(respuesta);
 
-        Turno sut = new Turno(crearPreguntaVerdaderoOFalso(), servicio);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalso());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -60,11 +65,9 @@ public class TestTurno {
         Opcion respuesta = new Opcion(verdadero);
         respuestas.add(respuesta);
 
-        Turno sut = new Turno(crearPreguntaVerdaderoOFalso(), servicio);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalso());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -74,11 +77,9 @@ public class TestTurno {
         Opcion respuesta = new Opcion(falso);
         respuestas.add(respuesta);
 
-        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad(), servicio);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -88,11 +89,9 @@ public class TestTurno {
         Opcion respuesta = new Opcion(verdadero);
         respuestas.add(respuesta);
 
-        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad(), servicio);
+        Turno sut = new Turno(crearPreguntaVerdaderoOFalsoConPenalidad());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(-1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -102,11 +101,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(2, jugador1.obtenerPuntajeDePregunta());
     }
@@ -116,11 +113,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionC);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -130,11 +125,9 @@ public class TestTurno {
         respuestas.add(opcionD);
         respuestas.add(opcionC);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceParcial());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -144,11 +137,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -158,11 +149,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionD);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceClasico());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -172,11 +161,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(2, jugador1.obtenerPuntajeDePregunta());
     }
@@ -186,11 +173,9 @@ public class TestTurno {
         respuestas.add(opcionA);
         respuestas.add(opcionD);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -200,11 +185,9 @@ public class TestTurno {
         respuestas.add(opcionC);
         respuestas.add(opcionD);
 
-        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad(), servicio);
+        Turno sut = new Turno(crearPreguntaMultipleChoiceConPenalidad());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(-2, jugador1.obtenerPuntajeDePregunta());
     }
@@ -216,11 +199,9 @@ public class TestTurno {
         respuestas.add(opcionD);
         respuestas.add(opcionC);
 
-        Turno sut = new Turno(crearPreguntaOrderedChoice(), servicio);
+        Turno sut = new Turno(crearPreguntaOrderedChoice());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -232,11 +213,9 @@ public class TestTurno {
         respuestas.add(opcionC);
         respuestas.add(opcionD);
 
-        Turno sut = new Turno(crearPreguntaOrderedChoice(), servicio);
+        Turno sut = new Turno(crearPreguntaOrderedChoice());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestas);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -248,11 +227,9 @@ public class TestTurno {
         respuestaGrupoA.add(opcionB);
         respuestaGrupoA.add(opcionC);
 
-        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
+        Turno sut = new Turno(crearPreguntaGroupChoice());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestaGrupoA);
 
         assertEquals(1, jugador1.obtenerPuntajeDePregunta());
     }
@@ -263,11 +240,9 @@ public class TestTurno {
         respuestaGrupoA.add(opcionA);
         respuestaGrupoA.add(opcionB);
 
-        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
+        Turno sut = new Turno(crearPreguntaGroupChoice());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -279,11 +254,9 @@ public class TestTurno {
         respuestaGrupoA.add(opcionB);
         respuestaGrupoA.add(opcionD);
 
-        Turno sut = new Turno(crearPreguntaGroupChoice(), servicio);
+        Turno sut = new Turno(crearPreguntaGroupChoice());
 
-        when(servicio.obtenerRespuestas()).thenReturn(respuestaGrupoA);
-
-        sut.jugarTurno(jugador1);
+        sut.jugarTurno(jugador1,respuestas);
 
         assertEquals(0, jugador1.obtenerPuntajeDePregunta());
     }
@@ -352,4 +325,4 @@ public class TestTurno {
         opcionesIncorrectas.add(opcionC);
         opcionesIncorrectas.add(opcionD);
     }
-} */
+}

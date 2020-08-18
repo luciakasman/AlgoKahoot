@@ -35,9 +35,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     }
 
     public void armarVistaPropia() {
-        Juego.getInstance().guardarObservador(this);
-
         this.getChildren().add(labelTiempo);
+        Juego.getInstance().guardarObservador(this);
 
         //Agregado de la info del jugador
         this.getChildren().add(infoJugador);
@@ -66,16 +65,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     public void update() {
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
-            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
-            if (Juego.getInstance().noQuedanPreguntas()) {
-                VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
-                vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
-            } else {
-                VistaRonda vistaRonda = new VistaRonda(this.stage);
-                vistaRonda.armarVistaDeRonda();
-                Scene scene = new Scene(vistaRonda, 900, 600);
-                this.stage.setScene(scene);
-            }
+            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
+            avanzador.avanzarRonda(this.stage);
         } else {
             labelTiempo.start();
             respuesta.clear();

@@ -24,6 +24,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
+    private final LabelTiempo labelTiempo = new LabelTiempo(5);
 
     public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage) {
         this.setSpacing(20);
@@ -33,6 +34,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
     }
 
     public void armarVistaPropia(String clase) {
+        this.getChildren().add(labelTiempo);
         Juego.getInstance().guardarObservador(this);
 
         //Agregado de la info del jugador
@@ -61,18 +63,12 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
     }
 
     public void update() {
+        labelTiempo.stop();
         if (jugadores.isEmpty()) {
-            Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
-            if (Juego.getInstance().noQuedanPreguntas()) {
-                VistaMostrarGanador vistaFinal = new VistaMostrarGanador(this.stage);
-                vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
-            } else {
-                VistaRonda vistaRonda = new VistaRonda(this.stage);
-                vistaRonda.armarVistaDeRonda();
-                Scene scene = new Scene(vistaRonda, 900, 600);
-                this.stage.setScene(scene);
-            }
+            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
+            avanzador.avanzarRonda(this.stage);
         } else {
+            labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
