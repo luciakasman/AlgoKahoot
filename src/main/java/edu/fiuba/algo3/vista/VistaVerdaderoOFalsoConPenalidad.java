@@ -16,23 +16,28 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
     private final String preguntaLabel;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores();
-    private final LabelTiempo labelTiempo = new LabelTiempo(5);
+    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
+    private final int tiempoDisponible = 5;
+    private LabelTiempo labelTiempo;
+    private Juego juego;
 
-    public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage) {
+    public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, Juego juego) {
+        this.juego = juego;
+        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
         this.preguntaLabel = pregunta.getPregunta();
         this.stage = stage;
-        this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
+        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.setSpacing(20);
     }
 
     public void armarVistaPropia() {
         this.getChildren().add(labelTiempo);
-        Juego.getInstance().guardarObservador(this);
+        juego.guardarObservador(this);
         this.getChildren().add(infoJugador);
         Label label = new Label("Verdadero o falso con penalidad : " + this.preguntaLabel);
         this.getChildren().add(label);
-        VistaOpcionesVerdaderoOFalso opciones = new VistaOpcionesVerdaderoOFalso();
+        VistaOpcionesVerdaderoOFalso opciones = new VistaOpcionesVerdaderoOFalso(juego);
         this.getChildren().add(opciones);
         this.getChildren().add(this.vistaBotonesMultiplicadores);
         update();
@@ -43,7 +48,7 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage);
+            avanzador.avanzarRonda(this.stage, juego);
         } else {
             labelTiempo.start();
             Jugador jugadorActual = jugadores.remove();

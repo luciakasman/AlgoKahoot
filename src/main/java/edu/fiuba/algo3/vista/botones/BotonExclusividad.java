@@ -9,9 +9,8 @@ public class BotonExclusividad extends Button {
     public void actualizar(Jugador jugadorActual) {
         int exclusividadJugador = jugadorActual.obtenerExclusividadDisponible();
         if(exclusividadJugador != 0){
-            AplicarExclusividadEventHandler botonExclusividadEventHandler = new AplicarExclusividadEventHandler(this, jugadorActual);
+            AplicarExclusividadEventHandler botonExclusividadEventHandler = new AplicarExclusividadEventHandler(this);
             this.setOnAction(botonExclusividadEventHandler);
-            this.setDisable(false);
         } else {
             this.setDisable(true);
         }

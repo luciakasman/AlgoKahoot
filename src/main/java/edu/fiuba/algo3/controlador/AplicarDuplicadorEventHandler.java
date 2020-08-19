@@ -11,11 +11,12 @@ public class AplicarDuplicadorEventHandler implements EventHandler<ActionEvent> 
 
     private final BotonTriplicador botonTriplicador;
     private final Button botonDuplicador;
-    private final Juego juego = Juego.getInstance();
+    private Juego juego;
 
-    public AplicarDuplicadorEventHandler(BotonDuplicador botonDuplicador, BotonTriplicador botonTriplicador) {
+    public AplicarDuplicadorEventHandler(BotonDuplicador botonDuplicador, BotonTriplicador botonTriplicador, Juego juego) {
         this.botonDuplicador = botonDuplicador;
         this.botonTriplicador = botonTriplicador;
+        this.juego = juego;
     }
 
     public void handle(ActionEvent actionEvent) {

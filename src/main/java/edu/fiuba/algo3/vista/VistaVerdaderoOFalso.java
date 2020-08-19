@@ -21,28 +21,33 @@ import java.util.Queue;
 
 public class VistaVerdaderoOFalso extends StackPane implements Observador {
 
-    private final BotonExclusividad botonExclusividad = new BotonExclusividad();
+    private BotonExclusividad botonExclusividad;
     private final Label infoJugador = new Label();
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final LabelTiempo labelTiempo = new LabelTiempo(5);
+    private final int tiempoDisponible = 5;
+    private LabelTiempo labelTiempo;
     private final ImageView imagenVista;
     private final Label pregunta;
     private final VistaOpcionesVerdaderoOFalso opciones;
     private final SonidoHandler sonido;
+    private final Juego juego;
 
-    public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista,  SonidoHandler sonido) {
+    public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista,  SonidoHandler sonido, Juego juego) {
         String preguntaLabel = pregunta.getPregunta();
+        this.juego = juego;
+        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        botonExclusividad = new BotonExclusividad(juego);
         this.stage = stage;
-        this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
+        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.imagenVista = imagenVista;
         this.pregunta = new Label("Verdadero o falso clasico: " + preguntaLabel);
-        this.opciones = new VistaOpcionesVerdaderoOFalso();
+        this.opciones = new VistaOpcionesVerdaderoOFalso(juego);
         this.sonido = sonido;
     }
 
     public void armarVistaPropia() {
-        Juego.getInstance().guardarObservador(this);
+        juego.guardarObservador(this);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, pregunta, opciones, botonExclusividad);
         sonido.reproducirSonido(new File("src/resources/sweet-dreams-kahoot.mp3"));
         crearVistaActual();
@@ -76,7 +81,7 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage);
+            avanzador.avanzarRonda(this.stage, juego);
         } else {
             labelTiempo.start();
             Jugador jugadorActual = jugadores.remove();

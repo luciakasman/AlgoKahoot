@@ -37,7 +37,7 @@ public class TestTurno {
     @BeforeEach
     void setUp() {
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
-        juego = Juego.getInstance();
+        juego = new Juego(generadorDePreguntas);
         //juego = new Juego(servicio, generadorDePreguntas);
         Queue<Pregunta> preguntas = new LinkedList<>();
         preguntas.add(pregunta);

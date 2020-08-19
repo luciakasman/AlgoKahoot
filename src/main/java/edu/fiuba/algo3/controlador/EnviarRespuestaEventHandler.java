@@ -12,13 +12,15 @@ public class EnviarRespuestaEventHandler implements EventHandler<ActionEvent> {
     //Se usaria en to do menos en los verdadero/falso
 
     private List<Opcion> respuestas;
+    private Juego juego;
 
-    public EnviarRespuestaEventHandler(List<Opcion> respuestas){
+    public EnviarRespuestaEventHandler(List<Opcion> respuestas, Juego juego){
         this.respuestas = respuestas;
+        this.juego = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Juego.getInstance().jugarTurno(this.respuestas);
+        juego.jugarTurno(this.respuestas);
     }
 }

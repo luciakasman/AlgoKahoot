@@ -12,7 +12,7 @@ import java.util.Queue;
 
 public class Juego {
 
-    private static Juego INSTANCE;
+    //private static Juego INSTANCE;
     private final Queue<Jugador> jugadores = new LinkedList<>();
     private final GeneradorDePreguntas generadorDePreguntas;
     private Observador observador;
@@ -26,12 +26,12 @@ public class Juego {
         preguntas = crearPreguntas();
     }
 
-    public static Juego getInstance() {
+    /*public static Juego getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Juego(new GeneradorDePreguntas());
         }
         return INSTANCE;
-    }
+    }*/
 
     public void agregarJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);

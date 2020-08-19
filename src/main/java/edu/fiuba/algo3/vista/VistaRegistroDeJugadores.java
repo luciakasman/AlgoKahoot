@@ -21,12 +21,14 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
     private final SonidoHandler sonido;
     private final TextField nombreJugador = new TextField();
     private final Label introducirNombre = new Label();
+    private Juego juego;
 
-    public VistaRegistroDeJugadores(Stage stage, SonidoHandler sonido) {
+    public VistaRegistroDeJugadores(Stage stage, SonidoHandler sonido, Juego juego) {
         this.setSpacing(20);
         this.stage = stage;
         this.sonido = sonido;
-        Juego.getInstance().guardarObservador(this);
+        this.juego = juego;
+        juego.guardarObservador(this);
         armarVistaPropia();
     }
 
@@ -34,7 +36,7 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
         introducirNombre.setText("Ingrese su nombre: ");
         nombreJugador.setPromptText("Ingrese el nombre del jugador");
         Label labelAdvertencia = new Label("");
-        Button botonEnviarNombres = new BotonEnviarNombre(nombreJugador, labelAdvertencia);
+        Button botonEnviarNombres = new BotonEnviarNombre(nombreJugador, labelAdvertencia, juego);
         this.getChildren().add(introducirNombre);
         this.getChildren().add(nombreJugador);
         this.getChildren().add(botonEnviarNombres);
@@ -59,8 +61,8 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
     @Override
     public void update() {
-        if (Juego.getInstance().obtenerJugadores().size() == 2) {
-            VistaRonda vistaRonda = new VistaRonda(stage, sonido);
+        if (juego.obtenerJugadores().size() == 2) {
+            VistaRonda vistaRonda = new VistaRonda(stage, sonido, juego);
             final ImageView imagenVista = new ImageView();
             Scene scene = new Scene(vistaRonda, 900, 600);
             imagenVista.fitWidthProperty().bind(scene.widthProperty());
