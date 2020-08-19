@@ -87,6 +87,37 @@
           "opcion": "Pablo lescano"
         }
       ]
+    },
+    {
+      "type" : "groupChoice",
+      "pregunta": "Capitales de Europa y capitales de America",
+      "nombrePrimerGrupo": "Europa",
+      "nombreSegundoGrupo": "America",
+      "opcionesCorrectas": [
+        {
+          "opcion": "Paris"
+        },
+        {
+          "opcion": "Madrid"
+        },
+        {
+          "opcion": "Roma"
+        }
+      ],
+      "opcionesIncorrectas": [
+        {
+          "opcion": "Buenos Aires"
+        },
+        {
+          "opcion": "Santiago"
+        },
+        {
+          "opcion": "Lima"
+        },
+        {
+          "opcion": "La Paz"
+        }
+      ]
     }
   ]
 }

@@ -50,11 +50,11 @@ public class VistaRonda extends VBox {
             VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
-        }
+        }*/
         if (preguntaRonda.getClass().equals(PreguntaGroupChoice.class)) {
-            VistaGroupChoice vista = new VistaGroupChoice(preguntaRonda, stage);
+            VistaGroupChoice vista = new VistaGroupChoice((PreguntaGroupChoice) preguntaRonda, stage, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
-        }*/
+        }
     }
 }
