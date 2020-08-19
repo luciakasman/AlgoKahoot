@@ -10,10 +10,12 @@ public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
 
     private final TextField textFieldNombre;
     private final Label labelAdvertencia;
+    private Juego juego;
 
-    public EnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia) {
+    public EnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia, Juego juego) {
         this.labelAdvertencia = labelAdvertencia;
         this.textFieldNombre = textFieldNombre;
+        this.juego = juego;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
             return;
         }
         String nombreJugador = textFieldNombre.getText();
-        Juego.getInstance().agregarJugador(nombreJugador);
+        juego.agregarJugador(nombreJugador);
         this.textFieldNombre.setText("");
         this.labelAdvertencia.setText("");
     }

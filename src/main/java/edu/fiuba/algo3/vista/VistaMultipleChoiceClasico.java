@@ -21,22 +21,27 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     private final List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
     private VistaOpcionesMultipleChoice vistaOpciones;
-    private final BotonExclusividad botonExclusividad = new BotonExclusividad();
+    private BotonExclusividad botonExclusividad;
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final LabelTiempo labelTiempo = new LabelTiempo(5);
+    private final int tiempoDisponible = 5;
+    private LabelTiempo labelTiempo;
+    private Juego juego;
 
-    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage) {
+    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, Juego juego) {
+        this.juego = juego;
+        this.botonExclusividad = new BotonExclusividad(juego);
+        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.setSpacing(20);
         this.pregunta = pregunta;
         this.stage = stage;
-        this.jugadores = new LinkedList<>(Juego.getInstance().obtenerJugadores());
+        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
     }
 
     public void armarVistaPropia() {
         this.getChildren().add(labelTiempo);
-        Juego.getInstance().guardarObservador(this);
+        juego.guardarObservador(this);
 
         //Agregado de la info del jugador
         this.getChildren().add(infoJugador);
@@ -56,7 +61,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.getChildren().add(botonExclusividad);
 
         //Agregado del enviar
-        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta);
+        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
         this.getChildren().add(botonEnviar);
 
         update();
@@ -66,7 +71,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage);
+            avanzador.avanzarRonda(this.stage, juego);
         } else {
             labelTiempo.start();
             respuesta.clear();

@@ -14,10 +14,12 @@ public class ControladorDeTiempo implements EventHandler<ActionEvent> {
 
     private int tiempo;
     private Label labelTiempo;
+    private Juego juego;
 
-    public ControladorDeTiempo(int tiempo, Label labelTiempo){
+    public ControladorDeTiempo(int tiempo, Label labelTiempo, Juego juego){
         this.tiempo = tiempo;
         this.labelTiempo = labelTiempo;
+        this.juego = juego;
     }
 
     public void handle(ActionEvent actionEvent){
@@ -27,7 +29,7 @@ public class ControladorDeTiempo implements EventHandler<ActionEvent> {
             Opcion opcionVacia = new Opcion("");
             List<Opcion> listaOpcionVacia = new LinkedList<Opcion>();
             listaOpcionVacia.add(opcionVacia);
-            Juego.getInstance().jugarTurno(listaOpcionVacia);
+            juego.jugarTurno(listaOpcionVacia);
         }
     }
 

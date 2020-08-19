@@ -6,11 +6,17 @@ import javafx.scene.control.Button;
 
 public class BotonDuplicador extends Button {
 
+    private Juego juego;
+
+    public BotonDuplicador(Juego juego){
+        this.juego = juego;
+    }
+
     public void actualizar(BotonTriplicador botonTriplicador) {
         int duplicadorJugador;
-        if (Juego.getInstance().esDuplicadorActivable()) {
+        if (juego.esDuplicadorActivable()) {
             duplicadorJugador = 1;
-            AplicarDuplicadorEventHandler botonDuplicadorEventHandler = new AplicarDuplicadorEventHandler(this, botonTriplicador);
+            AplicarDuplicadorEventHandler botonDuplicadorEventHandler = new AplicarDuplicadorEventHandler(this, botonTriplicador, juego);
             this.setOnAction(botonDuplicadorEventHandler);
         } else {
             duplicadorJugador = 0;

@@ -8,15 +8,16 @@ import javafx.scene.control.Button;
 public class AplicarExclusividadEventHandler implements EventHandler<ActionEvent> {
 
     private final Button botonExclusividad;
-    private final Juego juego = Juego.getInstance();
+    private Juego juego;
 
-    public AplicarExclusividadEventHandler(Button botonExclusividad) {
+    public AplicarExclusividadEventHandler(Button botonExclusividad, Juego juego) {
         this.botonExclusividad = botonExclusividad;
+        this.juego = juego;
     }
 
     public void handle(ActionEvent actionEvent) {
         juego.aplicarExclusividad();
-        int exclusividadDisponible = Juego.getInstance().exclusividadDisponibleJugadorActual();
+        int exclusividadDisponible = juego.exclusividadDisponibleJugadorActual();
         String text = "Aplicar exclusividad (" + exclusividadDisponible + ")";
         botonExclusividad.setText(text);
         botonExclusividad.setDisable(true);

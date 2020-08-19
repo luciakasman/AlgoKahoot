@@ -11,9 +11,11 @@ import java.util.List;
 public class EnviarVerdaderoOFalsoEventHandler implements EventHandler<ActionEvent> {
 
     private String respuesta;
+    private Juego juego;
 
-    public EnviarVerdaderoOFalsoEventHandler(String respuesta) {
+    public EnviarVerdaderoOFalsoEventHandler(String respuesta, Juego juego) {
         this.respuesta = respuesta;
+        this.juego = juego;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class EnviarVerdaderoOFalsoEventHandler implements EventHandler<ActionEve
         Opcion respuesta = new Opcion(this.respuesta);
         List<Opcion> listaRespuesta = new LinkedList<>();
         listaRespuesta.add(respuesta);
-        Juego.getInstance().jugarTurno(listaRespuesta);
+        juego.jugarTurno(listaRespuesta);
     }
 
 }

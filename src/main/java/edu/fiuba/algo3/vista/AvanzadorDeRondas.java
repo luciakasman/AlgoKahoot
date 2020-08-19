@@ -8,13 +8,14 @@ import javafx.stage.Stage;
 import java.util.LinkedList;
 
 public class AvanzadorDeRondas {
-    public void avanzarRonda(Stage stage){
-        Juego.getInstance().darPuntosAJugadores(new LinkedList<>(Juego.getInstance().obtenerJugadores()));
-        if (Juego.getInstance().noQuedanPreguntas()) {
+
+    public void avanzarRonda(Stage stage, Juego juego){
+        juego.darPuntosAJugadores(new LinkedList<>(juego.obtenerJugadores()));
+        if (juego.noQuedanPreguntas()) {
             VistaMostrarGanador vistaFinal = new VistaMostrarGanador(stage);
-            vistaFinal.mostrarGanador(Juego.getInstance().obtenerJugadores());
+            vistaFinal.mostrarGanador(juego.obtenerJugadores());
         } else {
-            VistaRonda vistaRonda = new VistaRonda(stage, new SonidoHandler());
+            VistaRonda vistaRonda = new VistaRonda(stage, new SonidoHandler(), juego);
             vistaRonda.armarVistaDeRonda(new ImageView());
             Scene scene = new Scene(vistaRonda);
             stage.setScene(scene);
