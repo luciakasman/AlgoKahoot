@@ -12,26 +12,17 @@ import java.util.Queue;
 
 public class Juego {
 
-    //private static Juego INSTANCE;
     private final Queue<Jugador> jugadores = new LinkedList<>();
     private final GeneradorDePreguntas generadorDePreguntas;
     private Observador observador;
     private final Queue<Pregunta> preguntas;
     private Asignador asignador = new AsignadorComun();
     private Pregunta preguntaActual;
-    //private Jugador jugadorActual;
 
     public Juego(GeneradorDePreguntas generadorDePreguntas) {
         this.generadorDePreguntas = generadorDePreguntas;
         preguntas = crearPreguntas();
     }
-
-    /*public static Juego getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Juego(new GeneradorDePreguntas());
-        }
-        return INSTANCE;
-    }*/
 
     public void agregarJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
@@ -108,9 +99,4 @@ public class Juego {
         jugadores.add(jugadorActual);
     }
 
-    /*public Jugador obtenerJugadorActual() {
-        this.jugadorActual = jugadores.poll();
-        jugadores.add(this.jugadorActual);
-        return this.jugadorActual;
-    }*/
 }
