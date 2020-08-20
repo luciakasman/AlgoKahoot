@@ -10,16 +10,14 @@ import javafx.stage.Stage;
 public class VistaRonda extends VBox {
 
     private final Stage stage;
-    private final SonidoHandler sonido;
-    private Juego juego;
+    private final Juego juego;
 
-    public VistaRonda(Stage stage, SonidoHandler sonido, Juego juego) {
+    public VistaRonda(Stage stage, Juego juego) {
         this.stage = stage;
-        this.sonido = sonido;
         this.juego = juego;
     }
 
-    public void armarVistaDeRonda(ImageView imagenVista) {
+    public void armarVistaDeRonda(ImageView imagenVista, SonidoHandler sonido) {
         Pregunta preguntaRonda = juego.obtenerPreguntaNueva();
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalso.class)) {
             VistaVerdaderoOFalso vista = new VistaVerdaderoOFalso(preguntaRonda, stage, imagenVista, sonido, juego);
@@ -27,22 +25,22 @@ public class VistaRonda extends VBox {
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalsoConPenalidad.class)) {
-            VistaVerdaderoOFalsoConPenalidad vista = new VistaVerdaderoOFalsoConPenalidad(preguntaRonda, stage, juego);
+            VistaVerdaderoOFalsoConPenalidad vista = new VistaVerdaderoOFalsoConPenalidad(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceClasico.class)) {
-            VistaMultipleChoiceClasico vista = new VistaMultipleChoiceClasico(preguntaRonda, stage, juego);
+            VistaMultipleChoiceClasico vista = new VistaMultipleChoiceClasico(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceConPenalidad.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, juego);
+            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Penalidad");
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceParcial.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, juego);
+            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Puntaje parcial");
             this.getChildren().add(vista);
         }

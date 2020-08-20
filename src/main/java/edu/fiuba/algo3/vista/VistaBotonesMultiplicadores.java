@@ -3,7 +3,10 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.botones.BotonDuplicador;
 import edu.fiuba.algo3.vista.botones.BotonTriplicador;
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class VistaBotonesMultiplicadores extends HBox {
     private final BotonDuplicador botonDuplicador;
@@ -15,8 +18,15 @@ public class VistaBotonesMultiplicadores extends HBox {
         this.botonTriplicador = new BotonTriplicador(juego) ;
         this.getChildren().add(this.botonDuplicador);
         this.getChildren().add(this.botonTriplicador);
-
+        this.setAlignment(Pos.CENTER);
+        botonDuplicador.setMaxSize(300, 40);
+        botonDuplicador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        botonDuplicador.setStyle("-fx-background-radius: 15;");
+        botonTriplicador.setMaxSize(300, 40);
+        botonTriplicador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        botonTriplicador.setStyle("-fx-background-radius: 15;");
     }
+
     public void actualizar(){
         this.botonDuplicador.actualizar(botonTriplicador);
         this.botonTriplicador.actualizar(botonDuplicador);

@@ -1,13 +1,15 @@
-package edu.fiuba.algo3.vista.preguntas;
+package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -15,73 +17,44 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Observador {
+public class VistaMultipleChoiceConPenalidadOParcial extends VistaAbstracta implements Observador {
 
     private final List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
-    private VistaOpcionesMultipleChoice vistaOpciones;
-    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final Pregunta pregunta;
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
-    private final int tiempoDisponible = 5;
-    private LabelTiempo labelTiempo;
-    private Juego juego;
+    private final VistaOpcionesMultipleChoice vistaOpciones;
+    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
+    private final int tiempoDisponible = 115;
+    private final Label pregunta;
+    private final List<Opcion> opciones;
+    private final BotonEnviarRespuesta botonEnviar;
 
-    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, Juego juego) {
-        this.juego = juego;
-        vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
-        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
-        this.setSpacing(20);
-        this.pregunta = pregunta;
-        this.stage = stage;
-        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
+    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
+        super(stage, imagenVista, sonido, juego);
+        this.vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
+        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.opciones = pregunta.obtenerOpciones();
+        this.pregunta = new Label(pregunta.getPregunta());
+        this.botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
+        this.vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
     }
 
     public void armarVistaPropia(String clase) {
-        this.getChildren().add(labelTiempo);
         juego.guardarObservador(this);
-
-        //Agregado de la info del jugador
-        this.getChildren().add(infoJugador);
-
-        //Agregado de la pregunta
-        String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label("Multiple Choice "+ clase + " : "  + pregunta);
-        this.getChildren().add(labelPregunta);
-
-        //Agregado de las opciones (se resume mucho si hacemos que las preguntas devuelvan todas las opciones)
-        List<Opcion> opciones = new LinkedList<>(this.pregunta.getOpcionesCorrectas());
-        opciones.addAll(this.pregunta.getOpcionesIncorrectas());
-        Collections.shuffle(opciones);
-        vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
-        this.getChildren().add(vistaOpciones);
-
-        //Agregado de la exclusividad
-        this.getChildren().add(vistaBotonesMultiplicadores);
-
-        //Agregado del enviar
-        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
-        this.getChildren().add(botonEnviar);
-
+        Label tipoPregunta = new Label("Multiple Choice " + clase + " : ");
+        Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
+        imagenVista.setImage(imagen);
+        VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
+        vBox.setTranslateY(350);
+        vBox.setSpacing(30.0);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
+        DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
+        diseñadorDeVistas.diseñarVistaMultipleChoice(tipoPregunta, pregunta, labelTiempo, infoJugador, botonEnviar);
         update();
     }
 
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
-        } else {
-            labelTiempo.start();
-            respuesta.clear();
-            Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntos = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
-            vistaOpciones.update();
-            vistaBotonesMultiplicadores.actualizar();
-        }
+    @Override
+    protected void updatePropio(Jugador jugadorActual){
+        respuesta.clear();
+        vistaOpciones.update();
+        vistaBotonesMultiplicadores.actualizar();
     }
 }
-

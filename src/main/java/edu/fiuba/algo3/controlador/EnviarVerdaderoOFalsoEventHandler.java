@@ -10,17 +10,17 @@ import java.util.List;
 
 public class EnviarVerdaderoOFalsoEventHandler implements EventHandler<ActionEvent> {
 
-    private String respuesta;
-    private Juego juego;
+    private final String respuestaElegida;
+    private final Juego juego;
 
     public EnviarVerdaderoOFalsoEventHandler(String respuesta, Juego juego) {
-        this.respuesta = respuesta;
+        this.respuestaElegida = respuesta;
         this.juego = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Opcion respuesta = new Opcion(this.respuesta);
+        Opcion respuesta = new Opcion(this.respuestaElegida);
         List<Opcion> listaRespuesta = new LinkedList<>();
         listaRespuesta.add(respuesta);
         juego.jugarTurno(listaRespuesta);

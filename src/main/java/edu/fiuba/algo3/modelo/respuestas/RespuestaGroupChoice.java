@@ -6,14 +6,14 @@ import java.util.List;
 
 public class RespuestaGroupChoice implements Respuesta {
     private final List<Opcion> respuestasGrupoUno;
-    private final RespuestasHelper respuestasHelper = new RespuestasHelper();
+    private final RespuestasUtils respuestasUtils = new RespuestasUtils();
 
     public RespuestaGroupChoice(List<Opcion> respuestasGrupoUno) {
         this.respuestasGrupoUno = respuestasGrupoUno;
     }
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectasGrupoUno) {
-        return (respuestasHelper.todasLasRespuestasCoincidenConLasOpcionesCorrectas(opcionesCorrectasGrupoUno, respuestasGrupoUno)
+        return (respuestasUtils.todasLasRespuestasCoincidenConLasOpcionesCorrectas(opcionesCorrectasGrupoUno, respuestasGrupoUno)
                 && opcionesCorrectasGrupoUno.size() == respuestasGrupoUno.size()) ? 1 : 0;
     }
 }
