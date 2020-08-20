@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 
+import edu.fiuba.algo3.controlador.EnterEnviarNombresEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.botones.BotonEnviarNombre;
 import javafx.scene.Scene;
@@ -34,8 +35,9 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
     private void armarVistaPropia() {
         introducirNombre.setText("Ingrese su nombre: ");
-        nombreJugador.setPromptText("Ingrese el nombre del jugador");
         Label labelAdvertencia = new Label("");
+        nombreJugador.setPromptText("Ingrese el nombre del jugador");
+        nombreJugador.setOnKeyPressed(new EnterEnviarNombresEventHandler(nombreJugador, labelAdvertencia, juego));
         Button botonEnviarNombres = new BotonEnviarNombre(nombreJugador, labelAdvertencia, juego);
         this.getChildren().add(introducirNombre);
         this.getChildren().add(nombreJugador);

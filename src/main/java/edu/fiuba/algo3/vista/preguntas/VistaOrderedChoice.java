@@ -16,15 +16,10 @@ import java.util.*;
 public class VistaOrderedChoice extends VistaAbstracta implements Observador {
 
     List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
     private final List<Opcion> opciones = new ArrayList<>();
     private final Pregunta pregunta;
     private VistaOpcionesOrderedChoice vistaOpciones;
-    private final Juego juego;
     private final int tiempoDisponible = 30;
-    private final LabelTiempo labelTiempo;
     private final BotonExclusividad botonExclusividad;
 
     public VistaOrderedChoice(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
