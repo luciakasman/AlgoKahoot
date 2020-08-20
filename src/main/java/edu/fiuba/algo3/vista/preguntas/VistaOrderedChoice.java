@@ -8,76 +8,65 @@ import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.*;
 
-public class VistaOrderedChoice extends VBox implements Observador {
+public class VistaOrderedChoice extends VistaAbstracta implements Observador {
 
     List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
-    private final Stage stage;
-    private Queue<Jugador> jugadores;
     private final List<Opcion> opciones = new ArrayList<>();
     private final Pregunta pregunta;
     private VistaOpcionesOrderedChoice vistaOpciones;
-    private Juego juego;
-    private final int tiempoDisponible = 20;
-    private LabelTiempo labelTiempo;
-    private BotonExclusividad botonExclusividad;
+    private final int tiempoDisponible = 30;
+    private final BotonExclusividad botonExclusividad;
+    private final ImageView imagenVista;
 
-    public VistaOrderedChoice( Pregunta pregunta, Stage stage, Juego juego) {
+    public VistaOrderedChoice(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
+        super(stage, imagenVista, sonido, juego);
         this.juego = juego;
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.botonExclusividad = new BotonExclusividad(juego);
-        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
-        this.setSpacing(20);
+        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.imagenVista = imagenVista;
     }
 
     public void armarVistaPropia() {
-        this.getChildren().add(labelTiempo);
         juego.guardarObservador(this);
 
-        //Agregado de la info del jugador
-        this.getChildren().add(infoJugador);
+        Label tipoPregunta =  new Label("Pregunta Ordered Choice");
 
         //Agregado de la pregunta
-        String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label(pregunta);
-        this.getChildren().add(labelPregunta);
+        Label labelPregunta = new Label(this.pregunta.getPregunta());
 
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
         Collections.shuffle(this.opciones);
 
-        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, this.pregunta);
-        this.getChildren().add(vistaOpciones);
-
         //Agregado del enviar
-        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
-        this.getChildren().add(botonEnviar);
+        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(this.respuesta, this.juego);
 
+        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, botonEnviar);
+
+        Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
+        imagenVista.setImage(imagen);
+
+        VBox vBox = new VBox(vistaOpciones, botonEnviar, botonExclusividad);
+        vBox.setSpacing(30.0);
+        vBox.setTranslateY(250);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, labelPregunta, vBox);
+        DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
+        diseñadorDeVistas.diseñarVistaGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
         update();
     }
 
     @Override
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
-        } else {
-            System.out.println("SACO JUGADOR");
-            labelTiempo.start();
-            respuesta.clear();
-            Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntos = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
-            vistaOpciones.update();
-            botonExclusividad.actualizar(jugadorActual);
-        }
+    protected void updatePropio(Jugador jugadorActual){
+        vistaOpciones.update();
+        botonExclusividad.actualizar(jugadorActual);
     }
 }

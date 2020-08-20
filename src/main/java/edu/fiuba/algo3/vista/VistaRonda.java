@@ -35,17 +35,17 @@ public class VistaRonda extends VBox {
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceConPenalidad.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial vista = new edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Penalidad");
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceParcial.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial vista = new edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Puntaje parcial");
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaOrderedChoice.class)) {
-            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage, juego);
+            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
