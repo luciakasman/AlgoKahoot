@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -27,10 +28,10 @@ public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Obser
     private final Juego juego;
     private final VistaOpcionesVerdaderoOFalso opciones;
     private final SonidoHandler sonido;
+    private int tiempoDisponible = 15;
 
     public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         this.juego = juego;
-        int tiempoDisponible = 5;
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
         this.stage = stage;
@@ -44,7 +45,10 @@ public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Obser
 
     public void armarVistaPropia() {
         juego.guardarObservador(this);
-        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, opciones, vistaBotonesMultiplicadores);
+        VBox vBox = new VBox(opciones, vistaBotonesMultiplicadores);
+        vBox.setTranslateY(350);
+        vBox.setSpacing(50.0);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
         Image imagen = new Image("file:src/resources/imagen2.jpg", 512, 250, true, false);
         imagenVista.setImage(imagen);
         tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));

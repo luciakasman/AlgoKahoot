@@ -55,7 +55,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends StackPane implement
         Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
         VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
-        vBox.setTranslateY(300);
+        vBox.setTranslateY(350);
         vBox.setSpacing(30.0);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
         Collections.shuffle(opciones);
