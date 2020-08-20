@@ -20,32 +20,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class VistaMultipleChoiceClasico extends StackPane implements Observador {
+public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observador {
 
     private final List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
     private final VistaOpcionesMultipleChoice vistaOpciones;
     private final BotonExclusividad botonExclusividad;
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
     private final int tiempoDisponible = 15;
-    private final LabelTiempo labelTiempo;
-    private final SonidoHandler sonido;
-    private final ImageView imagenVista;
-    private final Juego juego;
     private final Label tipoPregunta;
     private final Label pregunta;
     private final List<Opcion> opciones;
     private final BotonEnviarRespuesta botonEnviar;
 
     public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
-        this.juego = juego;
+        super(stage, imagenVista, sonido, juego);
         this.botonExclusividad = new BotonExclusividad(juego);
         this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
-        this.stage = stage;
-        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        this.sonido = sonido;
-        this.imagenVista = imagenVista;
         this.tipoPregunta = new Label("Multiple Choice Clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());
         this.opciones = pregunta.obtenerOpciones();
@@ -69,18 +58,10 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
         update();
     }
 
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
-        } else {
-            labelTiempo.start();
-            respuesta.clear();
-            Jugador jugadorActual = jugadores.remove();
-            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
-            vistaOpciones.update();
-            botonExclusividad.actualizar(jugadorActual);
-        }
+    @Override
+    protected void updatePropio(Jugador jugadorActual){
+        respuesta.clear();
+        vistaOpciones.update();
+        botonExclusividad.actualizar(jugadorActual);
     }
 }
