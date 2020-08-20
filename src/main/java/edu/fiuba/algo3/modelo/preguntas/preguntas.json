@@ -89,23 +89,34 @@
       ]
     },
     {
-      "type": "orderedChoice",
-      "pregunta": "Ordene estos momentos historicos",
-      "opcionesCorrectas": [
+      "type" : "groupChoice",
+      "pregunta": "Capitales de Europa y capitales de America",
+      "nombrePrimerGrupo": "Europa",
+      "nombreSegundoGrupo": "America",
+      "opcionesIncorrectas": [
         {
-          "opcion": "Creacion de la escritura"
+          "opcion": "Paris"
         },
         {
-          "opcion": "Caida del muro de Berlin"
+          "opcion": "Madrid"
         },
         {
-          "opcion": "Construccion de las piramides"
-        },
-        {
-          "opcion": "COVID-19"
+          "opcion": "Roma"
         }
       ],
-      "opcionesIncorrectas": [
+      "opcionesCorrectas": [
+        {
+          "opcion": "Buenos Aires"
+        },
+        {
+          "opcion": "Santiago"
+        },
+        {
+          "opcion": "Lima"
+        },
+        {
+          "opcion": "La Paz"
+        }
       ]
     },
     {
