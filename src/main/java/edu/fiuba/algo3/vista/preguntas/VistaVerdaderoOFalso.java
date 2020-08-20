@@ -4,7 +4,10 @@ import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.*;
+import edu.fiuba.algo3.vista.DiseñadorDeVistas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesVerdaderoOFalso;
 import javafx.geometry.Insets;
@@ -55,7 +58,7 @@ public class VistaVerdaderoOFalso extends VistaAbstracta implements Observador {
     }
 
     @Override
-    protected void updatePropio(Jugador jugadorActual){
+    protected void updatePropio(Jugador jugadorActual) {
         botonExclusividad.actualizar(jugadorActual);
     }
 }

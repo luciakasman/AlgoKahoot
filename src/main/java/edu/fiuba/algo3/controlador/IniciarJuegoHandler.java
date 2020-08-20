@@ -23,7 +23,7 @@ public class IniciarJuegoHandler implements EventHandler<ActionEvent> {
         Juego juego = new Juego(new GeneradorDePreguntas());
         VistaRegistroDeJugadores vistaRegistroDeJugadores = new VistaRegistroDeJugadores(stage, sonido, juego);
         stage.setTitle("El mejor Kahoot del mundo");
-        Scene escena = new Scene(vistaRegistroDeJugadores, 900, 600);
+        Scene escena = new Scene(vistaRegistroDeJugadores, 1000, 800);
         stage.setScene(escena);
         stage.show();
     }

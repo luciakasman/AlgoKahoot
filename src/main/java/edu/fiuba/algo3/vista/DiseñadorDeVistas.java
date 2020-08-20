@@ -24,8 +24,9 @@ public class DiseñadorDeVistas {
         setAlignment(infoJugador, Pos.TOP_LEFT);
         setMargin(infoJugador, new Insets(20, 100, 0, 0));
         setAlignment(pregunta, Pos.CENTER);
-        setMargin(pregunta, new Insets(0, 0, 180, 0));
+        setMargin(pregunta, new Insets(0, 0, 400, 0));
         setAlignment(opciones, Pos.BOTTOM_CENTER);
+        setMargin(opciones, new Insets(0, 0, 250, 0));
         setAlignment(tipoPregunta, Pos.TOP_LEFT);
 
         infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
@@ -41,12 +42,32 @@ public class DiseñadorDeVistas {
         setAlignment(infoJugador, Pos.TOP_LEFT);
         setMargin(infoJugador, new Insets(20, 100, 0, 0));
         setAlignment(pregunta, Pos.CENTER);
-        setMargin(pregunta, new Insets(0, 0, 200, 0));
+        setMargin(pregunta, new Insets(0, 0, 300, 0));
         setAlignment(tipoPregunta, Pos.TOP_LEFT);
         setAlignment(botonEnviar, Pos.BOTTOM_CENTER);
         setMargin(botonEnviar, new Insets(0, 0, 100, 0));
         tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         setMargin(tipoPregunta, new Insets(100, 5, 0, 0));
+
+        infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+    }
+
+    public void diseñarVistaGroupChoice(Label tipoPregunta, Label pregunta, LabelTiempo labelTiempo, Label infoJugador, BotonEnviarRespuesta botonEnviar) {
+        pregunta.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+        labelTiempo.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        labelTiempo.setTextFill(Color.web("#ff0000"));
+
+        setAlignment(labelTiempo, Pos.TOP_RIGHT);
+        setMargin(labelTiempo, new Insets(10, 100, 0, 0));
+        setAlignment(infoJugador, Pos.TOP_LEFT);
+        setMargin(infoJugador, new Insets(10, 100, 0, 0));
+        setAlignment(pregunta, Pos.CENTER);
+        setMargin(pregunta, new Insets(0, 0, 500, 0));
+        setAlignment(botonEnviar, Pos.BOTTOM_CENTER);
+        setMargin(botonEnviar, new Insets(0, 0, 100, 0));
+        setAlignment(tipoPregunta, Pos.TOP_LEFT);
+        tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        setMargin(tipoPregunta, new Insets(50, 5, 0, 0));
 
         infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
     }

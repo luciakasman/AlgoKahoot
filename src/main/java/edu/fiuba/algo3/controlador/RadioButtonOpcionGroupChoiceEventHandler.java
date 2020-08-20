@@ -34,7 +34,7 @@ public class RadioButtonOpcionGroupChoiceEventHandler implements EventHandler<Ac
                 .filter(o -> o.getValue().equals(this.opcionCorrecta))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
                         .forEach((k, v) ->
-                            lista.add(new Opcion(k)));
+                                lista.add(new Opcion(k)));
         respuestaFinal.clear();
         respuestaFinal.addAll(lista);
     }

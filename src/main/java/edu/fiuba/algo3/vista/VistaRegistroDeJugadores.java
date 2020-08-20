@@ -67,7 +67,7 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
         if (juego.obtenerJugadores().size() == 2) {
             VistaRonda vistaRonda = new VistaRonda(stage, juego);
             final ImageView imagenVista = new ImageView();
-            Scene scene = new Scene(vistaRonda, 900, 600);
+            Scene scene = new Scene(vistaRonda, 1000, 800);
             imagenVista.fitWidthProperty().bind(scene.widthProperty());
             imagenVista.fitHeightProperty().bind(scene.heightProperty());
             vistaRonda.armarVistaDeRonda(imagenVista, sonido);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AsignadorExclusivo implements Asignador{
 
-    private int multiplicador;
+    private final int multiplicador;
 
     public AsignadorExclusivo(int multiplicador){
         this.multiplicador = multiplicador;

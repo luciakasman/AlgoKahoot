@@ -9,8 +9,11 @@ import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesGroupChoice;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -28,38 +31,52 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     private final Juego juego;
     private final int tiempoDisponible = 20;
     private final LabelTiempo labelTiempo;
+    private final ImageView imagenVista;
+    private final SonidoHandler sonido;
+    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
     private final BotonExclusividad botonExclusividad;
+
 
     public VistaGroupChoice(PreguntaGroupChoice pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
         this.juego = juego;
         this.pregunta = pregunta;
         this.stage = stage;
+        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.botonExclusividad = new BotonExclusividad(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.imagenVista = imagenVista;
+        this.sonido = sonido;
+        this.vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
     }
 
     public void armarVistaPropia() {
-        this.getChildren().add(labelTiempo);
         juego.guardarObservador(this);
-
-        //Agregado de la info del jugador
-        this.getChildren().add(infoJugador);
+        Label tipoPregunta = new Label("Pregunta Group Choice:");
 
         //Agregado de la pregunta
         Label labelPregunta = new Label(this.pregunta.getPregunta());
-        this.getChildren().add(labelPregunta);
 
         this.opciones.addAll(this.pregunta.getOpcionesIncorrectas());
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
         Collections.shuffle(this.opciones);
 
         vistaOpciones = new VistaOpcionesGroupChoice(opciones, respuesta, this.pregunta);
-        this.getChildren().add(vistaOpciones);
 
         //Agregado del enviar
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
-        this.getChildren().add(botonEnviar);
+
+        Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
+        imagenVista.setImage(imagen);
+
+        vistaBotonesMultiplicadores.setAlignment(Pos.BOTTOM_CENTER);
+        VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
+        vBox.setTranslateY(200);
+        vBox.setSpacing(50);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, labelPregunta, vBox);
+
+        DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
+        diseñadorDeVistas.diseñarVistaGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
 
         update();
     }
