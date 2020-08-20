@@ -73,7 +73,6 @@ public class VistaGroupChoice extends VBox implements Observador {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
             avanzador.avanzarRonda(this.stage, juego);
         } else {
-            System.out.println("SACO JUGADOR");
             labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();

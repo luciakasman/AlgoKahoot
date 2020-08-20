@@ -13,7 +13,7 @@ import java.util.Map;
 public class ComboBoxOpcionHandler implements EventHandler<ActionEvent> {
 
     private final String opcion;
-    private List<Opcion> respuestaFinal;
+    private final List<Opcion> respuestaFinal;
     private final ComboBoxOrderedChoice comboBox;
     private final Map<String, Integer> respuesta;
     private final BotonEnviarRespuesta botonEnviarRespuesta;

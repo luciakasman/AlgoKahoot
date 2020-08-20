@@ -7,16 +7,16 @@
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Uno"
+          "opcion": "A"
         },
         {
-          "opcion": "Dos"
+          "opcion": "B"
         },
         {
-          "opcion": "Tres"
+          "opcion": "C"
         },
         {
-          "opcion": "Cuatro"
+          "opcion": "D"
         }
       ]
     }

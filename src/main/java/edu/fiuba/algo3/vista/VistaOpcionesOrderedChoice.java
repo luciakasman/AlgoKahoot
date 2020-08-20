@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.ComboBoxOrderedChoice;
 import javafx.scene.control.Label;
@@ -17,14 +16,12 @@ public class VistaOpcionesOrderedChoice extends VBox {
     private final List<Opcion> opciones;
     private final Map<String, Integer> respuesta = new HashMap<>();
     private final List<Opcion> respuestaFinal;
-    private Pregunta pregunta;
     private final BotonEnviarRespuesta botonEnviarRespuesta;
     private Map<Integer,String> respuestasElegidasSinRepetir = new HashMap<>();
 
-    public VistaOpcionesOrderedChoice(List<Opcion> opciones, List<Opcion> respuestaFinal, Pregunta pregunta, BotonEnviarRespuesta botonEnviarRespuesta) {
+    public VistaOpcionesOrderedChoice(List<Opcion> opciones, List<Opcion> respuestaFinal, BotonEnviarRespuesta botonEnviarRespuesta) {
         this.setSpacing(20);
         this.opciones = opciones;
-        this.pregunta = pregunta;
         this.respuestaFinal = respuestaFinal;
         this.botonEnviarRespuesta = botonEnviarRespuesta;
         update();

@@ -48,8 +48,7 @@ public class VistaOrderedChoice extends VBox implements Observador {
         this.getChildren().add(infoJugador);
 
         //Agregado de la pregunta
-        String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label(pregunta);
+        Label labelPregunta = new Label(this.pregunta.getPregunta());
         this.getChildren().add(labelPregunta);
 
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
@@ -59,7 +58,7 @@ public class VistaOrderedChoice extends VBox implements Observador {
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(this.respuesta, this.juego);
         this.getChildren().add(botonEnviar);
 
-        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, this.pregunta, botonEnviar);
+        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, botonEnviar);
         this.getChildren().add(vistaOpciones);
 
         update();
@@ -67,12 +66,12 @@ public class VistaOrderedChoice extends VBox implements Observador {
 
     @Override
     public void update() {
-     //   labelTiempo.stop()
+        labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
             avanzador.avanzarRonda(this.stage, juego);
         } else {
-         //   labelTiempo.start();
+            labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();
