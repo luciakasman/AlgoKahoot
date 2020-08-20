@@ -5,24 +5,21 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class VistaMultipleChoiceConPenalidadOParcial extends VistaAbstracta implements Observador {
 
     private final List<Opcion> respuesta = new LinkedList<>();
     private final VistaOpcionesMultipleChoice vistaOpciones;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final int tiempoDisponible = 115;
+    private final int tiempoDisponible = 30;
     private final Label pregunta;
     private final List<Opcion> opciones;
     private final BotonEnviarRespuesta botonEnviar;
