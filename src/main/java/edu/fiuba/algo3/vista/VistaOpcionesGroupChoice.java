@@ -61,8 +61,6 @@ public class VistaOpcionesGroupChoice extends VBox {
         secondGroupButton.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
         Region region1 = new Region();
         hBox.setHgrow(region1, Priority.ALWAYS);
-//        Region region2 = new Region();
-//        hBox.setHgrow(region2, Priority.ALWAYS);
 
         hBox.getChildren().add(opcionLabel);
         hBox.getChildren().add(region1);
