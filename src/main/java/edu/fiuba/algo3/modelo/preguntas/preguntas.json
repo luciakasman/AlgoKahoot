@@ -1,90 +1,53 @@
 {
   "preguntas":[
     {
-      "type": "verdaderoOFalso",
-      "pregunta": "Estamos hechxs de torta?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "verdadero"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "falso"
-        }
-      ]
-    },
+    "type": "multipleChoiceParcial",
+    "pregunta": "Cantantes de cumbia",
+    "opcionesIncorrectas": [
+      {
+        "opcion": "Gardel"
+      },
+      {
+        "opcion": "Cerati"
+      },
+      {
+        "opcion": "Justin Bieber"
+      }
+    ],
+    "opcionesCorrectas": [
+      {
+        "opcion": "Pablo lescano"
+      }
+    ]
+  },
     {
-      "type": "multipleChoiceClasico",
-      "pregunta": "Materias mas aburridas de la facu?",
+      "type" : "groupChoice",
+      "pregunta": "Capitales de Europa y capitales de America",
+      "nombrePrimerGrupo": "Europa",
+      "nombreSegundoGrupo": "America",
       "opcionesIncorrectas": [
         {
-          "opcion": "AMII"
+          "opcion": "Paris"
         },
         {
-          "opcion": "AlgoritmosIII"
+          "opcion": "Madrid"
         },
         {
-          "opcion": "AlgebraII"
+          "opcion": "Roma"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Quimica"
-        }
-      ]
-    },
-    {
-      "type": "verdaderoOFalsoPenalidad",
-      "pregunta": "Gise tiene sueño?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "falso"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "verdadero"
-        }
-      ]
-    },
-    {
-      "type": "multipleChoicePenalidad",
-      "pregunta": "Materias mas robo de la facu?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "AlgebraII"
+          "opcion": "Buenos Aires"
         },
         {
-          "opcion": "AMII"
+          "opcion": "Santiago"
         },
         {
-          "opcion": "AlgoritmosIII"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "Numerico"
-        }
-      ]
-    },
-    {
-      "type": "multipleChoiceParcial",
-      "pregunta": "Cantantes de cumbia",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "Gardel"
+          "opcion": "Lima"
         },
         {
-          "opcion": "Cerati"
-        },
-        {
-          "opcion": "Justin Bieber"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "Pablo lescano"
+          "opcion": "La Paz"
         }
       ]
     }

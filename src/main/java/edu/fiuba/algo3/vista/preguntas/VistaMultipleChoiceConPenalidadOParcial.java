@@ -1,9 +1,10 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.preguntas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

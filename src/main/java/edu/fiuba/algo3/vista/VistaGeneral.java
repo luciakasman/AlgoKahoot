@@ -24,7 +24,7 @@ public class VistaGeneral extends Application {
         sonido.reproducirSonido(new File("src/resources/kahoot-lobby-music.mp3"));
         Button botonInicio = new Button();
         botonInicio.setStyle("-fx-background-radius: 25");
-        Image imagen = new Image("file:src/resources/ImagenInicio.jpg",512,250,true,false);
+        Image imagen = new Image("file:src/resources/ImagenInicio.jpg",512,1000,true,false);
         final ImageView imagenVista = new ImageView(imagen);
         root.getChildren().addAll(imagenVista, botonInicio);
         Scene escena = new Scene(root, 1000, 700);

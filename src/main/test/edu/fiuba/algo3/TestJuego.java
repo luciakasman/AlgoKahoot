@@ -2,14 +2,11 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.Turno;
 import edu.fiuba.algo3.modelo.preguntas.*;
 import edu.fiuba.algo3.vista.Observador;
-import edu.fiuba.algo3.vista.VistaVerdaderoOFalso;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.LinkedList;
 import java.util.List;

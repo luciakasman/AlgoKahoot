@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.vista.preguntas.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -43,16 +44,15 @@ public class VistaRonda extends VBox {
             vista.armarVistaPropia("con Puntaje parcial");
             this.getChildren().add(vista);
         }
-        /*
         if (preguntaRonda.getClass().equals(PreguntaOrderedChoice.class)) {
-            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage);
+            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaGroupChoice.class)) {
-            VistaGroupChoice vista = new VistaGroupChoice(preguntaRonda, stage);
+            VistaGroupChoice vista = new VistaGroupChoice((PreguntaGroupChoice) preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
-        }*/
+        }
     }
 }

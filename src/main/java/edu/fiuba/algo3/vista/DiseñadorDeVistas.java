@@ -49,4 +49,24 @@ public class DiseñadorDeVistas {
 
         infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
     }
+
+    public void diseñarVistaGroupChoice(Label tipoPregunta, Label pregunta, LabelTiempo labelTiempo, Label infoJugador, BotonEnviarRespuesta botonEnviar) {
+        pregunta.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+        labelTiempo.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        labelTiempo.setTextFill(Color.web("#ff0000"));
+
+        setAlignment(labelTiempo, Pos.TOP_RIGHT);
+        setMargin(labelTiempo, new Insets(20, 100, 0, 0));
+        setAlignment(infoJugador, Pos.TOP_LEFT);
+        setMargin(infoJugador, new Insets(20, 100, 0, 0));
+        setAlignment(pregunta, Pos.CENTER);
+        setMargin(pregunta, new Insets(0, 0, 200, 0));
+        setAlignment(tipoPregunta, Pos.TOP_LEFT);
+        setAlignment(botonEnviar, Pos.BOTTOM_CENTER);
+        setMargin(botonEnviar, new Insets(0, 0, 100, 0));
+        tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        setMargin(tipoPregunta, new Insets(100, 5, 0, 0));
+
+        infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+    }
 }

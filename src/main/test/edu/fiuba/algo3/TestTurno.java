@@ -307,7 +307,7 @@ public class TestTurno {
         opcionesCorrectasGrupoA.add(opcionC);
         opcionesCorrectasGrupoB.add(opcionD);
 
-        return new PreguntaGroupChoice(preguntaAHacer, opcionesCorrectasGrupoA, opcionesCorrectasGrupoB);
+        return new PreguntaGroupChoice(preguntaAHacer, opcionesCorrectasGrupoA, opcionesCorrectasGrupoB, "grupoA", "grupoB");
     }
 
     private void armarPreguntaVerdaderoOFalso() {

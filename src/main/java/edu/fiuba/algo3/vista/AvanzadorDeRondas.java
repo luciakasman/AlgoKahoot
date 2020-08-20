@@ -21,4 +21,7 @@ public class AvanzadorDeRondas {
             stage.setScene(scene);
         }
     }
+
+    public void avanzarRonda(Stage stage, Juego juego) {
+    }
 }
