@@ -16,13 +16,13 @@ public class BotonDuplicador extends Button {
         int duplicadorJugador;
         if (juego.esDuplicadorActivable()) {
             duplicadorJugador = 1;
-            AplicarDuplicadorEventHandler botonDuplicadorEventHandler = new AplicarDuplicadorEventHandler(this, botonTriplicador, juego);
-            this.setOnAction(botonDuplicadorEventHandler);
         } else {
             duplicadorJugador = 0;
-            this.setDisable(true);
         }
-        String text = "Aplicar Duplicador (" + duplicadorJugador + ")";
+        String text = "Aplicar duplicador (" + duplicadorJugador + ")";
         this.setText(text);
+        AplicarDuplicadorEventHandler botonDuplicadorEventHandler = new AplicarDuplicadorEventHandler(this, botonTriplicador, juego);
+        this.setOnAction(botonDuplicadorEventHandler);
+        this.setDisable(duplicadorJugador == 0);
     }
 }
