@@ -21,5 +21,4 @@ public class BotonEnviarRespuesta extends HBox {
         this.getChildren().add(boton);
         this.setAlignment(Pos.CENTER);
     }
-
 }

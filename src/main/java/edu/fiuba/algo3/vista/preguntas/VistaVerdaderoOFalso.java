@@ -20,32 +20,22 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class VistaVerdaderoOFalso extends StackPane implements Observador {
+public class VistaVerdaderoOFalso extends VistaAbstracta implements Observador {
+
 
     private final BotonExclusividad botonExclusividad;
-    private final Label infoJugador = new Label();
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
     private final int tiempoDisponible = 15;
-    private final LabelTiempo labelTiempo;
-    private final ImageView imagenVista;
     private final Label pregunta;
     private final Label tipoPregunta;
     private final VistaOpcionesVerdaderoOFalso opciones;
-    private final SonidoHandler sonido;
-    private final Juego juego;
 
     public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
-        this.juego = juego;
+        super(stage, imagenVista, sonido, juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         botonExclusividad = new BotonExclusividad(juego);
-        this.stage = stage;
-        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        this.imagenVista = imagenVista;
         this.tipoPregunta = new Label("Verdadero o falso clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());
         this.opciones = new VistaOpcionesVerdaderoOFalso(juego);
-        this.sonido = sonido;
     }
 
     public void armarVistaPropia() {
@@ -67,16 +57,7 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
     }
 
     @Override
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
-        } else {
-            labelTiempo.start();
-            Jugador jugadorActual = jugadores.remove();
-            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
-            botonExclusividad.actualizar(jugadorActual);
-        }
+    protected void updatePropio(Jugador jugadorActual){
+        botonExclusividad.actualizar(jugadorActual);
     }
 }

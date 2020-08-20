@@ -6,22 +6,25 @@ import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
+import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
-public class VistaGroupChoice extends StackPane implements Observador {
+public class VistaGroupChoice extends VistaAbstracta implements Observador {
 
     List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
     private final Stage stage;
-    private Queue<Jugador> jugadores;
     private final List<Opcion> opciones = new ArrayList<>();
     private final PreguntaGroupChoice pregunta;
     private VistaOpcionesGroupChoice vistaOpciones;
@@ -31,13 +34,20 @@ public class VistaGroupChoice extends StackPane implements Observador {
     private final ImageView imagenVista;
     private final SonidoHandler sonido;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
+    private final Juego juego;
+    private final int tiempoDisponible = 20;
+    private final LabelTiempo labelTiempo;
+    private final BotonExclusividad botonExclusividad;
 
 
     public VistaGroupChoice(PreguntaGroupChoice pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
+    public VistaGroupChoice(PreguntaGroupChoice pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
+        super(stage, imagenVista, sonido, juego);
         this.juego = juego;
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
+        this.botonExclusividad = new BotonExclusividad(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.imagenVista = imagenVista;
         this.sonido = sonido;
@@ -51,6 +61,8 @@ public class VistaGroupChoice extends StackPane implements Observador {
         //Agregado de la pregunta
         String pregunta = this.pregunta.getPregunta();
         Label labelPregunta = new Label(pregunta);
+        Label labelPregunta = new Label(this.pregunta.getPregunta());
+        this.getChildren().add(labelPregunta);
 
         this.opciones.addAll(this.pregunta.getOpcionesIncorrectas());
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
@@ -75,20 +87,8 @@ public class VistaGroupChoice extends StackPane implements Observador {
     }
 
     @Override
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
-        } else {
-            labelTiempo.start();
-            respuesta.clear();
-            Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntos = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
-            vistaOpciones.update();
-            vistaBotonesMultiplicadores.actualizar();
-        }
+    protected void updatePropio(Jugador jugadorActual) {
+        vistaOpciones.update();
+        botonExclusividad.actualizar(jugadorActual);
     }
 }

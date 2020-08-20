@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -44,6 +46,13 @@ public abstract class Pregunta {
 
     public String getPregunta() {
         return pregunta;
+    }
+
+    public List<Opcion> obtenerOpciones(){
+        List<Opcion> opciones = new LinkedList<>(getOpcionesCorrectas());
+        opciones.addAll(getOpcionesIncorrectas());
+        Collections.shuffle(opciones);
+        return opciones;
     }
 
     public List<Opcion> getOpcionesCorrectas() {

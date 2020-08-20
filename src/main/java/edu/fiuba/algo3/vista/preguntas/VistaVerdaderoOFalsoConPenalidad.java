@@ -1,10 +1,9 @@
-package edu.fiuba.algo3.vista.preguntas;
+package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import javafx.geometry.Insets;
-import edu.fiuba.algo3.vista.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,31 +16,20 @@ import javafx.stage.Stage;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Observador {
-    private final Label infoJugador = new Label();
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
-    private final LabelTiempo labelTiempo;
-    private final ImageView imagenVista;
+public class VistaVerdaderoOFalsoConPenalidad extends VistaAbstracta implements Observador {
     private final Label pregunta;
     private final Label tipoPregunta;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final Juego juego;
     private final VistaOpcionesVerdaderoOFalso opciones;
-    private final SonidoHandler sonido;
     private int tiempoDisponible = 15;
 
     public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
-        this.juego = juego;
+        super(stage, imagenVista, sonido, juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
-        this.stage = stage;
-        this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        this.imagenVista = imagenVista;
         this.tipoPregunta = new Label("Verdadero o falso con penalidad: ");
         this.pregunta = new Label(pregunta.getPregunta());
         this.opciones = new VistaOpcionesVerdaderoOFalso(juego);
-        this.sonido = sonido;
     }
 
     public void armarVistaPropia() {
@@ -60,16 +48,7 @@ public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Obser
     }
 
     @Override
-    public void update() {
-        labelTiempo.stop();
-        if (jugadores.isEmpty()) {
-            AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
-        } else {
-            labelTiempo.start();
-            Jugador jugadorActual = jugadores.remove();
-            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
-            vistaBotonesMultiplicadores.actualizar();
-        }
+    public void updatePropio(Jugador jugadorActual){
+        vistaBotonesMultiplicadores.actualizar();
     }
 }
