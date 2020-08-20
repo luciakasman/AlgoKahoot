@@ -2,43 +2,23 @@
 {
   "preguntas":[
     {
-      "type": "multipleChoiceClasico",
-      "pregunta": "Materias mas aburridas de la facu?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "AMII"
-        },
-        {
-          "opcion": "AlgoritmosIII"
-        },
-        {
-          "opcion": "AlgebraII"
-        }
-      ],
+      "type": "orderedChoice",
+      "pregunta": "Ordene estos momentos historicos",
       "opcionesCorrectas": [
         {
-          "opcion": "Quimica"
+          "opcion": "Creacion de la escritura"
+        },
+        {
+          "opcion": "Caida del muro de Berlin"
+        },
+        {
+          "opcion": "Construccion de las piramides"
+        },
+        {
+          "opcion": "COVID-19"
         }
-      ]
-    },
-    {
-      "type" : "orderedChoice",
-      "pregunta": "Pasar a texto la secuencia I, II, II, IV",
-      "opcionesIncorrectas": [
       ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "Uno"
-        },
-        {
-          "opcion": "Dos"
-        },
-        {
-          "opcion": "Tres"
-        },
-        {
-          "opcion": "Cuatro"
-        }
+      "opcionesIncorrectas": [
       ]
     }
   ]

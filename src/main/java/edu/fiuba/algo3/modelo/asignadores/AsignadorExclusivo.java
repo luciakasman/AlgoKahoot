@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AsignadorExclusivo implements Asignador{
 
-    private int multiplicador;
+    private final int multiplicador;
 
     public AsignadorExclusivo(int multiplicador){
         this.multiplicador = multiplicador;
@@ -20,7 +20,6 @@ public class AsignadorExclusivo implements Asignador{
 
     @Override
     public void asignarPuntos(List<Jugador> jugadores){
-        //Lo hago horrible xq tengo suenio pero se puede hacer mas lindo seguro
         Jugador jugador1 = jugadores.get(0);
         Jugador jugador2 = jugadores.get(1);
         if (jugador1.obtenerPuntajeDePregunta() == jugador2.obtenerPuntajeDePregunta()){

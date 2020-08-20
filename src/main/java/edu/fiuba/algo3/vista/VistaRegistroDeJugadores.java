@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 
 import edu.fiuba.algo3.controlador.EnterEnviarNombresEventHandler;
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.botones.BotonEnviarNombre;
 import javafx.scene.Scene;
@@ -66,7 +67,7 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
         if (juego.obtenerJugadores().size() == 2) {
             VistaRonda vistaRonda = new VistaRonda(stage, juego);
             final ImageView imagenVista = new ImageView();
-            Scene scene = new Scene(vistaRonda, 900, 600);
+            Scene scene = new Scene(vistaRonda, 1000, 800);
             imagenVista.fitWidthProperty().bind(scene.widthProperty());
             imagenVista.fitHeightProperty().bind(scene.heightProperty());
             vistaRonda.armarVistaDeRonda(imagenVista, sonido);

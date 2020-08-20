@@ -1,24 +1,25 @@
 package edu.fiuba.algo3.vista.preguntas;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.*;
+import edu.fiuba.algo3.vista.DiseñadorDeVistas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesVerdaderoOFalso;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class VistaVerdaderoOFalso extends VistaAbstracta implements Observador {
 
@@ -57,7 +58,7 @@ public class VistaVerdaderoOFalso extends VistaAbstracta implements Observador {
     }
 
     @Override
-    protected void updatePropio(Jugador jugadorActual){
+    protected void updatePropio(Jugador jugadorActual) {
         botonExclusividad.actualizar(jugadorActual);
     }
 }
