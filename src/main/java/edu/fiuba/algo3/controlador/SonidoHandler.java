@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.controlador;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
