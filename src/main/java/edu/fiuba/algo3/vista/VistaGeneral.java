@@ -27,7 +27,7 @@ public class VistaGeneral extends Application {
         Image imagen = new Image("file:src/resources/ImagenInicio.jpg",512,250,true,false);
         final ImageView imagenVista = new ImageView(imagen);
         root.getChildren().addAll(imagenVista, botonInicio);
-        Scene escena = new Scene(root, 1000, 600);
+        Scene escena = new Scene(root, 1000, 700);
         imagenVista.fitWidthProperty().bind(escena.widthProperty());
         imagenVista.fitHeightProperty().bind(escena.heightProperty());
         botonInicio.setText("Iniciar juego");
