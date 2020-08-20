@@ -1,36 +1,5 @@
 {
-  "preguntas": [
-    {
-      "type": "groupChoice",
-      "pregunta": "Capitales de Europa y capitales de America",
-      "nombrePrimerGrupo": "Europa",
-      "nombreSegundoGrupo": "America",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "Paris"
-        },
-        {
-          "opcion": "Madrid"
-        },
-        {
-          "opcion": "Roma"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "Buenos Aires"
-        },
-        {
-          "opcion": "Santiago"
-        },
-        {
-          "opcion": "Lima"
-        },
-        {
-          "opcion": "La Paz"
-        }
-      ]
-    },
+  "preguntas":[
     {
       "type": "verdaderoOFalso",
       "pregunta": "Estamos hechxs de torta?",
@@ -117,6 +86,26 @@
         {
           "opcion": "Pablo lescano"
         }
+      ]
+    },
+    {
+      "type": "orderedChoice",
+      "pregunta": "Ordene estos momentos historicos",
+      "opcionesCorrectas": [
+        {
+          "opcion": "Creacion de la escritura"
+        },
+        {
+          "opcion": "Caida del muro de Berlin"
+        },
+        {
+          "opcion": "Construccion de las piramides"
+        },
+        {
+          "opcion": "COVID-19"
+        }
+      ],
+      "opcionesIncorrectas": [
       ]
     },
     {
