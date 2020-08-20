@@ -12,10 +12,12 @@ public class VistaOpcionesVerdaderoOFalso extends HBox {
         BotonVerdaderoOFalso botonVerdadero = new BotonVerdaderoOFalso("verdadero", juego);
         botonVerdadero.setMaxSize(350,40);
         botonVerdadero.setStyle("-fx-font-size:30; -fx-background-radius: 25;");
+        botonVerdadero.setTranslateX(-100);
         this.getChildren().add(botonVerdadero);
         BotonVerdaderoOFalso botonFalso = new BotonVerdaderoOFalso("falso", juego);
         botonFalso.setMaxSize(300,40);
         botonFalso.setStyle("-fx-font-size:30; -fx-background-radius: 25;");
+        botonFalso.setTranslateX(100);
         this.getChildren().add(botonFalso);
         this.setAlignment(Pos.CENTER);
     }

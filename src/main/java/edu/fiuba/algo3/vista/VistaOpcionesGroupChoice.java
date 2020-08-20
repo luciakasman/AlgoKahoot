@@ -3,8 +3,6 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
 import edu.fiuba.algo3.vista.botones.RadioButtonGroupChoice;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -43,13 +41,12 @@ public class VistaOpcionesGroupChoice extends VBox {
             this.getChildren().add(armarRespuestaConOpciones(opcion));
         });
         this.setTranslateX(50);
-        this.setMaxWidth(700);
+        this.setMaxWidth(600);
     }
 
     private HBox armarRespuestaConOpciones(Opcion opcion) {
         HBox hBox = new HBox();
         ToggleGroup grupo = new ToggleGroup();
-        // suponemos siempre que el primer grupo es el nombre de las opciones correctas
         RadioButtonGroupChoice firstGroupButton = new RadioButtonGroupChoice(pregunta.getNombrePrimerGrupo(), pregunta.getNombrePrimerGrupo(), respuesta, opcion.getOpcion(), respuestaFinal);
         firstGroupButton.setToggleGroup(grupo);
         RadioButtonGroupChoice secondGroupButton = new RadioButtonGroupChoice(pregunta.getNombrePrimerGrupo(), pregunta.getNombreSegundoGrupo(), respuesta, opcion.getOpcion(), respuestaFinal);

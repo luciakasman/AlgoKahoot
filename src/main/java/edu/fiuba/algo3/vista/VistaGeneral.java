@@ -27,7 +27,7 @@ public class VistaGeneral extends Application {
         Image imagen = new Image("file:src/resources/ImagenInicio.jpg",512,1000,true,false);
         final ImageView imagenVista = new ImageView(imagen);
         root.getChildren().addAll(imagenVista, botonInicio);
-        Scene escena = new Scene(root, 1000, 700);
+        Scene escena = new Scene(root, 1000, 800);
         imagenVista.fitWidthProperty().bind(escena.widthProperty());
         imagenVista.fitHeightProperty().bind(escena.heightProperty());
         botonInicio.setText("Iniciar juego");
@@ -35,7 +35,7 @@ public class VistaGeneral extends Application {
         botonInicio.setOnAction(new IniciarJuegoHandler(stage, sonido));
         botonInicio.setMaxSize(300,100);
         botonInicio.setTranslateX(10);
-        botonInicio.setTranslateY(170);
+        botonInicio.setTranslateY(220);
         stage.setTitle("Kahoot");
         stage.setScene(escena);
         stage.show();

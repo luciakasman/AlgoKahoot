@@ -7,12 +7,10 @@ import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,19 +26,15 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     private final List<Opcion> opciones = new ArrayList<>();
     private final PreguntaGroupChoice pregunta;
     private VistaOpcionesGroupChoice vistaOpciones;
-    private Juego juego;
+    private final Juego juego;
     private final int tiempoDisponible = 100;
-    private LabelTiempo labelTiempo;
+    private final LabelTiempo labelTiempo;
     private final ImageView imagenVista;
     private final SonidoHandler sonido;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final Juego juego;
-    private final int tiempoDisponible = 20;
-    private final LabelTiempo labelTiempo;
     private final BotonExclusividad botonExclusividad;
 
 
-    public VistaGroupChoice(PreguntaGroupChoice pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
     public VistaGroupChoice(PreguntaGroupChoice pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
         this.juego = juego;
@@ -59,10 +53,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
         Label tipoPregunta = new Label("Pregunta Group Choice:");
 
         //Agregado de la pregunta
-        String pregunta = this.pregunta.getPregunta();
-        Label labelPregunta = new Label(pregunta);
         Label labelPregunta = new Label(this.pregunta.getPregunta());
-        this.getChildren().add(labelPregunta);
 
         this.opciones.addAll(this.pregunta.getOpcionesIncorrectas());
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
@@ -75,9 +66,11 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
 
         Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
+
+        vistaBotonesMultiplicadores.setAlignment(Pos.BOTTOM_CENTER);
         VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
-        vBox.setSpacing(30.0);
-        vBox.setTranslateY(250);
+        vBox.setTranslateY(200);
+        vBox.setSpacing(50);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, labelPregunta, vBox);
 
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();

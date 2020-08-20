@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vista.botones;
 import edu.fiuba.algo3.controlador.AplicarExclusividadEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -24,6 +23,7 @@ public class BotonExclusividad extends HBox {
         boton.setMaxSize(300, 40);
         boton.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         boton.setStyle("-fx-background-radius: 15;");
+        boton.setTranslateY(100);
         this.getChildren().add(boton);
     }
 
