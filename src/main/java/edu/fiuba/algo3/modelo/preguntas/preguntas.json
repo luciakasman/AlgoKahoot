@@ -1,22 +1,16 @@
 {
   "preguntas":[
     {
-      "type": "multipleChoicePenalidad",
-      "pregunta": "Materias mas robo de la facu?",
+      "type": "verdaderoOFalso",
+      "pregunta": "Estamos hechxs de torta?",
       "opcionesIncorrectas": [
         {
-          "opcion": "AlgebraII"
-        },
-        {
-          "opcion": "AMII"
-        },
-        {
-          "opcion": "AlgoritmosIII"
+          "opcion": "verdadero"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Numerico"
+          "opcion": "falso"
         }
       ]
     },
@@ -55,16 +49,22 @@
       ]
     },
     {
-      "type": "verdaderoOFalso",
-      "pregunta": "Estamos hechxs de torta?",
+      "type": "multipleChoicePenalidad",
+      "pregunta": "Materias mas robo de la facu?",
       "opcionesIncorrectas": [
         {
-          "opcion": "verdadero"
+          "opcion": "AlgebraII"
+        },
+        {
+          "opcion": "AMII"
+        },
+        {
+          "opcion": "AlgoritmosIII"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "falso"
+          "opcion": "Numerico"
         }
       ]
     },
