@@ -13,8 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -67,9 +65,7 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
         Collections.shuffle(opciones);
         setAlignment(botonExclusividad, Pos.BOTTOM_CENTER);
         setMargin(botonExclusividad, new Insets(0, 0, 0, 300));
-        botonExclusividad.setMaxSize(300, 40);
-        botonExclusividad.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-        botonExclusividad.setStyle("-fx-background-radius: 15;");
+        botonExclusividad.armarDiseño();
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
         diseñadorDeVistas.diseñarVistaMultipleChoice(tipoPregunta, pregunta, labelTiempo, infoJugador, botonEnviar);
         update();

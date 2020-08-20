@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -24,7 +25,7 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
     private final Label infoJugador = new Label();
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final int tiempoDisponible = 5;
+    private final int tiempoDisponible = 15;
     private final LabelTiempo labelTiempo;
     private final ImageView imagenVista;
     private final Label pregunta;
@@ -48,15 +49,14 @@ public class VistaVerdaderoOFalso extends StackPane implements Observador {
 
     public void armarVistaPropia() {
         juego.guardarObservador(this);
-        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, opciones, botonExclusividad);
+        VBox vBox = new VBox(opciones, botonExclusividad);
+        vBox.setTranslateY(350);
+        vBox.setSpacing(30.0);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
         sonido.reproducirSonido(new File("src/resources/sweet-dreams-kahoot.mp3"));
         Image imagen = new Image("file:src/resources/imagen3.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
-        setAlignment(botonExclusividad, Pos.BOTTOM_CENTER);
-        setMargin(botonExclusividad, new Insets(0, 0, 0, 300));
-        botonExclusividad.setMaxSize(300, 40);
-        botonExclusividad.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-        botonExclusividad.setStyle("-fx-background-radius: 15;");
+        botonExclusividad.armarDiseño();
         tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         setMargin(tipoPregunta, new Insets(80, 5, 0, 0));
 
