@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.preguntas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
-import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -16,12 +16,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class VistaMultipleChoiceClasico extends VBox implements Observador {
+public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Observador {
 
     private final List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
     private VistaOpcionesMultipleChoice vistaOpciones;
-    private BotonExclusividad botonExclusividad;
+    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
@@ -29,9 +29,9 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     private LabelTiempo labelTiempo;
     private Juego juego;
 
-    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, Juego juego) {
+    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, Juego juego) {
         this.juego = juego;
-        this.botonExclusividad = new BotonExclusividad(juego);
+        vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.setSpacing(20);
         this.pregunta = pregunta;
@@ -39,7 +39,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
     }
 
-    public void armarVistaPropia() {
+    public void armarVistaPropia(String clase) {
         this.getChildren().add(labelTiempo);
         juego.guardarObservador(this);
 
@@ -47,7 +47,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.getChildren().add(infoJugador);
 
         //Agregado de la pregunta
-        Label labelPregunta = new Label("Multiple Choice Clasico: " + this.pregunta.getPregunta());
+        String pregunta = this.pregunta.getPregunta();
+        Label labelPregunta = new Label("Multiple Choice "+ clase + " : "  + pregunta);
         this.getChildren().add(labelPregunta);
 
         //Agregado de las opciones (se resume mucho si hacemos que las preguntas devuelvan todas las opciones)
@@ -58,7 +59,7 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.getChildren().add(vistaOpciones);
 
         //Agregado de la exclusividad
-        this.getChildren().add(botonExclusividad);
+        this.getChildren().add(vistaBotonesMultiplicadores);
 
         //Agregado del enviar
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
@@ -80,7 +81,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
             int puntos = jugadorActual.obtenerPuntajeTotal();
             infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
             vistaOpciones.update();
-            botonExclusividad.actualizar(jugadorActual);
+            vistaBotonesMultiplicadores.actualizar();
         }
     }
 }
+

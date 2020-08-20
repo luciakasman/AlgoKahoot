@@ -30,14 +30,13 @@ public class RadioButtonOpcionGroupChoiceEventHandler implements EventHandler<Ac
     public void handle(ActionEvent actionEvent){
         respuesta.put(this.opcion, radioButton.getText());
         List<Opcion> lista = new ArrayList<>();
-        respuesta.entrySet().stream().filter(o -> o.getValue().equals(this.opcionCorrecta)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)).forEach((k, v) ->
-                lista.add(new Opcion(k)));
+        respuesta.entrySet().stream()
+                .filter(o -> o.getValue().equals(this.opcionCorrecta))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+                        .forEach((k, v) ->
+                            lista.add(new Opcion(k)));
         respuestaFinal.clear();
         respuestaFinal.addAll(lista);
-        System.out.println("RESPUESTAS");
-        respuestaFinal.forEach(r ->
-                System.out.println(r.getOpcion().toString())
-        );
     }
 
 }

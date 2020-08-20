@@ -1,10 +1,14 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.preguntas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
+import edu.fiuba.algo3.vista.AvanzadorDeRondas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaOpcionesGroupChoice;
 import edu.fiuba.algo3.vista.botones.BotonEnviarNombre;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
@@ -36,7 +40,6 @@ public class VistaGroupChoice extends VBox implements Observador {
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        System.out.println(this.jugadores.size());
         this.botonExclusividad = new BotonExclusividad(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.setSpacing(20);

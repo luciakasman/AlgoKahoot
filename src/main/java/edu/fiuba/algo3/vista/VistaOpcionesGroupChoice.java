@@ -15,10 +15,10 @@ import java.util.List;
 
 public class VistaOpcionesGroupChoice extends VBox {
 
-    List<Opcion> opciones;
-    HashMap<String, String> respuesta = new HashMap<>();
-    List<Opcion> respuestaFinal;
-    PreguntaGroupChoice pregunta;
+    private List<Opcion> opciones;
+    private HashMap<String, String> respuesta = new HashMap<>();
+    private List<Opcion> respuestaFinal;
+    private PreguntaGroupChoice pregunta;
 
     public VistaOpcionesGroupChoice(List<Opcion> opciones, List<Opcion> respuestaFinal, PreguntaGroupChoice pregunta) {
         this.setSpacing(20);
@@ -26,7 +26,6 @@ public class VistaOpcionesGroupChoice extends VBox {
         setearOpciones();
         this.pregunta = pregunta;
         this.respuestaFinal = respuestaFinal;
-        //armarVistaPropia();
         update();
     }
 
