@@ -3,43 +3,56 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador {
+public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Observador {
     private final Label infoJugador = new Label();
-    private final String preguntaLabel;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final int tiempoDisponible = 5;
-    private LabelTiempo labelTiempo;
-    private Juego juego;
+    private final LabelTiempo labelTiempo;
+    private final ImageView imagenVista;
+    private final Label pregunta;
+    private final Label tipoPregunta;
+    private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
+    private final Juego juego;
+    private final VistaOpcionesVerdaderoOFalso opciones;
+    private final SonidoHandler sonido;
 
-    public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, Juego juego) {
+    public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         this.juego = juego;
+        int tiempoDisponible = 5;
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
-        this.preguntaLabel = pregunta.getPregunta();
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        this.setSpacing(20);
+        this.imagenVista = imagenVista;
+        this.tipoPregunta = new Label("Verdadero o falso con penalidad: ");
+        this.pregunta = new Label(pregunta.getPregunta());
+        this.opciones = new VistaOpcionesVerdaderoOFalso(juego);
+        this.sonido = sonido;
     }
 
     public void armarVistaPropia() {
-        this.getChildren().add(labelTiempo);
         juego.guardarObservador(this);
-        this.getChildren().add(infoJugador);
-        Label label = new Label("Verdadero o falso con penalidad : " + this.preguntaLabel);
-        this.getChildren().add(label);
-        VistaOpcionesVerdaderoOFalso opciones = new VistaOpcionesVerdaderoOFalso(juego);
-        this.getChildren().add(opciones);
-        this.getChildren().add(this.vistaBotonesMultiplicadores);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, opciones, vistaBotonesMultiplicadores);
+        sonido.reproducirSonido(new File("src/resources/sweet-dreams-kahoot.mp3"));
+        Image imagen = new Image("file:src/resources/imagen2.jpg", 512, 250, true, false);
+        imagenVista.setImage(imagen);
+        tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        setMargin(tipoPregunta, new Insets(100, 5, 0, 0));
+        DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
+        diseñadorDeVistas.diseñarVistaVerdaderoOFalso(tipoPregunta, pregunta, labelTiempo, opciones, infoJugador);
         update();
     }
 
@@ -48,13 +61,11 @@ public class VistaVerdaderoOFalsoConPenalidad extends VBox implements Observador
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
+            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
         } else {
             labelTiempo.start();
             Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntaje = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntaje);
+            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
             vistaBotonesMultiplicadores.actualizar();
         }
     }

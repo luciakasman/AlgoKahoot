@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -21,15 +21,17 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
     private final List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
     private VistaOpcionesMultipleChoice vistaOpciones;
-    private BotonExclusividad botonExclusividad;
+    private final BotonExclusividad botonExclusividad;
     private final Pregunta pregunta;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
     private final int tiempoDisponible = 5;
-    private LabelTiempo labelTiempo;
-    private Juego juego;
+    private final LabelTiempo labelTiempo;
+    private final Juego juego;
+    private final SonidoHandler sonido;
+    private final ImageView imagenVista;
 
-    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, Juego juego) {
+    public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         this.juego = juego;
         this.botonExclusividad = new BotonExclusividad(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
@@ -37,6 +39,8 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
+        this.sonido = sonido;
+        this.imagenVista = imagenVista;
     }
 
     public void armarVistaPropia() {
@@ -71,14 +75,12 @@ public class VistaMultipleChoiceClasico extends VBox implements Observador {
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
+            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
         } else {
             labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntos = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
+            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
             vistaOpciones.update();
             botonExclusividad.actualizar(jugadorActual);
         }

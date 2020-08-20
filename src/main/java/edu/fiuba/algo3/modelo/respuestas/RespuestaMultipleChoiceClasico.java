@@ -7,14 +7,14 @@ import java.util.List;
 public class RespuestaMultipleChoiceClasico implements Respuesta {
 
     private final List<Opcion> respuestas;
-    private final RespuestasHelper respuestasHelper = new RespuestasHelper();
+    private final RespuestasUtils respuestasUtils = new RespuestasUtils();
 
     public RespuestaMultipleChoiceClasico(List<Opcion> respuestas) {
         this.respuestas = respuestas;
     }
 
     public int obtenerPuntaje(List<Opcion> opcionesCorrectas) {
-        return (respuestasHelper.todasLasRespuestasCoincidenConLasOpcionesCorrectas(opcionesCorrectas, respuestas)
+        return (respuestasUtils.todasLasRespuestasCoincidenConLasOpcionesCorrectas(opcionesCorrectas, respuestas)
                 && opcionesCorrectas.size() == respuestas.size()) ? 1 : 0;
     }
 }

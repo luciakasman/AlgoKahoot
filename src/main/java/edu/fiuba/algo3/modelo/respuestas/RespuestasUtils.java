@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Opcion;
 
 import java.util.List;
 
-public class RespuestasHelper {
+public class RespuestasUtils {
 
     public Boolean respuestaEsLaOpcionCorrecta(List<Opcion> opcionCorrecta, Opcion respuesta) {
         return opcionCorrecta.stream().anyMatch(opcion ->

@@ -1,6 +1,20 @@
 {
   "preguntas":[
     {
+      "type": "verdaderoOFalsoPenalidad",
+      "pregunta": "Gise tiene sueño?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "falso"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "verdadero"
+        }
+      ]
+    },
+    {
       "type": "verdaderoOFalso",
       "pregunta": "Estamos hechxs de torta?",
       "opcionesIncorrectas": [
@@ -31,20 +45,6 @@
       "opcionesCorrectas": [
         {
           "opcion": "Quimica"
-        }
-      ]
-    },
-    {
-      "type": "verdaderoOFalsoPenalidad",
-      "pregunta": "Gise tiene sueño?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "falso"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "verdadero"
         }
       ]
     },

@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,16 +25,20 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
     private final Stage stage;
     private final Queue<Jugador> jugadores;
     private final int tiempoDisponible = 5;
-    private LabelTiempo labelTiempo;
-    private Juego juego;
+    private final LabelTiempo labelTiempo;
+    private final SonidoHandler sonido;
+    private final ImageView imagenVista;
+    private final Juego juego;
 
-    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, Juego juego) {
+    public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         this.juego = juego;
         vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
         labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.setSpacing(20);
         this.pregunta = pregunta;
         this.stage = stage;
+        this.sonido = sonido;
+        this.imagenVista = imagenVista;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
     }
 
@@ -71,14 +75,12 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VBox implements Obs
         labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
-            avanzador.avanzarRonda(this.stage, juego);
+            avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
         } else {
             labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
-            String nombreJugadorActual = jugadorActual.obtenerNombre();
-            int puntos = jugadorActual.obtenerPuntajeTotal();
-            infoJugador.setText("Turno del jugador: " + nombreJugadorActual + ", puntos: " + puntos);
+            infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
             vistaOpciones.update();
             vistaBotonesMultiplicadores.actualizar();
         }

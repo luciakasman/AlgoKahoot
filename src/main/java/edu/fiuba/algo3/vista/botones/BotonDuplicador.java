@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 public class BotonDuplicador extends Button {
 
-    private Juego juego;
+    private final Juego juego;
 
     public BotonDuplicador(Juego juego){
         this.juego = juego;
