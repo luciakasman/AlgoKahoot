@@ -9,8 +9,8 @@ import java.util.List;
 
 public class CheckBoxMultipleChoiceEventHandler implements EventHandler<ActionEvent> {
 
-    private CheckBox checkbox;
-    private List<Opcion> respuesta;
+    private final CheckBox checkbox;
+    private final List<Opcion> respuesta;
     EstadoCheckBoxMultipleChoice estado = new EstadoNoAgregado();
 
     public CheckBoxMultipleChoiceEventHandler(CheckBox checkbox, List<Opcion> respuesta){

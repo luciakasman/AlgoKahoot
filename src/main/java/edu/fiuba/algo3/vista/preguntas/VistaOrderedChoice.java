@@ -4,7 +4,10 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.*;
+import edu.fiuba.algo3.vista.AvanzadorDeRondas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaOpcionesOrderedChoice;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import javafx.scene.control.Label;
@@ -18,14 +21,14 @@ public class VistaOrderedChoice extends VBox implements Observador {
     List<Opcion> respuesta = new LinkedList<>();
     private final Label infoJugador = new Label();
     private final Stage stage;
-    private Queue<Jugador> jugadores;
+    private final Queue<Jugador> jugadores;
     private final List<Opcion> opciones = new ArrayList<>();
     private final Pregunta pregunta;
     private VistaOpcionesOrderedChoice vistaOpciones;
-    private Juego juego;
+    private final Juego juego;
     private final int tiempoDisponible = 20;
-    private LabelTiempo labelTiempo;
-    private BotonExclusividad botonExclusividad;
+    private final LabelTiempo labelTiempo;
+    private final BotonExclusividad botonExclusividad;
 
     public VistaOrderedChoice( Pregunta pregunta, Stage stage, Juego juego) {
         this.juego = juego;
@@ -64,13 +67,13 @@ public class VistaOrderedChoice extends VBox implements Observador {
 
     @Override
     public void update() {
-        labelTiempo.stop();
+     //   labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
             avanzador.avanzarRonda(this.stage, juego);
         } else {
             System.out.println("SACO JUGADOR");
-            labelTiempo.start();
+         //   labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             String nombreJugadorActual = jugadorActual.obtenerNombre();

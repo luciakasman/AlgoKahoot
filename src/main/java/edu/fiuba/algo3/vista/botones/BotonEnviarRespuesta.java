@@ -14,5 +14,4 @@ public class BotonEnviarRespuesta extends Button {
         EnviarRespuestaEventHandler eventHandler = new EnviarRespuestaEventHandler(respuestas, juego);
         this.setOnAction(eventHandler);
     }
-
 }

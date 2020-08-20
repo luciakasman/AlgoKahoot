@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
 import edu.fiuba.algo3.vista.botones.RadioButtonGroupChoice;
 import javafx.geometry.Insets;

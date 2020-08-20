@@ -10,7 +10,6 @@ import edu.fiuba.algo3.vista.Observador;
 import edu.fiuba.algo3.vista.VistaOpcionesMultipleChoice;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;

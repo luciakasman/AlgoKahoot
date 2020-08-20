@@ -11,10 +11,10 @@ import java.util.List;
 
 public class ComboBoxOpcionHandler implements EventHandler<ActionEvent> {
 
-    private HashMap<String, Integer> respuesta;
-    private String opcion;
-    private List<Opcion> respuestaFinal;
-    private ComboBoxOrderedChoice comboBox;
+    private final String opcion;
+    private final HashMap<Integer, Opcion> respuesta = new HashMap<>();
+    private final List<Opcion> respuestaFinal;
+    private final ComboBoxOrderedChoice comboBox;
 
     public ComboBoxOpcionHandler(ComboBoxOrderedChoice comboBox, int cantOpciones, String opcion, List<Opcion> respuestaFinal) {
         this.comboBox = comboBox;
@@ -23,13 +23,21 @@ public class ComboBoxOpcionHandler implements EventHandler<ActionEvent> {
         this.opcion = opcion;
     }
 
+    public List<Opcion> armarRespuestaFinal(){
+        for (int i = 1; i <= respuesta.size(); i++) {
+            respuestaFinal.add(respuesta.get(i));
+        }
+        return respuestaFinal;
+    }
+
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.respuestaFinal.add(Integer.parseInt(this.comboBox.getValue().toString()) - 1, new Opcion(opcion));
-        System.out.println("RESPUESTAS");
-        this.respuestaFinal.forEach(o ->
+        int value = Integer.parseInt(this.comboBox.getValue().toString());
+        this.respuesta.put(value - 1, new Opcion(opcion));
+        this.comboBox.getItems().remove(String.valueOf(value-1));
+        this.respuesta.forEach((v,o) ->
                 System.out.println(o.getOpcion())
-                );
+        );
 
     }
 }
