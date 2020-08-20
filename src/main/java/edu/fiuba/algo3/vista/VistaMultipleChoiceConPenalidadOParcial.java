@@ -5,10 +5,11 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -24,7 +25,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends StackPane implement
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final int tiempoDisponible = 5;
+    private final int tiempoDisponible = 115;
     private final LabelTiempo labelTiempo;
     private final SonidoHandler sonido;
     private final ImageView imagenVista;
@@ -53,7 +54,10 @@ public class VistaMultipleChoiceConPenalidadOParcial extends StackPane implement
         Label tipoPregunta = new Label("Multiple Choice " + clase + " : ");
         Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
-        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vistaOpciones, vistaBotonesMultiplicadores, botonEnviar);
+        VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
+        vBox.setTranslateY(300);
+        vBox.setSpacing(30.0);
+        this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
         Collections.shuffle(opciones);
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
         diseñadorDeVistas.diseñarVistaMultipleChoice(tipoPregunta, pregunta, labelTiempo, infoJugador, botonEnviar);

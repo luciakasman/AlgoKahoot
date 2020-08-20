@@ -29,7 +29,7 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
     private final BotonExclusividad botonExclusividad;
     private final Stage stage;
     private final Queue<Jugador> jugadores;
-    private final int tiempoDisponible = 5;
+    private final int tiempoDisponible = 15;
     private final LabelTiempo labelTiempo;
     private final SonidoHandler sonido;
     private final ImageView imagenVista;

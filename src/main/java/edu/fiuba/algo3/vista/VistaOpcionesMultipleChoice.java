@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.vista.CheckBoxMultipleChoice.CheckBoxMultipleChoiceEventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 
@@ -32,10 +33,8 @@ public class VistaOpcionesMultipleChoice extends HBox {
         opciones.forEach(opcion -> {
             CheckBox checkBox = armarCheckBox(opcion.obtenerOpcion(), respuesta);
             checkBox.setMaxSize(500, 30);
-            checkBox.setTranslateX(50);
-            checkBox.setTranslateY(300);
-
             this.getChildren().add(checkBox);
         });
+        this.setAlignment(Pos.CENTER);
     }
 }
