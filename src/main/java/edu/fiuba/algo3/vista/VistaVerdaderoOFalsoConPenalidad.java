@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -46,7 +45,6 @@ public class VistaVerdaderoOFalsoConPenalidad extends StackPane implements Obser
     public void armarVistaPropia() {
         juego.guardarObservador(this);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, opciones, vistaBotonesMultiplicadores);
-        sonido.reproducirSonido(new File("src/resources/sweet-dreams-kahoot.mp3"));
         Image imagen = new Image("file:src/resources/imagen2.jpg", 512, 250, true, false);
         imagenVista.setImage(imagen);
         tipoPregunta.setFont(Font.font("Arial", FontWeight.BOLD, 30));

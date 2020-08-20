@@ -11,6 +11,8 @@ public class BotonEnviarRespuesta extends Button {
 
     public BotonEnviarRespuesta(List<Opcion> respuestas, Juego juego){
         this.setText("Enviar respuesta");
+        this.setMaxSize(300,40);
+        this.setStyle("-fx-font-size:30; -fx-background-radius: 25;");
         EnviarRespuestaEventHandler eventHandler = new EnviarRespuestaEventHandler(respuestas, juego);
         this.setOnAction(eventHandler);
     }

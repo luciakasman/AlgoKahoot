@@ -21,6 +21,7 @@ public class VistaOpcionesMultipleChoice extends HBox {
 
     private CheckBox armarCheckBox(String opcion, List<Opcion> respuesta) {
         CheckBox checkbox = new CheckBox(opcion);
+        checkbox.setStyle("-fx-font-size:30;");
         CheckBoxMultipleChoiceEventHandler eventHandler = new CheckBoxMultipleChoiceEventHandler(checkbox, respuesta);
         checkbox.setOnAction(eventHandler);
         return checkbox;
@@ -28,6 +29,13 @@ public class VistaOpcionesMultipleChoice extends HBox {
 
     public void update() {
         this.getChildren().clear();
-        opciones.forEach(opcion -> this.getChildren().add(armarCheckBox(opcion.obtenerOpcion(), respuesta)));
+        opciones.forEach(opcion -> {
+            CheckBox checkBox = armarCheckBox(opcion.obtenerOpcion(), respuesta);
+            checkBox.setMaxSize(500, 30);
+            checkBox.setTranslateX(50);
+            checkBox.setTranslateY(300);
+
+            this.getChildren().add(checkBox);
+        });
     }
 }

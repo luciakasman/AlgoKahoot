@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 
 public class BotonExclusividad extends Button {
 
-    private Juego juego;
+    private final Juego juego;
 
     public BotonExclusividad(Juego juego){
         this.juego = juego;
