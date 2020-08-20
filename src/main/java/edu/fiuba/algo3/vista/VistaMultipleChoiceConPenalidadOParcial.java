@@ -42,8 +42,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends StackPane implement
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.sonido = sonido;
         this.imagenVista = imagenVista;
-        this.opciones = new LinkedList<>(pregunta.getOpcionesCorrectas());
-        this.opciones.addAll(pregunta.getOpcionesIncorrectas());
+        this.opciones = pregunta.obtenerOpciones();
         this.pregunta = new Label(pregunta.getPregunta());
         this.botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
         this.vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
@@ -58,7 +57,6 @@ public class VistaMultipleChoiceConPenalidadOParcial extends StackPane implement
         vBox.setTranslateY(350);
         vBox.setSpacing(30.0);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
-        Collections.shuffle(opciones);
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
         diseñadorDeVistas.diseñarVistaMultipleChoice(tipoPregunta, pregunta, labelTiempo, infoJugador, botonEnviar);
         update();

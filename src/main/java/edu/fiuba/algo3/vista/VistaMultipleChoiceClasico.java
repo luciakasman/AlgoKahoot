@@ -48,8 +48,7 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
         this.imagenVista = imagenVista;
         this.tipoPregunta = new Label("Multiple Choice Clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());
-        this.opciones = new LinkedList<>(pregunta.getOpcionesCorrectas());
-        opciones.addAll(pregunta.getOpcionesIncorrectas());
+        this.opciones = pregunta.obtenerOpciones();
         this.botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
         this.vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
     }
@@ -62,7 +61,6 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
         vBox.setTranslateY(350);
         vBox.setSpacing(50.0);
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, pregunta, vBox);
-        Collections.shuffle(opciones);
         setAlignment(botonExclusividad, Pos.BOTTOM_CENTER);
         setMargin(botonExclusividad, new Insets(0, 0, 0, 300));
         botonExclusividad.armarDiseño();
@@ -72,12 +70,12 @@ public class VistaMultipleChoiceClasico extends StackPane implements Observador 
     }
 
     public void update() {
-        //labelTiempo.stop();
+        labelTiempo.stop();
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
             avanzador.avanzarRonda(this.stage, imagenVista, sonido, juego);
         } else {
-            //  labelTiempo.start();
+            labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();
             infoJugador.setText("Turno del jugador: " + jugadorActual.obtenerNombre() + ", puntos: " + jugadorActual.obtenerPuntajeTotal());
