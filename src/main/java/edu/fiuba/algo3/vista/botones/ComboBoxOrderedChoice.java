@@ -6,19 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ComboBoxOrderedChoice extends ComboBox {
 
-    public ComboBoxOrderedChoice(Integer cantidadOpciones, HashMap<Integer,String> respuesta, Opcion opcion, List<Opcion> respuestaFinal) {
+    public ComboBoxOrderedChoice(Integer cantidadOpciones, Map<String, Integer> respuesta, Opcion opcion, List<Opcion> respuestaFinal, BotonEnviarRespuesta botonEnviarRespuesta, Map<Integer,String> respuestasElegidasSinRepetir) {
         ObservableList<String> items = FXCollections.observableArrayList();
         for (int i = 1; i <= cantidadOpciones; i++) {
             items.add(String.valueOf(i));
         }
         this.setItems(items);
-        System.out.println(opcion.getOpcion());
-        ComboBoxOpcionHandler handler = new ComboBoxOpcionHandler(this, cantidadOpciones, opcion.getOpcion(), respuestaFinal);
+
+        ComboBoxOpcionHandler handler = new ComboBoxOpcionHandler(this, cantidadOpciones, opcion.getOpcion(), respuesta, botonEnviarRespuesta, respuestasElegidasSinRepetir, respuestaFinal);
+        respuestaFinal.forEach(x->System.out.println(x.getOpcion()));
         this.setOnAction(handler);
     }
 }

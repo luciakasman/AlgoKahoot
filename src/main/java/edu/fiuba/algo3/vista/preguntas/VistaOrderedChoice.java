@@ -55,24 +55,23 @@ public class VistaOrderedChoice extends VBox implements Observador {
         this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
         Collections.shuffle(this.opciones);
 
-        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, this.pregunta);
-        this.getChildren().add(vistaOpciones);
-
         //Agregado del enviar
-        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
+        BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(this.respuesta, this.juego);
         this.getChildren().add(botonEnviar);
+
+        vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, this.pregunta, botonEnviar);
+        this.getChildren().add(vistaOpciones);
 
         update();
     }
 
     @Override
     public void update() {
-     //   labelTiempo.stop();
+     //   labelTiempo.stop()
         if (jugadores.isEmpty()) {
             AvanzadorDeRondas avanzador = new AvanzadorDeRondas();
             avanzador.avanzarRonda(this.stage, juego);
         } else {
-            System.out.println("SACO JUGADOR");
          //   labelTiempo.start();
             respuesta.clear();
             Jugador jugadorActual = jugadores.remove();

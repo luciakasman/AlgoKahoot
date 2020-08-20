@@ -21,6 +21,8 @@ public class EnviarRespuestaEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        System.out.println("ACA");
+        respuestas.forEach(x->System.out.println(x.getOpcion()));
         juego.jugarTurno(this.respuestas);
     }
 }
