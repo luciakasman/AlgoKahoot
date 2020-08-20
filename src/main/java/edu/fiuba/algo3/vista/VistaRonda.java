@@ -2,6 +2,9 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.vista.preguntas.VistaGroupChoice;
+import edu.fiuba.algo3.vista.preguntas.VistaOrderedChoice;
+import edu.fiuba.algo3.vista.preguntas.VistaVerdaderoOFalso;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -24,35 +27,34 @@ public class VistaRonda extends VBox {
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaVerdaderoOFalsoConPenalidad.class)) {
-            VistaVerdaderoOFalsoConPenalidad vista = new VistaVerdaderoOFalsoConPenalidad(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaVerdaderoOFalsoConPenalidad vista = new edu.fiuba.algo3.vista.VistaVerdaderoOFalsoConPenalidad(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceClasico.class)) {
-            VistaMultipleChoiceClasico vista = new VistaMultipleChoiceClasico(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaMultipleChoiceClasico vista = new edu.fiuba.algo3.vista.VistaMultipleChoiceClasico(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceConPenalidad.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial vista = new edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Penalidad");
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaMultipleChoiceParcial.class)) {
-            VistaMultipleChoiceConPenalidadOParcial vista = new VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
+            edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial vista = new edu.fiuba.algo3.vista.VistaMultipleChoiceConPenalidadOParcial(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia("con Puntaje parcial");
             this.getChildren().add(vista);
         }
-        /*
         if (preguntaRonda.getClass().equals(PreguntaOrderedChoice.class)) {
-            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage);
+            VistaOrderedChoice vista = new VistaOrderedChoice(preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
         }
         if (preguntaRonda.getClass().equals(PreguntaGroupChoice.class)) {
-            VistaGroupChoice vista = new VistaGroupChoice(preguntaRonda, stage);
+            VistaGroupChoice vista = new VistaGroupChoice((PreguntaGroupChoice) preguntaRonda, stage, imagenVista, sonido, juego);
             vista.armarVistaPropia();
             this.getChildren().add(vista);
-        }*/
+        }
     }
 }

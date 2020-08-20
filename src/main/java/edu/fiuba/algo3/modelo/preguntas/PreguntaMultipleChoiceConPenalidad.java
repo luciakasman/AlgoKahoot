@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.respuestas.RespuestaMultipleChoiceConPenalidad;
-import edu.fiuba.algo3.modelo.respuestas.RespuestaVerdaderoOFalso;
 
 import java.util.List;
 
