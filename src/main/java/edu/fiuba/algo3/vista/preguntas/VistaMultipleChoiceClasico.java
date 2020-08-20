@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
@@ -7,19 +8,17 @@ import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesMultipleChoice;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observador {
 

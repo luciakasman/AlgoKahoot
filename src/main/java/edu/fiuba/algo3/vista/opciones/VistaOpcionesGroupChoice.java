@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.opciones;
 
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;

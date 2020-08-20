@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesVerdaderoOFalso;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

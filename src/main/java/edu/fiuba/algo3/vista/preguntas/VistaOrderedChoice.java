@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.preguntas;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
@@ -7,6 +8,7 @@ import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesOrderedChoice;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -16,15 +18,10 @@ import java.util.*;
 public class VistaOrderedChoice extends VistaAbstracta implements Observador {
 
     List<Opcion> respuesta = new LinkedList<>();
-    private final Label infoJugador = new Label();
-    private final Stage stage;
-    private final Queue<Jugador> jugadores;
     private final List<Opcion> opciones = new ArrayList<>();
     private final Pregunta pregunta;
     private VistaOpcionesOrderedChoice vistaOpciones;
-    private final Juego juego;
     private final int tiempoDisponible = 30;
-    private final LabelTiempo labelTiempo;
     private final BotonExclusividad botonExclusividad;
 
     public VistaOrderedChoice(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {

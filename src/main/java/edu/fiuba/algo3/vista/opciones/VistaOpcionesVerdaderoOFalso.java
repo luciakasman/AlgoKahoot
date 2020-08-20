@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.opciones;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.botones.BotonVerdaderoOFalso;

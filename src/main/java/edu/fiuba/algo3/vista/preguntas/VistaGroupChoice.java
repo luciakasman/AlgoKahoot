@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.preguntas;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
@@ -7,6 +8,7 @@ import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesGroupChoice;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -27,7 +29,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     private final PreguntaGroupChoice pregunta;
     private VistaOpcionesGroupChoice vistaOpciones;
     private final Juego juego;
-    private final int tiempoDisponible = 100;
+    private final int tiempoDisponible = 20;
     private final LabelTiempo labelTiempo;
     private final ImageView imagenVista;
     private final SonidoHandler sonido;

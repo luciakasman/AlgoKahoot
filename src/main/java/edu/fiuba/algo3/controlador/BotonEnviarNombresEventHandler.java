@@ -6,13 +6,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
+public class BotonEnviarNombresEventHandler implements EventHandler<ActionEvent> {
 
     private final TextField textFieldNombre;
     private final Label labelAdvertencia;
     private Juego juego;
 
-    public EnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia, Juego juego) {
+    public BotonEnviarNombresEventHandler(TextField textFieldNombre, Label labelAdvertencia, Juego juego) {
         this.labelAdvertencia = labelAdvertencia;
         this.textFieldNombre = textFieldNombre;
         this.juego = juego;
@@ -20,13 +20,6 @@ public class EnviarNombresEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (textFieldNombre.getText().trim().isEmpty()) {
-            labelAdvertencia.setText("Debes ingresar algo broder");
-            return;
-        }
-        String nombreJugador = textFieldNombre.getText();
-        juego.agregarJugador(nombreJugador);
-        this.textFieldNombre.setText("");
-        this.labelAdvertencia.setText("");
+        EnviarNombresHelper.enviarNombres(textFieldNombre, labelAdvertencia, juego);
     }
 }

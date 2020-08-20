@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesVerdaderoOFalso;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
