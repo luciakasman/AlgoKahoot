@@ -1,20 +1,18 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.vista.opciones.VistaOpcionesVerdaderoOFalso;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class VistaVerdaderoOFalsoConPenalidad extends VistaAbstracta implements Observador {
     private final Label pregunta;

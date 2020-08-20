@@ -1,7 +1,8 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.preguntas.GeneradorDePreguntas;
+import edu.fiuba.algo3.vista.VistaRegistroDeJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

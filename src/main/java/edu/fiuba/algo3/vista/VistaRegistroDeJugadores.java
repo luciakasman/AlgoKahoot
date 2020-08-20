@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 
 import edu.fiuba.algo3.controlador.EnterEnviarNombresEventHandler;
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.botones.BotonEnviarNombre;
 import javafx.scene.Scene;
