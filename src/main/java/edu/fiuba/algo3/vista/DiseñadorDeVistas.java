@@ -62,7 +62,7 @@ public class DiseñadorDeVistas {
         setAlignment(infoJugador, Pos.TOP_LEFT);
         setMargin(infoJugador, new Insets(10, 100, 0, 0));
         setAlignment(pregunta, Pos.CENTER);
-        setMargin(pregunta, new Insets(0, 0, 500, 0));
+        setMargin(pregunta, new Insets(0, 0, 450, 0));
         setAlignment(botonEnviar, Pos.BOTTOM_CENTER);
         setMargin(botonEnviar, new Insets(0, 0, 100, 0));
         setAlignment(tipoPregunta, Pos.TOP_LEFT);

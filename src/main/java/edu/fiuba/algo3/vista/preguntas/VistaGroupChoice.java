@@ -5,11 +5,13 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.PreguntaGroupChoice;
-import edu.fiuba.algo3.vista.*;
+import edu.fiuba.algo3.vista.DiseñadorDeVistas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesGroupChoice;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -55,8 +57,8 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
         //Agregado de la pregunta
         Label labelPregunta = new Label(this.pregunta.getPregunta());
 
-        this.opciones.addAll(this.pregunta.getOpcionesIncorrectas());
-        this.opciones.addAll(this.pregunta.getOpcionesCorrectas());
+        this.opciones.addAll(this.pregunta.obtenerOpcionesIncorrectas());
+        this.opciones.addAll(this.pregunta.obtenerOpcionesCorrectas());
         Collections.shuffle(this.opciones);
 
         vistaOpciones = new VistaOpcionesGroupChoice(opciones, respuesta, this.pregunta);

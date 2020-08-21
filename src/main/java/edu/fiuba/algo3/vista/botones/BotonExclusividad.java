@@ -12,7 +12,7 @@ import javafx.scene.text.FontWeight;
 public class BotonExclusividad extends HBox {
 
     private final Juego juego;
-    private Button boton;
+    private final Button boton;
 
     public BotonExclusividad(Juego juego){
         this.juego = juego;

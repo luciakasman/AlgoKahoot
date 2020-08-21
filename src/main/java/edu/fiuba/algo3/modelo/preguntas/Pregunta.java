@@ -49,29 +49,29 @@ public abstract class Pregunta {
     }
 
     public List<Opcion> obtenerOpciones(){
-        List<Opcion> opciones = new LinkedList<>(getOpcionesCorrectas());
-        opciones.addAll(getOpcionesIncorrectas());
+        List<Opcion> opciones = new LinkedList<>(obtenerOpcionesCorrectas());
+        opciones.addAll(obtenerOpcionesIncorrectas());
         Collections.shuffle(opciones);
         return opciones;
     }
 
-    public List<Opcion> getOpcionesCorrectas() {
+    public List<Opcion> obtenerOpcionesCorrectas() {
         return opcionesCorrectas;
     }
 
-    public List<Opcion> getOpcionesIncorrectas() {
+    public List<Opcion> obtenerOpcionesIncorrectas() {
         return opcionesIncorrectas;
     }
 
-    public void setPregunta(String pregunta) {
+    public void guardarPregunta(String pregunta) {
         this.pregunta = pregunta;
     }
 
-    public void setOpcionesIncorrectas(List<Opcion> opcionesIncorrectas) {
+    public void guardarOpcionesIncorrectas(List<Opcion> opcionesIncorrectas) {
         this.opcionesIncorrectas = opcionesIncorrectas;
     }
 
-    public void setOpcionesCorrectas(List<Opcion> opcionesCorrectas) {
+    public void guardarOpcionesCorrectas(List<Opcion> opcionesCorrectas) {
         this.opcionesCorrectas = opcionesCorrectas;
     }
 }
