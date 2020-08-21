@@ -51,7 +51,7 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
         this.opciones.addAll(this.pregunta.obtenerOpcionesCorrectas());
         Collections.shuffle(this.opciones);
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(this.respuesta, this.juego);
-        botonEnviar.setTranslateY(20);
+        botonEnviar.setTranslateY(-110);
         botonEnviar.setTranslateX(150);
         vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, botonEnviar);
         Image imagen = new Image("file:src/resources/imagen5.jpg", 512, 250, true, false);
