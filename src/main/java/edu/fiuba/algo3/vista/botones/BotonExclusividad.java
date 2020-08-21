@@ -23,8 +23,9 @@ public class BotonExclusividad extends HBox {
         boton.setMaxSize(300, 40);
         boton.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         boton.setStyle("-fx-background-radius: 15;");
-        boton.setTranslateY(100);
+        //boton.setTranslateX(500);
         this.getChildren().add(boton);
+        this.setAlignment(Pos.CENTER);
     }
 
     public void actualizar(Jugador jugadorActual) {

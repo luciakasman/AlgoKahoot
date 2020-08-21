@@ -32,7 +32,7 @@ public class VistaOpcionesOrderedChoice extends VBox {
     private void armarVistaPropia() {
         this.opciones.forEach(opcion ->
                 this.getChildren().add(armarRespuestaConOpciones(opcion)));
-        this.setTranslateX(350);
+        this.setTranslateX(250);
         this.setMaxSize(500, 200);
     }
 

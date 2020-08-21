@@ -12,6 +12,7 @@ import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesGroupChoice;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,6 +69,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
 
         Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
+        botonExclusividad.armarDiseño();
         VBox vBox = new VBox(vistaOpciones, botonEnviar, botonExclusividad);
         vBox.setSpacing(30.0);
         vBox.setTranslateY(250);
