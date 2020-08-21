@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
-import edu.fiuba.algo3.controlador.AplicarTriplicadorEventHandler;
+import edu.fiuba.algo3.controlador.aplicadores.AplicarTriplicadorEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.scene.control.Button;
 
