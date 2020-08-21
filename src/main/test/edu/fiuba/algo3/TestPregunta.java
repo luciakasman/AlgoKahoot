@@ -24,13 +24,13 @@ public class TestPregunta {
     void testPuedeCrearseIndicandoleRespuestaCorrecta() {
         Pregunta pregunta = preguntas.remove();
         assertEquals("Estamos hechxs de torta?", pregunta.getPregunta());
-        assertEquals("falso", pregunta.getOpcionesCorrectas().get(0).getOpcion());
-        assertEquals("verdadero", pregunta.getOpcionesIncorrectas().get(0).getOpcion());
+        assertEquals("falso", pregunta.obtenerOpcionesCorrectas().get(0).getOpcion());
+        assertEquals("verdadero", pregunta.obtenerOpcionesIncorrectas().get(0).getOpcion());
         pregunta = preguntas.remove();
         assertEquals("Materias mas aburridas de la facu?", pregunta.getPregunta());
-        assertEquals("Quimica", pregunta.getOpcionesCorrectas().get(0).getOpcion());
-        assertEquals("AMII", pregunta.getOpcionesIncorrectas().get(0).getOpcion());
-        assertEquals("AlgoritmosIII", pregunta.getOpcionesIncorrectas().get(1).getOpcion());
-        assertEquals("AlgebraII", pregunta.getOpcionesIncorrectas().get(2).getOpcion());
+        assertEquals("Quimica", pregunta.obtenerOpcionesCorrectas().get(0).getOpcion());
+        assertEquals("AMII", pregunta.obtenerOpcionesIncorrectas().get(0).getOpcion());
+        assertEquals("AlgoritmosIII", pregunta.obtenerOpcionesIncorrectas().get(1).getOpcion());
+        assertEquals("AlgebraII", pregunta.obtenerOpcionesIncorrectas().get(2).getOpcion());
     }
 }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.opciones;
 
 import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.vista.CheckBoxMultipleChoice.CheckBoxMultipleChoiceEventHandler;
+import edu.fiuba.algo3.vista.checkboxmultiplechoice.CheckBoxMultipleChoiceEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;

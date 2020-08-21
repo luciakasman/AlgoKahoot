@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vista.opciones;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.ComboBoxOrderedChoice;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,16 +33,19 @@ public class VistaOpcionesOrderedChoice extends VBox {
         this.opciones.forEach(opcion ->
                 this.getChildren().add(armarRespuestaConOpciones(opcion)));
         this.setTranslateX(350);
+        this.setMaxSize(500, 200);
     }
 
     private HBox armarRespuestaConOpciones(Opcion opcion) {
         HBox hBox = new HBox();
-        Label opcionLabel = new Label(opcion.getOpcion());
-        opcionLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-        hBox.getChildren().add(opcionLabel);
         hBox.setSpacing(50);
         ComboBoxOrderedChoice ordenComboBox = new ComboBoxOrderedChoice(opciones.size(), respuesta, opcion, respuestaFinal, botonEnviarRespuesta,respuestasElegidasSinRepetir);
         hBox.getChildren().add(ordenComboBox);
+        ordenComboBox.setMaxSize(900,100);
+        Label opcionLabel = new Label(opcion.getOpcion());
+        opcionLabel.setMinWidth(600);
+        opcionLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
+        hBox.getChildren().add(opcionLabel);
         return hBox;
     }
 

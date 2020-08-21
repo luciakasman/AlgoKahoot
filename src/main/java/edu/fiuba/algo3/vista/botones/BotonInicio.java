@@ -16,6 +16,6 @@ public class BotonInicio extends Button {
         this.setOnAction(new IniciarJuegoHandler(stage, sonido));
         this.setMaxSize(300,100);
         this.setTranslateX(10);
-        this.setTranslateY(170);
+        this.setTranslateY(220);
     }
 }
