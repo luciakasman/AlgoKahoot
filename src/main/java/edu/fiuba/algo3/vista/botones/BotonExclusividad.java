@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.vista.botones;
 
-import edu.fiuba.algo3.controlador.AplicarExclusividadEventHandler;
+import edu.fiuba.algo3.controlador.aplicadores.AplicarExclusividadEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;

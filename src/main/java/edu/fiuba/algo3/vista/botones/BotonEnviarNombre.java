@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
-import edu.fiuba.algo3.controlador.BotonEnviarNombresEventHandler;
+import edu.fiuba.algo3.controlador.enviadores.BotonEnviarNombresEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.controlador;
+package edu.fiuba.algo3.controlador.enviadores;
 
+import edu.fiuba.algo3.controlador.enviadores.EnviarNombresHelper;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
