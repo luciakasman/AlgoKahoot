@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TestTurno {
+class TestTurno {
 
     Pregunta pregunta;
     String preguntaAHacer;
@@ -38,7 +38,6 @@ public class TestTurno {
     void setUp() {
         GeneradorDePreguntas generadorDePreguntas = mock(GeneradorDePreguntas.class);
         juego = new Juego(generadorDePreguntas);
-        //juego = new Juego(servicio, generadorDePreguntas);
         Queue<Pregunta> preguntas = new LinkedList<>();
         preguntas.add(pregunta);
         when(generadorDePreguntas.obtenerPreguntas()).thenReturn(preguntas);
@@ -73,7 +72,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaCorrecta() {
+    void testPreguntaVerdaderoOFalsoConPenalidadRespuestaCorrecta() {
         Opcion respuesta = new Opcion(falso);
         respuestas.add(respuesta);
 
@@ -85,7 +84,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testPreguntaVerdaderoOFalsoConPenalidadRespuestaIncorrecta() {
+    void testPreguntaVerdaderoOFalsoConPenalidadRespuestaIncorrecta() {
         Opcion respuesta = new Opcion(verdadero);
         respuestas.add(respuesta);
 
@@ -97,7 +96,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPuntajeParcialConRespuestasCorrectas() {
+    void testMultipleChoiceConPuntajeParcialConRespuestasCorrectas() {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
@@ -109,7 +108,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPuntajeParcialConUnaRespuestaIncorrecta() {
+    void testMultipleChoiceConPuntajeParcialConUnaRespuestaIncorrecta() {
         respuestas.add(opcionA);
         respuestas.add(opcionC);
 
@@ -121,7 +120,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPuntajeParcialConTodasRespuestasIncorrectas() {
+    void testMultipleChoiceConPuntajeParcialConTodasRespuestasIncorrectas() {
         respuestas.add(opcionD);
         respuestas.add(opcionC);
 
@@ -133,7 +132,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceClasicoConTodasOpcionesCorrectas() {
+    void testMultipleChoiceClasicoConTodasOpcionesCorrectas() {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
@@ -145,7 +144,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceClasicoConUnaOpcionIncorrecta() {
+    void testMultipleChoiceClasicoConUnaOpcionIncorrecta() {
         respuestas.add(opcionA);
         respuestas.add(opcionD);
 
@@ -157,7 +156,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPenalidadConTodasRespuestasCorrectas() {
+    void testMultipleChoiceConPenalidadConTodasRespuestasCorrectas() {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
 
@@ -169,7 +168,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPenalidadConUnaRespuestaIncorrecta() {
+    void testMultipleChoiceConPenalidadConUnaRespuestaIncorrecta() {
         respuestas.add(opcionA);
         respuestas.add(opcionD);
 
@@ -181,7 +180,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testMultipleChoiceConPenalidadConTodasRespuestasIncorrectas() {
+    void testMultipleChoiceConPenalidadConTodasRespuestasIncorrectas() {
         respuestas.add(opcionC);
         respuestas.add(opcionD);
 
@@ -193,7 +192,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testOrderedChoiceCorrecto() {
+    void testOrderedChoiceCorrecto() {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
         respuestas.add(opcionD);
@@ -207,7 +206,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testOrderedChoiceIncorrecto() {
+    void testOrderedChoiceIncorrecto() {
         respuestas.add(opcionA);
         respuestas.add(opcionB);
         respuestas.add(opcionC);
@@ -221,7 +220,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testGroupChoiceCorrecto() {
+    void testGroupChoiceCorrecto() {
         List<Opcion> respuestaGrupoA = new LinkedList<>();
         respuestaGrupoA.add(opcionA);
         respuestaGrupoA.add(opcionB);
@@ -235,7 +234,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testGroupChoiceIncorrectoConRespuestaFaltante() {
+    void testGroupChoiceIncorrectoConRespuestaFaltante() {
         List<Opcion> respuestaGrupoA = new LinkedList<>();
         respuestaGrupoA.add(opcionA);
         respuestaGrupoA.add(opcionB);
@@ -248,7 +247,7 @@ public class TestTurno {
     }
 
     @Test
-    public void testGroupChoiceIncorrectoConRespuestaIncorrecta() {
+    void testGroupChoiceIncorrectoConRespuestaIncorrecta() {
         List<Opcion> respuestaGrupoA = new LinkedList<>();
         respuestaGrupoA.add(opcionA);
         respuestaGrupoA.add(opcionB);

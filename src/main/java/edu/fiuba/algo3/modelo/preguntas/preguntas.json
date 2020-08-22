@@ -69,26 +69,6 @@
       ]
     },
     {
-      "type": "multipleChoiceParcial",
-      "pregunta": "Cuáles son cantantes de cumbia?",
-      "opcionesIncorrectas": [
-        {
-          "opcion": "Gardel"
-        },
-        {
-          "opcion": "Cerati"
-        },
-        {
-          "opcion": "Justin Bieber"
-        }
-      ],
-      "opcionesCorrectas": [
-        {
-          "opcion": "Pablo Lescano"
-        }
-      ]
-    },
-    {
       "type": "orderedChoice",
       "pregunta": "Ordene estos momentos historicos",
       "opcionesCorrectas": [
@@ -106,6 +86,26 @@
         }
       ],
       "opcionesIncorrectas": [
+      ]
+    },
+    {
+      "type": "multipleChoiceParcial",
+      "pregunta": "Cuáles son cantantes de cumbia?",
+      "opcionesIncorrectas": [
+        {
+          "opcion": "Gardel"
+        },
+        {
+          "opcion": "Cerati"
+        },
+        {
+          "opcion": "Justin Bieber"
+        }
+      ],
+      "opcionesCorrectas": [
+        {
+          "opcion": "Pablo Lescano"
+        }
       ]
     },
     {
