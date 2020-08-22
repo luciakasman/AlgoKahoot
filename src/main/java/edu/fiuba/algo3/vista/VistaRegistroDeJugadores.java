@@ -24,6 +24,7 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
     private final TextField nombreJugador = new TextField();
     private final Label introducirNombre = new Label();
     private Juego juego;
+    private Label labelAdvertencia = new Label("");
 
     public VistaRegistroDeJugadores(Stage stage, SonidoHandler sonido, Juego juego) {
         this.setSpacing(20);
@@ -36,7 +37,6 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
     private void armarVistaPropia() {
         introducirNombre.setText("Ingrese su nombre: ");
-        Label labelAdvertencia = new Label("");
         nombreJugador.setPromptText("Ingrese el nombre del jugador");
         nombreJugador.setOnKeyPressed(new EnterEnviarNombresEventHandler(nombreJugador, labelAdvertencia, juego));
         Button botonEnviarNombres = new BotonEnviarNombre(nombreJugador, labelAdvertencia, juego);
@@ -60,6 +60,10 @@ public class VistaRegistroDeJugadores extends VBox implements Observador {
 
         nombreJugador.setTranslateY(60);
         nombreJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
+
+        labelAdvertencia.setTranslateY(90);
+        labelAdvertencia.setTextFill(Color.RED);
+        labelAdvertencia.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
     }
 
     @Override

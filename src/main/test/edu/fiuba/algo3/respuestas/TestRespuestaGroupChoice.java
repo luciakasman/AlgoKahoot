@@ -79,35 +79,3 @@ public class TestRespuestaGroupChoice {
     }
 
 }
-
-        /*@Test
-        void testObtenerPuntajeDaCeroConRespuestasFaltantes() {
-            opcionesCorrectas.add(opcionA);
-            opcionesCorrectas.add(opcionB);
-            opcionesCorrectas.add(opcionC);
-
-            respuesta.add(opcionA);
-            respuesta.add(opcionB);
-
-            RespuestaMultipleChoiceClasico respuestaMultipleChoice = new RespuestaMultipleChoiceClasico(respuesta);
-            int puntaje = respuestaMultipleChoice.obtenerPuntaje(opcionesCorrectas);
-
-            assertEquals(0, puntaje);
-        }
-
-        @Test
-        void testObtenerPuntajeDaCeroConRespuestasIncorrectas() {
-            opcionesCorrectas.add(opcionA);
-            opcionesCorrectas.add(opcionB);
-
-            respuesta.add(opcionA);
-            respuesta.add(opcionB);
-            respuesta.add(opcionC);
-
-            RespuestaMultipleChoiceClasico respuestaMultipleChoice = new RespuestaMultipleChoiceClasico(respuesta);
-            int puntaje = respuestaMultipleChoice.obtenerPuntaje(opcionesCorrectas);
-
-            assertEquals(0, puntaje);
-        }
-
-}*/

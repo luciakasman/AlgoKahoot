@@ -1,74 +1,74 @@
-/*
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.respuestas;
 
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.RespuestaMultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.pregunta.GeneradorDePreguntas;
-import edu.fiuba.algo3.modelo.pregunta.LotePreguntas;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestRespuestaMultipleChoiceClasico {
 
-    List<Opcion> opcionesCorrectas;
-    List<Opcion> respuesta;
+    RespuestaMultipleChoiceClasico respuesta;
+    List<Opcion> opcionesCorrectas = new LinkedList<>();
+    List<Opcion> listaRespuesta;
     Opcion opcionA;
     Opcion opcionB;
     Opcion opcionC;
-    GeneradorDePreguntas generadorDePreguntas = new GeneradorDePreguntas();
-    LotePreguntas preguntas = generadorDePreguntas.leerPreguntasJSON();
+    int puntaje;
 
     @BeforeEach
     void setUp() {
-        respuesta = new ArrayList<>();
+        listaRespuesta = new ArrayList<>();
         opcionA = new Opcion("opcionCorr1");
         opcionB = new Opcion("opcionCorr2");
         opcionC = new Opcion("opcionCorr3");
+        opcionesCorrectas.add(opcionA);
+        opcionesCorrectas.add(opcionB);
+        opcionesCorrectas.add(opcionC);
     }
 
     @Test
     void testObtenerPuntajeAcertandoTodasEsCorrecto() {
-        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(0);
-
-        respuesta.add(opcionA);
-        respuesta.add(opcionB);
-        respuesta.add(opcionC);
-
-        RespuestaMultipleChoiceClasico respuestaMultipleChoice = new RespuestaMultipleChoiceClasico(respuesta);
-        int puntaje = respuestaMultipleChoice.obtenerPuntaje(opcionesCorrectas);
-
-        assertEquals(1, puntaje);
+        listaRespuesta.add(new Opcion("opcionCorr1"));
+        listaRespuesta.add(new Opcion("opcionCorr3"));
+        listaRespuesta.add(new Opcion("opcionCorr2"));
+        respuesta = new RespuestaMultipleChoiceClasico(listaRespuesta);
+        puntaje = respuesta.obtenerPuntaje(opcionesCorrectas);
+        Assertions.assertEquals(1, puntaje);
     }
 
     @Test
     void testObtenerPuntajeDaCeroConRespuestasFaltantes() {
-        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(0);
-
-        respuesta.add(opcionA);
-        respuesta.add(opcionB);
-
-        RespuestaMultipleChoiceClasico respuestaMultipleChoice = new RespuestaMultipleChoiceClasico(respuesta);
-        int puntaje = respuestaMultipleChoice.obtenerPuntaje(opcionesCorrectas);
-
-        assertEquals(0, puntaje);
+        listaRespuesta.add(new Opcion("opcionCorr1"));
+        listaRespuesta.add(new Opcion("opcionCorr3"));
+        respuesta = new RespuestaMultipleChoiceClasico(listaRespuesta);
+        puntaje = respuesta.obtenerPuntaje(opcionesCorrectas);
+        Assertions.assertEquals(0, puntaje);
     }
 
     @Test
     void testObtenerPuntajeDaCeroConRespuestasIncorrectas() {
-        opcionesCorrectas = preguntas.obtenerOpcionesCorrectasPreguntaMultipleChoiceClasicoNumero(1);
+        listaRespuesta.add(new Opcion("opcionCorr1"));
+        listaRespuesta.add(new Opcion("opcionCorr3"));
+        listaRespuesta.add(new Opcion("opcionCorr4"));
+        respuesta = new RespuestaMultipleChoiceClasico(listaRespuesta);
+        puntaje = respuesta.obtenerPuntaje(opcionesCorrectas);
+        Assertions.assertEquals(0, puntaje);
+    }
 
-        respuesta.add(opcionA);
-        respuesta.add(opcionB);
-        respuesta.add(opcionC);
-
-        RespuestaMultipleChoiceClasico respuestaMultipleChoice = new RespuestaMultipleChoiceClasico(respuesta);
-        int puntaje = respuestaMultipleChoice.obtenerPuntaje(opcionesCorrectas);
-
-        assertEquals(0, puntaje);
+    @Test
+    void testObtenerPuntajeDaCeroConTodasLasRespuestasCorrectasYUnaRespuestaIncorrecta(){
+        listaRespuesta.add(new Opcion("opcionCorr1"));
+        listaRespuesta.add(new Opcion("opcionCorr2"));
+        listaRespuesta.add(new Opcion("opcionCorr3"));
+        listaRespuesta.add(new Opcion("opcionCorr4"));
+        respuesta = new RespuestaMultipleChoiceClasico(listaRespuesta);
+        puntaje = respuesta.obtenerPuntaje(opcionesCorrectas);
+        Assertions.assertEquals(0, puntaje);
     }
 }
-*/

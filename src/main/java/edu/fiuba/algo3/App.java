@@ -14,19 +14,6 @@ public class App extends Application {
         VistaGeneral vistaGeneral = new VistaGeneral();
         stage.setFullScreen(true);
         vistaGeneral.start(stage);
-        /*Scene scene = new Scene(contenedorPrincipal, 300, 250);
-
-        stage.setScene(scene);
-
-        stage.show();*/
-
-        /*var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public static void main(String[] args) {
