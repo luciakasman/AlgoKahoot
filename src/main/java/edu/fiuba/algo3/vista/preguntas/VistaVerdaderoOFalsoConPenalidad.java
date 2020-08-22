@@ -20,11 +20,10 @@ public class VistaVerdaderoOFalsoConPenalidad extends VistaAbstracta implements 
     private final Label tipoPregunta;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
     private final VistaOpcionesVerdaderoOFalso opciones;
-    private int tiempoDisponible = 15;
 
     public VistaVerdaderoOFalsoConPenalidad(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
-        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        labelTiempo = new LabelTiempo(15, juego);
         vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
         this.tipoPregunta = new Label("Verdadero o falso con penalidad: ");
         this.pregunta = new Label(pregunta.getPregunta());

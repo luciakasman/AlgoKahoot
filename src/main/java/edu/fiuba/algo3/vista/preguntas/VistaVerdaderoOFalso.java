@@ -25,14 +25,13 @@ public class VistaVerdaderoOFalso extends VistaAbstracta implements Observador {
 
 
     private final BotonExclusividad botonExclusividad;
-    private final int tiempoDisponible = 15;
     private final Label pregunta;
     private final Label tipoPregunta;
     private final VistaOpcionesVerdaderoOFalso opciones;
 
     public VistaVerdaderoOFalso(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
-        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        labelTiempo = new LabelTiempo(15, juego);
         botonExclusividad = new BotonExclusividad(juego);
         this.tipoPregunta = new Label("Verdadero o falso clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());

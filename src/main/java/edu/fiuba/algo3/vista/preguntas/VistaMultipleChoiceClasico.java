@@ -28,7 +28,6 @@ public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observ
     private final List<Opcion> respuesta = new LinkedList<>();
     private final VistaOpcionesMultipleChoice vistaOpciones;
     private final BotonExclusividad botonExclusividad;
-    private final int tiempoDisponible = 15;
     private final Label tipoPregunta;
     private final Label pregunta;
     private final BotonEnviarRespuesta botonEnviar;
@@ -36,7 +35,7 @@ public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observ
     public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
         this.botonExclusividad = new BotonExclusividad(juego);
-        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.labelTiempo = new LabelTiempo(15, juego);
         this.tipoPregunta = new Label("Multiple Choice Clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());
         List<Opcion> opciones = pregunta.obtenerOpciones();

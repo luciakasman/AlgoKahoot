@@ -21,19 +21,16 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VistaAbstracta impl
     private final List<Opcion> respuesta = new LinkedList<>();
     private final VistaOpcionesMultipleChoice vistaOpciones;
     private final VistaBotonesMultiplicadores vistaBotonesMultiplicadores;
-    private final int tiempoDisponible = 30;
     private final Label pregunta;
-    private final List<Opcion> opciones;
     private final BotonEnviarRespuesta botonEnviar;
 
     public VistaMultipleChoiceConPenalidadOParcial(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
         this.vistaBotonesMultiplicadores = new VistaBotonesMultiplicadores(juego);
-        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
-        this.opciones = pregunta.obtenerOpciones();
+        this.labelTiempo = new LabelTiempo(30, juego);
         this.pregunta = new Label(pregunta.getPregunta());
         this.botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
-        this.vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
+        this.vistaOpciones = new VistaOpcionesMultipleChoice(pregunta.obtenerOpciones(), respuesta);
     }
 
     public void armarVistaPropia(String clase) {
