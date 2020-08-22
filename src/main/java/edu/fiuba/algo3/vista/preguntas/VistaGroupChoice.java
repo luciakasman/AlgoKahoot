@@ -32,7 +32,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     private final PreguntaGroupChoice pregunta;
     private VistaOpcionesGroupChoice vistaOpciones;
     private Juego juego;
-    private final int tiempoDisponible = 3;
+    private final int tiempoDisponible = 15;
     private final ImageView imagenVista;
     private final SonidoHandler sonido;
     private final BotonExclusividad botonExclusividad;
