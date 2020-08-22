@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
-import edu.fiuba.algo3.controlador.EnviarRespuestaEventHandler;
+import edu.fiuba.algo3.controlador.enviadores.EnviarRespuestaEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Opcion;
 import javafx.geometry.Pos;

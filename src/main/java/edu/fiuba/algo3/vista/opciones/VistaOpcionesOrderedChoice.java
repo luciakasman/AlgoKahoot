@@ -41,9 +41,10 @@ public class VistaOpcionesOrderedChoice extends VBox {
         hBox.setSpacing(50);
         ComboBoxOrderedChoice ordenComboBox = new ComboBoxOrderedChoice(opciones.size(), respuesta, opcion, respuestaFinal, botonEnviarRespuesta,respuestasElegidasSinRepetir);
         hBox.getChildren().add(ordenComboBox);
-        ordenComboBox.setMaxSize(900,100);
+        ordenComboBox.setMinSize(90,40);
+        ordenComboBox.setStyle("-fx-font-size:20");
         Label opcionLabel = new Label(opcion.getOpcion());
-        opcionLabel.setMinWidth(600);
+        opcionLabel.setMinWidth(800);
         opcionLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 30));
         hBox.getChildren().add(opcionLabel);
         return hBox;
