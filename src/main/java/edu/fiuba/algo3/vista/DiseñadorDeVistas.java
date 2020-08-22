@@ -33,7 +33,7 @@ public class DiseñadorDeVistas {
     }
 
     public void diseñarVistaMultipleChoice(Label tipoPregunta, Label pregunta, LabelTiempo labelTiempo, Label infoJugador, BotonEnviarRespuesta botonEnviar) {
-        pregunta.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+        pregunta.setFont(Font.font("Arial", FontWeight.BOLD, 35));
         labelTiempo.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         labelTiempo.setTextFill(Color.web("#ff0000"));
 
@@ -52,7 +52,7 @@ public class DiseñadorDeVistas {
         infoJugador.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
     }
 
-    public void diseñarVistaGroupChoice(Label tipoPregunta, Label pregunta, LabelTiempo labelTiempo, Label infoJugador, BotonEnviarRespuesta botonEnviar) {
+    public void diseñarVistaOrderYGroupChoice(Label tipoPregunta, Label pregunta, LabelTiempo labelTiempo, Label infoJugador, BotonEnviarRespuesta botonEnviar) {
         pregunta.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         labelTiempo.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         labelTiempo.setTextFill(Color.web("#ff0000"));

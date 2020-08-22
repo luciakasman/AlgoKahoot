@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -32,7 +33,6 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
     private VistaOpcionesOrderedChoice vistaOpciones;
     private final int tiempoDisponible = 30;
     private final BotonExclusividad botonExclusividad;
-    private final ImageView imagenVista;
 
     public VistaOrderedChoice(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
         super(stage, imagenVista, sonido, juego);
@@ -53,7 +53,7 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
         Collections.shuffle(this.opciones);
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(this.respuesta, this.juego);
         vistaOpciones = new VistaOpcionesOrderedChoice(this.opciones, this.respuesta, botonEnviar);
-
+        sonido.reproducirSonido(new File("src/resources/kahoot-music-saxophone-quartet.mp3"));
         Image imagen = new Image("file:src/resources/imagen5.jpg", 512, 250, true, false);
         imagenVista.setImage(imagen);
         botonExclusividad.armarDiseño();
@@ -63,7 +63,7 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, labelPregunta, vBox);
         this.setAlignment(Pos.CENTER);
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
-        diseñadorDeVistas.diseñarVistaGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
+        diseñadorDeVistas.diseñarVistaOrderYGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
         update();
     }
 

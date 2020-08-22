@@ -23,6 +23,7 @@ import java.util.List;
 })
 
 public abstract class Pregunta {
+
     private String pregunta;
     private List<Opcion> opcionesIncorrectas;
     private List<Opcion> opcionesCorrectas;

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Jugador;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,7 +30,8 @@ public class VistaMostrarGanador {
         this.stage = stage;
     }
 
-    public void mostrarGanador(Queue<Jugador> jugadores) {
+    public void mostrarGanador(Queue<Jugador> jugadores, SonidoHandler sonido) {
+        sonido.detenerSonido();
         Label labelResultado = new Label();
         Jugador jugadorGanador = jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
         Jugador jugadorPerdedor = jugadores.stream().min(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();

@@ -14,15 +14,12 @@ public class AvanzadorDeRondas {
         juego.darPuntosAJugadores(new LinkedList<>(juego.obtenerJugadores()));
         if (juego.noQuedanPreguntas()) {
             VistaMostrarGanador vistaFinal = new VistaMostrarGanador(stage);
-            vistaFinal.mostrarGanador(juego.obtenerJugadores());
+            vistaFinal.mostrarGanador(juego.obtenerJugadores(), sonido);
         } else {
             VistaRonda vistaRonda = new VistaRonda(stage, juego);
             vistaRonda.armarVistaDeRonda(imagenVista, sonido);
             Scene scene = new Scene(vistaRonda);
             stage.setScene(scene);
         }
-    }
-
-    public void avanzarRonda(Stage stage, Juego juego) {
     }
 }

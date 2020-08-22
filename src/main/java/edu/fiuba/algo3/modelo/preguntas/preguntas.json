@@ -16,61 +16,61 @@
     },
     {
       "type": "multipleChoiceClasico",
-      "pregunta": "Materias mas aburridas de la facu?",
+      "pregunta": "Qué animales son mamíferos?",
       "opcionesIncorrectas": [
         {
-          "opcion": "AMII"
+          "opcion": "Tiburón"
         },
         {
-          "opcion": "AlgoritmosIII"
-        },
-        {
-          "opcion": "AlgebraII"
+          "opcion": "Iguana"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Quimica"
+          "opcion": "Gato"
+        },
+        {
+          "opcion": "Ballena"
         }
       ]
     },
     {
       "type": "verdaderoOFalsoPenalidad",
-      "pregunta": "Gise tiene sueño?",
+      "pregunta": "Pluton es un planeta",
       "opcionesIncorrectas": [
         {
-          "opcion": "falso"
+          "opcion": "verdadero"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "verdadero"
+          "opcion": "falso"
         }
       ]
     },
     {
       "type": "multipleChoicePenalidad",
-      "pregunta": "Materias mas robo de la facu?",
+      "pregunta": "En qué años ganó Boca la Copa Libertadores?",
       "opcionesIncorrectas": [
         {
-          "opcion": "AlgebraII"
-        },
-        {
-          "opcion": "AMII"
-        },
-        {
-          "opcion": "AlgoritmosIII"
+          "opcion": "1986"
         }
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Numerico"
+          "opcion": "2000"
+        },
+        {
+          "opcion": "1978"
+        },
+        {
+          "opcion": "2001"
         }
       ]
     },
     {
       "type": "multipleChoiceParcial",
-      "pregunta": "Cantantes de cumbia",
+      "pregunta": "Cuáles son cantantes de cumbia?",
       "opcionesIncorrectas": [
         {
           "opcion": "Gardel"
@@ -84,7 +84,7 @@
       ],
       "opcionesCorrectas": [
         {
-          "opcion": "Pablo lescano"
+          "opcion": "Pablo Lescano"
         }
       ]
     },
