@@ -31,8 +31,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     private final PreguntaGroupChoice pregunta;
     private VistaOpcionesGroupChoice vistaOpciones;
     private Juego juego;
-    private final int tiempoDisponible = 100;
-    private LabelTiempo labelTiempo;
+    private final int tiempoDisponible = 15;
     private final ImageView imagenVista;
     private final SonidoHandler sonido;
     private final BotonExclusividad botonExclusividad;
@@ -44,7 +43,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
         this.pregunta = pregunta;
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
-        labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.imagenVista = imagenVista;
         this.sonido = sonido;
         this.botonExclusividad = new BotonExclusividad(juego);
@@ -72,6 +71,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
         update();
     }
 
+    @Override
     protected void updatePropio(Jugador jugadorActual) {
         vistaOpciones.update();
         botonExclusividad.actualizar(jugadorActual);

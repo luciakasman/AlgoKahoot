@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Jugador;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -24,24 +24,30 @@ import static javafx.animation.Animation.INDEFINITE;
 
 public class VistaMostrarGanador {
     private final Stage stage;
-    private int tiempo = 3;
+    private int tiempo = 4;
+    private String pathFondo = new String();
+    Label labelResultado = new Label();
 
     public VistaMostrarGanador(Stage stage) {
         this.stage = stage;
     }
 
-    public void mostrarGanador(Queue<Jugador> jugadores, SonidoHandler sonido) {
-        sonido.detenerSonido();
-        Label labelResultado = new Label();
-        Jugador jugadorGanador = jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
-        Jugador jugadorPerdedor = jugadores.stream().min(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
-        String textoGanador = "El ganador es " + jugadorGanador.obtenerNombre() + " con " + jugadorGanador.obtenerPuntajeTotal() + " puntos.";
-        String textoPerdedor = "Pero el perdedor es " + jugadorPerdedor.obtenerNombre() + " con " + jugadorPerdedor.obtenerPuntajeTotal() + " puntos.";
-        labelResultado.setText(textoGanador);
+    public void mostrarGanador(Queue<Jugador> jugadores) {
+
         labelResultado.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         labelResultado.setTranslateY(-200);
         labelResultado.setStyle("-fx-text-fill: #FFFFFF;");
-        Media media = new Media(new File("src/resources/resultado.mp4").toURI().toString());
+        Jugador jugadorGanador = jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
+        Jugador jugadorPerdedor = jugadores.stream().min(Comparator.comparing(Jugador::obtenerPuntajeTotal)).get();
+
+        if (jugadorGanador.obtenerPuntajeTotal() == jugadorPerdedor.obtenerPuntajeTotal()) {
+            diseñarVistaEmpate();
+        } else {
+            diseñarVistaGanador(jugadorGanador, jugadorPerdedor);
+        }
+
+
+        Media media = new Media(new File(pathFondo).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
 
@@ -49,6 +55,21 @@ public class VistaMostrarGanador {
         Group root = new Group();
         root.getChildren().add(mediaView);
 
+        StackPane stack = new StackPane(root, labelResultado);
+        Scene escenaGanador = new Scene(stack, 900, 600);
+        stage.setScene(escenaGanador);
+    }
+
+    private void diseñarVistaEmpate() {
+        pathFondo = "src/resources/resultadoEmpate.mp4";
+        labelResultado.setText("Tenemos un empate");
+    }
+
+    private void diseñarVistaGanador(Jugador jugadorGanador, Jugador jugadorPerdedor) {
+        pathFondo = "src/resources/resultadoGanador.mp4";
+        String textoGanador = "El ganador es " + jugadorGanador.obtenerNombre() + " con " + jugadorGanador.obtenerPuntajeTotal() + " puntos.";
+        String textoPerdedor = "Pero el perdedor es " + jugadorPerdedor.obtenerNombre() + " con " + jugadorPerdedor.obtenerPuntajeTotal() + " puntos.";
+        labelResultado.setText(textoGanador);
         Timeline timeline = new Timeline();
         timeline.setCycleCount(INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> {
@@ -58,8 +79,5 @@ public class VistaMostrarGanador {
             }
         }));
         timeline.playFromStart();
-        StackPane stack = new StackPane(root, labelResultado);
-        Scene escenaGanador = new Scene(stack, 900, 600);
-        stage.setScene(escenaGanador);
     }
 }
