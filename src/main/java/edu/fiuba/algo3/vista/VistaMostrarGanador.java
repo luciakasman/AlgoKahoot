@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.SonidoHandler;
 import edu.fiuba.algo3.modelo.Jugador;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -25,15 +25,15 @@ import static javafx.animation.Animation.INDEFINITE;
 public class VistaMostrarGanador {
     private final Stage stage;
     private int tiempo = 4;
-    private String pathFondo = new String();
+    private String pathFondo = "";
     Label labelResultado = new Label();
 
     public VistaMostrarGanador(Stage stage) {
         this.stage = stage;
     }
 
-    public void mostrarGanador(Queue<Jugador> jugadores) {
-
+    public void mostrarGanador(Queue<Jugador> jugadores, SonidoHandler sonido) {
+        sonido.detenerSonido();
         labelResultado.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         labelResultado.setTranslateY(-200);
         labelResultado.setStyle("-fx-text-fill: #FFFFFF;");
@@ -45,18 +45,16 @@ public class VistaMostrarGanador {
         } else {
             diseñarVistaGanador(jugadorGanador, jugadorPerdedor);
         }
-
-
         Media media = new Media(new File(pathFondo).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
 
-        MediaView mediaView = new MediaView (mediaPlayer);
+        MediaView mediaView = new MediaView(mediaPlayer);
         Group root = new Group();
         root.getChildren().add(mediaView);
 
         StackPane stack = new StackPane(root, labelResultado);
-        Scene escenaGanador = new Scene(stack, 900, 600);
+        Scene escenaGanador = new Scene(stack, 1000, 600);
         stage.setScene(escenaGanador);
     }
 

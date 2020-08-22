@@ -39,7 +39,7 @@ public class VistaMultipleChoiceConPenalidadOParcial extends VistaAbstracta impl
     public void armarVistaPropia(String clase) {
         juego.guardarObservador(this);
         Label tipoPregunta = new Label("Multiple Choice " + clase + " : ");
-        Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
+        Image imagen = new Image("file:src/resources/imagen4.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
         VBox vBox = new VBox(vistaOpciones, botonEnviar, vistaBotonesMultiplicadores);
         vBox.setTranslateY(350);

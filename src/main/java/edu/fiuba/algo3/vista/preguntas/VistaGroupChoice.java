@@ -12,7 +12,6 @@ import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesGroupChoice;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,19 +52,12 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
     public void armarVistaPropia() {
         juego.guardarObservador(this);
         Label tipoPregunta = new Label("Pregunta Group Choice:");
-
-        //Agregado de la pregunta
         Label labelPregunta = new Label(this.pregunta.getPregunta());
-
         this.opciones.addAll(this.pregunta.obtenerOpcionesIncorrectas());
         this.opciones.addAll(this.pregunta.obtenerOpcionesCorrectas());
         Collections.shuffle(this.opciones);
-
         vistaOpciones = new VistaOpcionesGroupChoice(opciones, respuesta, this.pregunta);
-
-        //Agregado del enviar
         BotonEnviarRespuesta botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
-
         Image imagen = new Image("file:src/resources/imagen1.gif", 512, 250, true, false);
         imagenVista.setImage(imagen);
         botonExclusividad.armarDiseño();
@@ -75,7 +67,7 @@ public class VistaGroupChoice extends VistaAbstracta implements Observador {
         this.getChildren().addAll(imagenVista, labelTiempo, infoJugador, tipoPregunta, labelPregunta, vBox);
 
         DiseñadorDeVistas diseñadorDeVistas = new DiseñadorDeVistas();
-        diseñadorDeVistas.diseñarVistaGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
+        diseñadorDeVistas.diseñarVistaOrderYGroupChoice(tipoPregunta, labelPregunta, labelTiempo, infoJugador, botonEnviar);
         update();
     }
 

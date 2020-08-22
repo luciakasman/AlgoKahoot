@@ -5,7 +5,10 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.vista.*;
+import edu.fiuba.algo3.vista.DiseñadorDeVistas;
+import edu.fiuba.algo3.vista.LabelTiempo;
+import edu.fiuba.algo3.vista.Observador;
+import edu.fiuba.algo3.vista.VistaAbstracta;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuesta;
 import edu.fiuba.algo3.vista.botones.BotonExclusividad;
 import edu.fiuba.algo3.vista.opciones.VistaOpcionesMultipleChoice;
@@ -28,7 +31,6 @@ public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observ
     private final int tiempoDisponible = 15;
     private final Label tipoPregunta;
     private final Label pregunta;
-    private final List<Opcion> opciones;
     private final BotonEnviarRespuesta botonEnviar;
 
     public VistaMultipleChoiceClasico(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
@@ -37,7 +39,7 @@ public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observ
         this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
         this.tipoPregunta = new Label("Multiple Choice Clasico: ");
         this.pregunta = new Label(pregunta.getPregunta());
-        this.opciones = pregunta.obtenerOpciones();
+        List<Opcion> opciones = pregunta.obtenerOpciones();
         this.botonEnviar = new BotonEnviarRespuesta(respuesta, juego);
         this.vistaOpciones = new VistaOpcionesMultipleChoice(opciones, respuesta);
     }
@@ -59,7 +61,7 @@ public class VistaMultipleChoiceClasico extends VistaAbstracta implements Observ
     }
 
     @Override
-    protected void updatePropio(Jugador jugadorActual){
+    protected void updatePropio(Jugador jugadorActual) {
         respuesta.clear();
         vistaOpciones.update();
         botonExclusividad.actualizar(jugadorActual);

@@ -2,7 +2,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {11}
+## Grupo 11
 
 * **Lucia Kasman** - [luciakasman](https://github.com/luciakasman)
 * **Alan Ramiro Cueto Quinto** - [AlanRcq](https://github.com/AlanRcq)
@@ -18,7 +18,6 @@ Listado de software/herramientas necesarias para el proyecto
 ```
 java 11
 maven 3.6.0
-...
 ```
 
 ## Licencia

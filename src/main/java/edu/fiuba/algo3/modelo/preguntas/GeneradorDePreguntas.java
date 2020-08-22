@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class GeneradorDePreguntas {
-    //IMPORTANTE(ahre): hice que esto devuelva una Queue, no se si rompe algo pero parece que no
-
     public Queue<Pregunta> obtenerPreguntas() {
         return leerPreguntasJSON();
     }
