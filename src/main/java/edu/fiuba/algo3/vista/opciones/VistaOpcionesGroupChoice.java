@@ -40,7 +40,7 @@ public class VistaOpcionesGroupChoice extends VBox {
         this.opciones.forEach(opcion -> {
             this.getChildren().add(armarRespuestaConOpciones(opcion));
         });
-        this.setTranslateX(50);
+        this.setTranslateX(250);
         this.setMaxWidth(600);
     }
 
