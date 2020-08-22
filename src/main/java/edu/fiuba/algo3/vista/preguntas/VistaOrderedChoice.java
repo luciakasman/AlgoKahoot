@@ -31,7 +31,6 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
     private final List<Opcion> opciones = new ArrayList<>();
     private final Pregunta pregunta;
     private VistaOpcionesOrderedChoice vistaOpciones;
-    private final int tiempoDisponible = 30;
     private final BotonExclusividad botonExclusividad;
 
     public VistaOrderedChoice(Pregunta pregunta, Stage stage, ImageView imagenVista, SonidoHandler sonido, Juego juego) {
@@ -41,7 +40,7 @@ public class VistaOrderedChoice extends VistaAbstracta implements Observador {
         this.stage = stage;
         this.jugadores = new LinkedList<>(juego.obtenerJugadores());
         this.botonExclusividad = new BotonExclusividad(juego);
-        this.labelTiempo = new LabelTiempo(tiempoDisponible, juego);
+        this.labelTiempo = new LabelTiempo(30, juego);
         this.imagenVista = imagenVista;
     }
 
