@@ -113,7 +113,7 @@
       "pregunta": "Capitales de Europa y capitales de America",
       "nombrePrimerGrupo": "Europa",
       "nombreSegundoGrupo": "America",
-      "opcionesIncorrectas": [
+      "opcionesCorrectas": [
         {
           "opcion": "Paris"
         },
@@ -124,7 +124,7 @@
           "opcion": "Roma"
         }
       ],
-      "opcionesCorrectas": [
+      "opcionesIncorrectas": [
         {
           "opcion": "Buenos Aires"
         },
